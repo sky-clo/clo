@@ -18,7 +18,6 @@ class TestRome2Rio(unittest.TestCase):
 
         Assertions:
             Checks 'Rome2rio' is in page title.
-            Checks 'ways to travel' is in landing page title.
         """
 
         self.driver = webdriver.Chrome()
@@ -39,8 +38,7 @@ class TestRome2Rio(unittest.TestCase):
         This checks a user can search successfully for Miami to Ibiza.
 
         Assertions:
-            Checks Rome2rio in page title.
-            Checks 'ways to travel' in landing page.
+            Checks 'ways to travel' is in the search results page title.
 
         """
 
