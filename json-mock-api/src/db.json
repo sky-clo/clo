@@ -1,16 +1,18 @@
 {
-    "countries": [
+    "locations": [
       {
         "id": 1,
-        "name": "Croatia",
-        "locations": ["Dubrovnik","Sibenik"],
+        "name": "Dubrovnik",
+        "country": "Croatia",
+        "description": "Croatia is Awesome!",
         "featured_in": ["Game Of Thrones", "Captain America"],
         "img_urls": ["https://static.boredpanda.com/blog/wp-content/uploads/2015/06/game-of-thrones-real-life-locations-23__880.jpg"]
       },
       {
         "id": 2,
-        "name": "New Zealand",
-        "locations": ["Matamata","Takaka Hill"],
+        "name": "Matamata",
+        "country": "New Zealand",
+        "description": "New Zealand is cool!",
         "featured_in": ["Lord Of The Rings", "The Hobbit"],
         "img_urls": ["https://nomadsworld.com/wp-content/uploads/2017/09/hobbiton-commons.jpg" ]
       }
