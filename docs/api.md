@@ -10,14 +10,14 @@ Fetches all locations, sorted in popularity
 
 ```json
 {
-    locations: [
-        {
-            "id": 1,
-            "name": "London"
-            "country": "United Kingdom",
-            "description": "Big ben goes bong",
-        }
-    ]
+  "locations": [
+    {
+      "id": 1,
+      "name": "London",
+      "country": "United Kingdom",
+      "description": "Big ben goes bong"
+    }
+  ]
 }
 ```
 
@@ -31,10 +31,10 @@ Get a city's information
 
 ```json
 {
-    "id": 1,
-    "name": "London"
-    "country": "United Kingdom",
-    "description": "Big ben goes bong",
+  "id": 1,
+  "name": "London",
+  "country": "United Kingdom",
+  "description": "Big ben goes bong"
 }
 ```
 
@@ -75,23 +75,23 @@ Create a trip from one location to another
 
 ```json
 {
-    from: "london",
-    to: "dubrovnik",
-    date: "2020-01-01T12:00:00"
-    flightCode: "BA 98",
-    people: [
-        {
-            "firstName": "John",
-            "lastName": "Smith",
-            "dateOfBirth": "2020-01-01",
-            "passport_number": "123456789"
-        }
-    ],
-    payment: {
-        "accountName": "Mr John Smith",
-        "accountNumber": "12345678",
-        "sortCode": "01-01-01",
-        "cvv": "123"
+  "from": "london",
+  "to": "dubrovnik",
+  "date": "2020-01-01T12:00:00",
+  "flightCode": "BA 98",
+  "people": [
+    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "dateOfBirth": "2020-01-01",
+      "passport_number": "123456789"
     }
+  ],
+  "payment": {
+    "accountName": "Mr John Smith",
+    "accountNumber": "12345678",
+    "sortCode": "01-01-01",
+    "cvv": "123"
+  }
 }
 ```
