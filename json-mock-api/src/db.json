@@ -1,0 +1,52 @@
+{
+    "countries": [
+      {
+        "id": 1,
+        "name": "Croatia",
+        "locations": ["Dubrovnik","Sibenik"],
+        "featured_in": ["Game Of Thrones", "Captain America"],
+        "img_urls": ["https://static.boredpanda.com/blog/wp-content/uploads/2015/06/game-of-thrones-real-life-locations-23__880.jpg"]
+      },
+      {
+        "id": 2,
+        "name": "New Zealand",
+        "locations": ["Matamata","Takaka Hill"],
+        "featured_in": ["Lord Of The Rings", "The Hobbit"],
+        "img_urls": ["https://nomadsworld.com/wp-content/uploads/2017/09/hobbiton-commons.jpg" ]
+      }
+    ],
+
+    "shows": [
+        {
+          "id": 1,
+          "title": "Game Of Thrones",
+          "countries": ["Croatia", "Northern Ireland"],
+          "locations": ["Dubrovnik","Sibenik", "Murlough Bay"],
+          "img_urls": ["https://www.nme.com/wp-content/uploads/2019/05/dragonsgot.jpg"]
+        },
+        {
+          "id": 2,
+          "title": "Lord Of The Rings",
+          "countries": ["New Zealand"],
+          "locations": ["Matamata","Takaka Hill"],
+          "img_urls": ["https://nomadsworld.com/wp-content/uploads/2017/09/hobbiton-commons.jpg" ]
+        },
+        {
+            "id": 3,
+            "title": "Chernobyl",
+            "countries": ["Lithuania", "Ukraine"],
+            "locations": ["Chernobyl","Prypiat"],
+            "img_urls": ["https://specials-images.forbesimg.com/imageserve/5cf656e09736330008aafc52/960x0.jpg?fit=scale" ]
+          }
+      ]
+
+
+
+
+
+
+  }
+
+  
+   
+  
