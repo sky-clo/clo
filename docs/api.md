@@ -12,7 +12,7 @@ Fetches all locations, sorted in popularity
 {
   "locations": [
     {
-      "id": 1,
+      "id": "1",
       "name": "London",
       "country": "United Kingdom",
       "description": "Big ben goes bong"
@@ -31,7 +31,7 @@ Get a city's information
 
 ```json
 {
-  "id": 1,
+  "id": "1",
   "name": "London",
   "country": "United Kingdom",
   "description": "Big ben goes bong"
@@ -56,7 +56,7 @@ Search flights from one location to another
 {
   "flights": [
     {
-      "id": 1,
+      "id": "1",
       "code": "BA 98",
       "date": "2020-01-01T12:00:00",
       "from": "London Stansted",
