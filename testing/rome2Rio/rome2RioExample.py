@@ -50,7 +50,7 @@ class TestRome2Rio(unittest.TestCase):
         fromField.send_keys("Miami")
         fromField.send_keys(Keys.ENTER)
 
-        #time.sleep(1)
+        time.sleep(1)
 
         # Clear 'To' field and type Ibiza
         toField = driver.find_element_by_id("search-to")
