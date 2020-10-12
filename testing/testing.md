@@ -99,5 +99,5 @@ Test scripts corresponding to the above stories can be found in the scripts fold
 
 ### Example
 
-* [Basic example for rome2rio.com](testing/scripts/rome2RioExample.py)
+* [Basic example for rome2rio.com](./testing/scripts/rome2RioExample.py)
 
