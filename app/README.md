@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Component Documentation
+
+You can find all the relevant documentation for Sky related assets/components at [Sky Toolkit's Website](https://www.sky.com/toolkit) (https://www.sky.com/toolkit)
+
 ## Available Scripts
 
 In the project directory, you can run:
