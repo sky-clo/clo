@@ -1,8 +1,10 @@
 # 📖 API Documentation
 
-## GET /locations
+## Get Popular Locations
 
-Fetches all locations, sorted in popularity
+### Request
+
+`GET /locations`
 
 ### Response
 
@@ -15,15 +17,20 @@ Fetches all locations, sorted in popularity
       "id": "1",
       "name": "London",
       "country": "United Kingdom",
-      "description": "Big ben goes bong"
+      "description": "Big ben goes bong",
+      "weather": "Sunny",
+      "shows": ["Sherlock Holmes", "James Bond"],
+      "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad"
     }
   ]
 }
 ```
 
-## GET /locations/{city}
+## Get a city's information
 
-Get a city's information
+### Request
+
+`GET /locations/{city}`
 
 ### Response
 
@@ -46,9 +53,45 @@ Get a city's information
 }
 ```
 
-## GET /flights?from={city}&to={city}
+## Get a city's information given a show
 
-Search flights from one location to another
+### Request
+
+`GET /locations/{city}/show/{show}`
+
+### Response
+
+#### 200 Success
+
+```json
+{
+  "locations": [
+    {
+      "id": "1",
+      "name": "London",
+      "country": "United Kingdom",
+      "description": "Big ben goes bong",
+      "weather": "Sunny",
+      "shows": ["Sherlock Holmes", "James Bond"],
+      "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad"
+    }
+  ]
+}
+```
+
+#### 404 Not Found
+
+```json
+{
+  "error": "city not found"
+}
+```
+
+## Search Flights
+
+### Requests
+
+`GET /flights?from={city}&to={city}`
 
 ### Response
 
@@ -67,11 +110,11 @@ Search flights from one location to another
 }
 ```
 
-## POST /trips
-
-Create a trip from one location to another
+## Create a trip
 
 ### Request
+
+`POST /trips`
 
 ```json
 {
@@ -81,6 +124,35 @@ Create a trip from one location to another
   "flightCode": "BA 98",
   "people": [
     {
+      "firstName": "John",
+      "lastName": "Smith",
+      "dateOfBirth": "2020-01-01",
+      "passport_number": "123456789"
+    }
+  ],
+  "payment": {
+    "accountName": "Mr John Smith",
+    "accountNumber": "12345678",
+    "sortCode": "01-01-01",
+    "cvv": "123"
+  }
+}
+```
+
+### Response
+
+#### 200 Success
+
+```json
+{
+  "id": "1",
+  "from": "london",
+  "to": "dubrovnik",
+  "date": "2020-01-01T12:00:00",
+  "flightCode": "BA 98",
+  "people": [
+    {
+      "id": "1",
       "firstName": "John",
       "lastName": "Smith",
       "dateOfBirth": "2020-01-01",
