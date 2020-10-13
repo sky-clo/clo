@@ -12,7 +12,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-This builds the dependencies for the project, this is needed if you are running the react project for the first time or if changes have been made to the dependencies folder. 
+This builds the dependencies for the project, this is needed if you are running the react project for the first time or if changes have been made to the dependencies folder.
 
 Note the node_modules folder is purposefully left ignored on git to avoid a bloated git repo, so please don't commit this folder or the files within.
 
@@ -40,6 +40,7 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## Included Packages
+
 - Sky-Toolkit ([documentation](https://github.com/sky-uk/toolkit))
 - React-Router ([documentation](https://reactrouter.com/web/api/))
 - CSS-Modules ([documentation](https://github.com/css-modules/css-modules))

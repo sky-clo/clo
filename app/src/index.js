@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import IndexPage from './pages/index/index';
-import './index.scss';
-import DemoPage from './pages/demo/demo';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import IndexPage from "./pages/index/index";
+import "./index.scss";
+import DemoPage from "./pages/demo/demo";
 
 // Router is our ReactRouter that allows client side routing of pages
 // We use <Switch /> to ensure only one Route is rendered at a time. Otherwise any route matching
@@ -12,6 +12,8 @@ import DemoPage from './pages/demo/demo';
 // Path "/" must use exact to allow other pages to render, otherwise the IndexPage route would be the first and only page ever rendered
 
 // To link between local pages in our react app we use the <Link /> component (see demo.js) for an example, external links still use <a href="..." />
+
+// CSS-Modules is enabled, please check the IndexPage for an example and docs if you are unsure
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,9 +24,8 @@ ReactDOM.render(
       </Switch>
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
 
 // Ignore serviceWorker, this is a default provided by Create-React-App that we do not need right now
 
