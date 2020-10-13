@@ -43,7 +43,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### `npm install`
 
-This builds the dependencies for the project, this is needed if you are running the react project for the first time or if changes have been made to the dependencies folder. 
+This builds the dependencies for the project, this is needed if you are running the react project for the first time or if changes have been made to the dependencies folder.
 
 Note the node_modules folder is purposefully left ignored on git to avoid a bloated git repo, so please don't commit this folder or the files within.
 
