@@ -7,6 +7,19 @@
   pointer-events: none;
 }
 
+.link_container {
+  display: flex;
+  flex-direction: column;
+  
+  /*
+    Nested CSS is a feature of SCSS, this is the same as writing .link_container a {}
+    but keeps all CSS located in one block for readability
+  */
+  a {
+    margin-bottom: 16px;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .app_logo {
     animation: App-logo-spin infinite 2s linear;
