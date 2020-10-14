@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBar from "../../SearchBar";
 import styles from "./home.module.scss";
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
 
       {/* Search */}
       <section style={{ gridArea: "search", background: "green" }}>
-        Search
+        <SearchBar />
       </section>
 
       {/* Popular Locations */}
