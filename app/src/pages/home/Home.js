@@ -10,10 +10,7 @@ export default function Home() {
       {/* Hero */}
       <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
 
-      {/* Search */}
-      <section style={{ gridArea: "search", background: "green" }}>
-        <SearchBar />
-      </section>
+      <SearchBar />
 
       {/* Popular Locations */}
       <section style={{ gridArea: "locations", background: "blue" }}>
