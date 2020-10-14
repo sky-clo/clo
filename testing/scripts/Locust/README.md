@@ -15,9 +15,10 @@ Assuming you have Python3 and pip3 downloaded on your machine execute the follow
 This will download the locust python module. Your aliases may be different. If you can't find pip3 alias try the following:
 #### `python3 -m pip install locust`
 
-## Running
+## Runnin
 
 To run the locust file make sure you are in the directory,make sure your file is called locustfile.py, make sure you have started the localhost or that the URL you are testing is alive and execute:
+
 ### `locust`
 
 If you want to execute a locust file from a different directory or filename you need to execute the following:
