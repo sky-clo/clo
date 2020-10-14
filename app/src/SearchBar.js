@@ -29,9 +29,14 @@ class SearchBar extends Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    alert("submitted!");
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={(event) => this.handleSubmit(event)}>
         <label class="c-form-label" for="f-combo">
           FROM
         </label>
@@ -80,6 +85,13 @@ class SearchBar extends Component {
             value={this.state.date}
           />
         </li>
+        <div class="c-form-combo__cell">
+          <input
+            type="submit"
+            class="c-form-combo__btn c-btn c-btn--primary"
+            value="SEARCH"
+          ></input>
+        </div>
       </form>
     );
   }
