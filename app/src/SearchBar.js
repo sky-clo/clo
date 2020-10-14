@@ -31,7 +31,10 @@ class SearchBar extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert("submitted!");
+    alert(
+      `Submitting search for ${this.state.from}, ${this.state.to}, ${this.state.date}`
+    );
+    //need to change this to actually request from somewhere? mock api for now?
   }
 
   render() {
