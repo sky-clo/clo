@@ -25,67 +25,65 @@ class SearchBar extends Component {
     alert(
       `Submitting search for ${this.state.from}, ${this.state.to}, ${this.state.date}`
     );
-    //need to change this to actually request from somewhere? mock api for now?
+    //need to change this to actually fetch request from mock api for now?
   }
 
   render() {
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
-        <label class="c-form-label" for="f-combo">
-          FROM
-        </label>
-        <div class="c-form-combo">
-          <div class="c-form-combo__cell">
+        <fieldset>
+          <legend class="c-form-caption">Example</legend>
+          <ul class="c-form-list"></ul>
+
+          <li class="c-form-list__item">
+            <label class="c-form-label" for="from">
+              FROM
+            </label>
             <input
               type="text"
-              class="c-form-combo__input c-form-input"
+              class="c-form-input--inline"
               placeholder="e.g. London"
               name="from"
-              id="f-combo"
+              id="from"
               onChange={(event) => this.handleChange(event)}
               value={this.state.from}
             />
-          </div>
-        </div>
+          </li>
 
-        <label class="c-form-label" for="f-combo">
-          TO
-        </label>
-        <div class="c-form-combo">
-          <div class="c-form-combo__cell">
+          <li class="c-form-list__item">
+            <label class="c-form-label" for="to">
+              TO
+            </label>
             <input
               type="text"
-              class="c-form-combo__input c-form-input"
+              class="c-form-input--inline"
               placeholder="e.g. Croatia"
               name="to"
-              id="f-combo"
+              id="to"
               onChange={(event) => this.handleChange(event)}
               value={this.state.to}
             />
-          </div>
-        </div>
+          </li>
 
-        <li class="c-form-list__item">
-          <label class="c-form-label" for="f-date">
-            DATE
-          </label>
-          <input
-            type="date"
-            class="c-form-date"
-            placeholder="dd/mm/yyyy"
-            name="date"
-            id="f-date"
-            onChange={(event) => this.handleChange(event)}
-            value={this.state.date}
-          />
-        </li>
-        <div class="c-form-combo__cell">
-          <input
-            type="submit"
-            class="c-form-combo__btn c-btn c-btn--primary"
-            value="SEARCH"
-          ></input>
-        </div>
+          <li className="c-form-list__item">
+            <label className="c-form-label" for="f-date">
+              DATE
+            </label>
+            <input
+              type="date"
+              className="c-form-date--inline"
+              placeholder="dd/mm/yyyy"
+              name="date"
+              id="f-date"
+              onChange={(event) => this.handleChange(event)}
+              value={this.state.date}
+            />
+          </li>
+
+          <button type="submit" class="c-btn c-btn--primary">
+            SEARCH
+          </button>
+        </fieldset>
       </form>
     );
   }
