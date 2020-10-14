@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import IndexPage from "./pages/index/index";
+import App from "./App";
 import "./index.scss";
-import DemoPage from "./pages/demo/demo";
 
 // Router is our ReactRouter that allows client side routing of pages
 // We use <Switch /> to ensure only one Route is rendered at a time. Otherwise any route matching
@@ -17,12 +16,7 @@ import DemoPage from "./pages/demo/demo";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route path="/" exact component={IndexPage} />
-        <Route path="/demo" component={DemoPage} />
-      </Switch>
-    </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
