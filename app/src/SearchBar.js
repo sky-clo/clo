@@ -11,21 +11,12 @@ class SearchBar extends Component {
     };
   }
 
-  handleFromChange(event) {
+  handleChange(event) {
+    const value = event.target.value;
+    console.log(event.target.name);
     this.setState({
-      from: event.target.value,
-    });
-  }
-
-  handleToChange(event) {
-    this.setState({
-      to: event.target.value,
-    });
-  }
-
-  handleDateChange(event) {
-    this.setState({
-      date: event.target.value,
+      ...this.state,
+      [event.target.name]: value,
     });
   }
 
@@ -49,9 +40,9 @@ class SearchBar extends Component {
               type="text"
               class="c-form-combo__input c-form-input"
               placeholder="e.g. London"
-              name="f-combo"
+              name="from"
               id="f-combo"
-              onChange={(event) => this.handleFromChange(event)}
+              onChange={(event) => this.handleChange(event)}
               value={this.state.from}
             />
           </div>
@@ -66,9 +57,9 @@ class SearchBar extends Component {
               type="text"
               class="c-form-combo__input c-form-input"
               placeholder="e.g. Croatia"
-              name="f-combo"
+              name="to"
               id="f-combo"
-              onChange={(event) => this.handleToChange(event)}
+              onChange={(event) => this.handleChange(event)}
               value={this.state.to}
             />
           </div>
@@ -82,9 +73,9 @@ class SearchBar extends Component {
             type="date"
             class="c-form-date"
             placeholder="dd/mm/yyyy"
-            name="f-date"
+            name="date"
             id="f-date"
-            onChange={(event) => this.handleDateChange(event)}
+            onChange={(event) => this.handleChange(event)}
             value={this.state.date}
           />
         </li>
