@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./SearchBar.module.css";
+import styles from "./SearchBar.module.css";
 
 class SearchBar extends Component {
   constructor() {
@@ -32,57 +32,59 @@ class SearchBar extends Component {
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
         <fieldset>
-          <legend class="c-form-caption">Example</legend>
-          <ul class="c-form-list"></ul>
+          <legend className="c-form-caption">Example</legend>
+          <ul className={"c-form-list " + styles.formList}>
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="from">
+                FROM
+              </label>
+              <input
+                type="text"
+                className="c-form-input"
+                placeholder="e.g. London"
+                name="from"
+                id="from"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.from}
+              />
+            </li>
 
-          <li class="c-form-list__item">
-            <label class="c-form-label" for="from">
-              FROM
-            </label>
-            <input
-              type="text"
-              class="c-form-input--inline"
-              placeholder="e.g. London"
-              name="from"
-              id="from"
-              onChange={(event) => this.handleChange(event)}
-              value={this.state.from}
-            />
-          </li>
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="to">
+                TO
+              </label>
+              <input
+                type="text"
+                className="c-form-input"
+                placeholder="e.g. Croatia"
+                name="to"
+                id="to"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.to}
+              />
+            </li>
 
-          <li class="c-form-list__item">
-            <label class="c-form-label" for="to">
-              TO
-            </label>
-            <input
-              type="text"
-              class="c-form-input--inline"
-              placeholder="e.g. Croatia"
-              name="to"
-              id="to"
-              onChange={(event) => this.handleChange(event)}
-              value={this.state.to}
-            />
-          </li>
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="f-date">
+                DATE
+              </label>
+              <input
+                type="date"
+                className="c-form-date"
+                placeholder="dd/mm/yyyy"
+                name="date"
+                id="f-date"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.date}
+              />
+            </li>
 
-          <li className="c-form-list__item">
-            <label className="c-form-label" for="f-date">
-              DATE
-            </label>
-            <input
-              type="date"
-              className="c-form-date--inline"
-              placeholder="dd/mm/yyyy"
-              name="date"
-              id="f-date"
-              onChange={(event) => this.handleChange(event)}
-              value={this.state.date}
-            />
-          </li>
-
-          <button type="submit" class="c-btn c-btn--primary">
-            SEARCH
-          </button>
+            <li className="c-form-list__item">
+              <button type="submit" className="c-btn c-btn--primary">
+                SEARCH
+              </button>
+            </li>
+          </ul>
         </fieldset>
       </form>
     );
