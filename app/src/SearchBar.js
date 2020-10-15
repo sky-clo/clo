@@ -8,6 +8,7 @@ class SearchBar extends Component {
       from: "",
       to: "",
       date: "",
+      flights: "",
     };
   }
 
@@ -25,7 +26,8 @@ class SearchBar extends Component {
     fetch(`http://localhost:3000/flights`)
       .then((response) => response.json())
       .then((flights) => {
-        alert(JSON.stringify(flights));
+        alert("Looking for your flights!");
+        this.setState({ flights: flights });
       })
       .catch((error) => {
         alert("Sorry, we couldn't find that flight, try again!");
@@ -90,6 +92,7 @@ class SearchBar extends Component {
             </li>
           </ul>
         </fieldset>
+        <p>{JSON.stringify(this.state.flights)}</p>
       </form>
     );
   }
