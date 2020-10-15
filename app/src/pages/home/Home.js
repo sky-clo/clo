@@ -1,9 +1,9 @@
 import React from "react";
 
 import Hero from "../../components/hero/Hero";
-import SearchBar from "../../SearchBar";
+import SearchBar from "../../components/searchBar/SearchBar";
+import LocationCard from "../../components/locationCard/LocationCard";
 import styles from "./home.module.scss";
-import LocationCard from "../../LocationCard";
 
 class Location {
   constructor(locationTitle, locationDisc) {
@@ -21,27 +21,17 @@ export default function Home() {
   return (
     <article className={styles.home}>
       <Hero />
-
       <SearchBar />
-
-      {/* Popular Locations */}
-      <section style={{ gridArea: "locations" }}>
-        <h2>Popular Locations</h2>
-
-        <LocationSection locations={locations} />
+      <section className="locations">
+        <div className="o-container">
+          <h2 className="c-heading-bravo">Popular Locations</h2>
+          <div className={"o-layout " + styles.locationCards}>
+            {locations.map((location) => (
+              <LocationCard location={location} />
+            ))}
+          </div>
+        </div>
       </section>
     </article>
-  );
-}
-
-function LocationSection({ locations }) {
-  return (
-    <section className="o-container">
-      <article className="o-layout">
-        {locations.map((location) => (
-          <LocationCard location={location}></LocationCard>
-        ))}
-      </article>
-    </section>
   );
 }
