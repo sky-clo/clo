@@ -1,0 +1,10 @@
+form {
+  grid-area: search;
+}
+
+.formList {
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  gap: 24px;
+}

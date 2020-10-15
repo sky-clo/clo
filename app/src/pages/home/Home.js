@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBar from "../../SearchBar";
 import styles from "./home.module.scss";
 import LocationCard from "../../LocationCard";
 
@@ -21,10 +22,7 @@ export default function Home() {
         {/* Hero */}
         <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
 
-        {/* Search */}
-        <section style={{ gridArea: "search", background: "green" }}>
-          Search
-        </section>
+        <SearchBar />
 
         {/* Popular Locations */}
         <section style={{ gridArea: "locations", background: "blue" }}>
