@@ -19,10 +19,4 @@ public class ServerApplication {
 	public ModelAndView hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new ModelAndView("demo.html");
 	}
-
-	@GetMapping("/apiTest")
-	public ModelAndView apiTest(@RequestParam(value = "name", defaultValue = "World") String name) {
-
-		return new ModelAndView("demo.html");
-	}
 }
