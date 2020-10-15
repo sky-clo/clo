@@ -1,9 +1,5 @@
 .home {
-  display: grid;
-  grid-template-rows: 1fr auto auto 1fr;
-  grid-template-areas:
-    "hero"
-    "search"
-    "search"
-    "locations";
+    display: grid;
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas: "hero" "search" "search" "locations";
 }

@@ -1,8 +1,19 @@
 import React from "react";
 import styles from "./home.module.scss";
+import LocationCard from "../../LocationCard";
+
+class Location {
+  constructor(locationTitle, locationDisc) {
+    this.locationTitle = locationTitle;
+    this.locationDisc = locationDisc;
+  }
+}
 
 export default function Home() {
   const locations = [];
+  for (var i = 0; i < 3; i++) {
+    locations.push(new Location("TEST", "TESTING"));
+  }
 
   return (
     <article className={styles.home}>
@@ -19,12 +30,12 @@ export default function Home() {
         <h2>Popular Locations</h2>
 
         {/* Location cards grid */}
-        <div>
+        <table style={{ width: "100%" }}>
           {/* Location cards */}
           {locations.map((location) => (
-            <div>Card</div>
+            <LocationCard location={location}></LocationCard>
           ))}
-        </div>
+        </table>
       </section>
     </article>
   );
