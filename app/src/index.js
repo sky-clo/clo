@@ -14,12 +14,7 @@ import "./index.scss";
 
 // CSS-Modules is enabled, please check the IndexPage for an example and docs if you are unsure
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // Ignore serviceWorker, this is a default provided by Create-React-App that we do not need right now
 
