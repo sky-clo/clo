@@ -33,6 +33,7 @@ export default function Home() {
           {/* Location cards */}
         </section>
       </article>
+
       <LocationSection locations={locations} />
     </React.Fragment>
   );
@@ -40,10 +41,12 @@ export default function Home() {
 
 function LocationSection({ locations }) {
   return (
-    <section className="o-layout">
-      {locations.map((location) => (
-        <LocationCard location={location}></LocationCard>
-      ))}
+    <section className="o-container">
+      <article className="o-layout">
+        {locations.map((location) => (
+          <LocationCard location={location}></LocationCard>
+        ))}
+      </article>
     </section>
   );
 }
