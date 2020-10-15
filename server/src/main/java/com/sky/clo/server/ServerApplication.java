@@ -1,4 +1,5 @@
 package com.sky.clo.server;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,12 @@ public class ServerApplication {
 
 	@GetMapping("/hello")
 	public ModelAndView hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+		return new ModelAndView("demo.html");
+	}
+
+	@GetMapping("/apiTest")
+	public ModelAndView apiTest(@RequestParam(value = "name", defaultValue = "World") String name) {
+
 		return new ModelAndView("demo.html");
 	}
 }
