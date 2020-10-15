@@ -1,5 +1,6 @@
 @import "sky-toolkit-ui/all";
 @import "sky-toolkit-ui/components/typography";
+@import "sky-toolkit-core/all";
 
 * {
   box-sizing: border-box;
@@ -14,7 +15,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 button {
