@@ -61,7 +61,7 @@ class SearchBar extends Component {
               <input
                 type="text"
                 className="c-form-input"
-                placeholder="e.g. Croatia"
+                placeholder="e.g. Split"
                 name="to"
                 id="to"
                 onChange={(event) => this.handleChange(event)}
@@ -91,7 +91,14 @@ class SearchBar extends Component {
             </li>
           </ul>
         </fieldset>
-        {this.state.flights ? <p>{JSON.stringify(this.state.flights)}</p> : ""}
+        {this.state.flights
+          ? this.state.flights.map((flight) => (
+              <p>
+                Flight from {flight.from} to {flight.to} - Duration{" "}
+                {flight.duration} mins - Flight code {flight.code}
+              </p>
+            ))
+          : ""}
       </form>
     );
   }
