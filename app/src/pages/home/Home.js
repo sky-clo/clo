@@ -16,27 +16,34 @@ export default function Home() {
   }
 
   return (
-    <article className={styles.home}>
-      {/* Hero */}
-      <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
+    <React.Fragment>
+      <article className={styles.home}>
+        {/* Hero */}
+        <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
 
-      {/* Search */}
-      <section style={{ gridArea: "search", background: "green" }}>
-        Search
-      </section>
+        {/* Search */}
+        <section style={{ gridArea: "search", background: "green" }}>
+          Search
+        </section>
 
-      {/* Popular Locations */}
-      <section style={{ gridArea: "locations", background: "blue" }}>
-        <h2>Popular Locations</h2>
-
-        {/* Location cards grid */}
-        <table style={{ width: "100%" }}>
+        {/* Popular Locations */}
+        <section style={{ gridArea: "locations", background: "blue" }}>
+          <h2>Popular Locations</h2>
+          {/* Location cards grid */}
           {/* Location cards */}
-          {locations.map((location) => (
-            <LocationCard location={location}></LocationCard>
-          ))}
-        </table>
-      </section>
-    </article>
+        </section>
+      </article>
+      <LocationSection locations={locations} />
+    </React.Fragment>
+  );
+}
+
+function LocationSection({ locations }) {
+  return (
+    <section className="o-layout">
+      {locations.map((location) => (
+        <LocationCard location={location}></LocationCard>
+      ))}
+    </section>
   );
 }
