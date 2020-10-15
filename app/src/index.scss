@@ -1,8 +1,11 @@
 @import "sky-toolkit-ui/all";
+@import "sky-toolkit-ui/components/typography";
 @import "sky-toolkit-core/all";
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -12,4 +15,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+button {
+  all: unset;
+}
+
+:root {
+  --yellow: #ffe68d;
 }
