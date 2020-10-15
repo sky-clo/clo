@@ -31,7 +31,7 @@ export default function Header() {
           <a href="/" className="c-btn c-btn--secondary u-margin-right">
             Sign In
           </a>
-          <a href="/" className="c-btn c-btn--primary u-margin-right">
+          <a href="/" className="c-btn c-btn--primary">
             Create an Account
           </a>
         </div>
@@ -43,10 +43,10 @@ export default function Header() {
         </button>
 
         <div className={styles.menuItems}>
-          <a href="/" className="c-btn c-btn--secondary u-margin-right">
+          <a href="/" className="c-btn c-btn--secondary">
             Sign In
           </a>
-          <a href="/" className="c-btn c-btn--primary u-margin-right">
+          <a href="/" className="c-btn c-btn--primary">
             Create an Account
           </a>
         </div>

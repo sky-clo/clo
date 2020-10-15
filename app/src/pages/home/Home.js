@@ -1,4 +1,6 @@
 import React from "react";
+
+import Hero from "../../components/hero/Hero";
 import SearchBar from "../../SearchBar";
 import styles from "./home.module.scss";
 import LocationCard from "../../LocationCard";
@@ -17,23 +19,18 @@ export default function Home() {
   }
 
   return (
-    <React.Fragment>
-      <article className={styles.home}>
-        {/* Hero */}
-        <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
+    <article className={styles.home}>
+      <Hero />
 
-        <SearchBar />
+      <SearchBar />
 
-        {/* Popular Locations */}
-        <section style={{ gridArea: "locations", background: "blue" }}>
-          <h2>Popular Locations</h2>
-          {/* Location cards grid */}
-          {/* Location cards */}
-        </section>
-      </article>
+      {/* Popular Locations */}
+      <section style={{ gridArea: "locations" }}>
+        <h2>Popular Locations</h2>
 
-      <LocationSection locations={locations} />
-    </React.Fragment>
+        <LocationSection locations={locations} />
+      </section>
+    </article>
   );
 }
 
