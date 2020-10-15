@@ -22,10 +22,14 @@ class SearchBar extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert(
-      `Submitting search for ${this.state.from}, ${this.state.to}, ${this.state.date}`
-    );
-    //need to change this to actually fetch request from mock api for now?
+    fetch(`http://localhost:3000/flights`)
+      .then((response) => response.json())
+      .then((flights) => {
+        alert(JSON.stringify(flights));
+      })
+      .catch((error) => {
+        alert("Sorry, we couldn't find that flight, try again!");
+      });
   }
 
   render() {
