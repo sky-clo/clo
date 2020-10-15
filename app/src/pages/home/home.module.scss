@@ -1,6 +1,6 @@
 .home {
   display: grid;
-  grid-template-rows: 1fr auto auto 1fr;
+  grid-template-rows: 40vh repeat(3, auto);
   grid-template-areas:
     "hero"
     "search"

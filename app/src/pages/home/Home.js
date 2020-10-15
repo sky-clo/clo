@@ -1,4 +1,6 @@
 import React from "react";
+
+import Hero from "../../components/hero/Hero";
 import SearchBar from "../../SearchBar";
 import styles from "./home.module.scss";
 
@@ -7,8 +9,7 @@ export default function Home() {
 
   return (
     <article className={styles.home}>
-      {/* Hero */}
-      <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
+      <Hero />
 
       <SearchBar />
 
