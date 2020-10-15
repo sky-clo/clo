@@ -1,4 +1,4 @@
-package com.sky.clo.server;
+package com.sky.clo.weather;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;

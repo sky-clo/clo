@@ -1,4 +1,4 @@
-package com.sky.clo.server;
+package com.sky.clo.weather;
 
 public class Condition {
     private String text;
