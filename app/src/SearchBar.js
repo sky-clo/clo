@@ -8,7 +8,6 @@ class SearchBar extends Component {
       from: "",
       to: "",
       date: "",
-      flights: "",
     };
   }
 
@@ -92,7 +91,7 @@ class SearchBar extends Component {
             </li>
           </ul>
         </fieldset>
-        <p>{JSON.stringify(this.state.flights)}</p>
+        {this.state.flights ? <p>{JSON.stringify(this.state.flights)}</p> : ""}
       </form>
     );
   }
