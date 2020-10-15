@@ -14,7 +14,7 @@ Gherkin is a syntax which puts plain english into a structure that can be unders
 
 ### Rome2Rio
 
-[Here](..../testing/scripts/Cucumber/rome2RioCucumberExample) is an example of a basic Cucumber project, which mimics the Selenium test on Rome2Rio shown [here](..../testing/scripts/Selenium/rome2RioExample.py). In the Cucumber example, the test scenario is laid out in a Gherkin feature file, which is then used to structure the automated test.
+[Here](rome2RioCucumberExample) is an example of a basic Cucumber project, which mimics the Selenium test on Rome2Rio shown in the scripts/Selenium folder. In the Cucumber example, the test scenario is laid out in a Gherkin feature file, which is then used to structure the automated test.
 
 
 
