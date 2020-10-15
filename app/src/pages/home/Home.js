@@ -12,10 +12,6 @@ class Location {
 
 export default function Home() {
   const locations = [];
-  for (var i = 0; i < 3; i++) {
-    locations.push(new Location("TEST", "TESTING"));
-  }
-
   return (
     <React.Fragment>
       <article className={styles.home}>
