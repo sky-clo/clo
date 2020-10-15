@@ -3,26 +3,26 @@ import React, { Component } from "react";
 class LocationCard extends Component {
   render() {
     return (
-      <th>
-        <article class="c-tile c-tile--square has-focus">
-          <a class="c-tile__link c-shine-context" href="#">
-            <div class="c-tile__content">
-              <div class="c-tile__media">
+      <article className="o-layout__item u-width-1/3">
+        <div className="c-tile c-tile--square has-focus">
+          <a className="c-tile__link c-shine-context" href="#">
+            <div className="c-tile__content">
+              <div className="c-tile__media">
                 <img
                   alt="Example image"
-                  class="c-tile__poster"
+                  className="c-tile__poster"
                   src="https://www.sky.com/assets/toolkit/docs/tile/example.jpg"
                 />
               </div>
-              <div class="c-tile__body c-tile__caption">
-                <p class="c-tile__title c-heading-delta">
+              <div className="c-tile__body c-tile__caption">
+                <p className="c-tile__title c-heading-delta">
                   {this.props.location.locationTitle}
                 </p>
               </div>
             </div>
           </a>
-        </article>
-      </th>
+        </div>
+      </article>
     );
   }
 }
