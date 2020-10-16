@@ -14,7 +14,7 @@ class Location {
 
 export default function Home() {
   const locations = [];
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 12; i++) {
     locations.push(new Location("TEST", "TESTING"));
   }
 
@@ -26,8 +26,8 @@ export default function Home() {
         <div className="o-container">
           <h2 className="c-heading-bravo">Popular Locations</h2>
           <div className={"o-layout " + styles.locationCards}>
-            {locations.map((location) => (
-              <LocationCard location={location} />
+            {locations.map((location, index) => (
+              <LocationCard location={location} key={index} />
             ))}
           </div>
         </div>
