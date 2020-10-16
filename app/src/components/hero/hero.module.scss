@@ -2,7 +2,6 @@
   grid-row: 1 / 3;
   grid-column: 1 / -1;
   display: grid;
-  align-items: center;
   justify-items: center;
   background: linear-gradient(
       180deg,
@@ -12,8 +11,10 @@
     url("../../images/hero.png");
   background-size: cover;
   padding: 24px;
+  padding-top: 16vh;
 
   h1 {
+    font-size: clamp(40px, 5vw, 72px) !important;
     color: white;
   }
 }
