@@ -22,7 +22,7 @@ export default function Home() {
     <article className={styles.home}>
       <Hero />
       <SearchBar />
-      <section className="locations">
+      <section className={styles.locations}>
         <div className="o-container">
           <h2 className="c-heading-bravo">Popular Locations</h2>
           <div className={"o-layout " + styles.locationCards}>
