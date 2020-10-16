@@ -10,7 +10,8 @@
      * [Payment Details Form](#payment-details-form)
      * [Confirmation Page](#confirmation-page)
      * [Create an Account](#create-an-account)
-2. [Selenium Scripts](#selenium-scripts)
+2. [Test Scripts](#test-scripts)
+3. [Performance Testing](#performance-testing)
 
 # Test Stories
 
@@ -93,11 +94,21 @@
    * Postcode
 3. Check if you can click the sign in option
 
-# Selenium Scripts
+# Test Scripts
 
 Test scripts corresponding to the above stories can be found in the scripts folder.
 
-### Example
+### Examples on rome2rio.com
 
-* [Basic example for rome2rio.com](../testing/scripts/rome2RioExample.py)
+* [Selenium Webdriver - Python](../testing/scripts/Selenium/rome2RioExample.py)
+* [Cucumber, Gherkin, Selenium - Java](../testing/scripts/Cucumber/rome2RioCucumberExample)
+
+# Performance Testing
+
+Locust performance testing scripts can be found in the scripts/Locust folder.
+
+### Examples on localhost
+
+* [Locust - Python](../testing/scripts/Locust/locustfile.py)
+
 
