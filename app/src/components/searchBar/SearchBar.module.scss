@@ -1,0 +1,38 @@
+@import "sky-toolkit-ui/all";
+
+.form {
+  grid-area: search;
+  background: white;
+  margin: 0 24px;
+  padding: 24px;
+  box-shadow: $global-shadow;
+  justify-self: center;
+  width: calc(100% - 48px);
+
+  fieldset {
+    margin: 0;
+  }
+}
+
+.formList {
+  gap: 24px;
+}
+
+@media (min-width: 800px) {
+  .form {
+    max-width: 1200px;
+  }
+
+  .formList {
+    display: flex;
+    align-items: flex-end;
+
+    li:not(:last-child) {
+      flex: 1;
+    }
+
+    button {
+      margin-bottom: 10px;
+    }
+  }
+}

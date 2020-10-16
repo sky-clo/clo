@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./SearchBar.module.css";
+import styles from "./SearchBar.module.scss";
 
 class SearchBar extends Component {
   constructor() {
@@ -30,13 +30,16 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form onSubmit={(event) => this.handleSubmit(event)}>
+      <form
+        onSubmit={(event) => this.handleSubmit(event)}
+        className={styles.form}
+      >
         <fieldset>
           <legend className="c-form-caption">Example</legend>
           <ul className={"c-form-list " + styles.formList}>
-            <li className="c-form-list__item">
-              <label className="c-form-label" for="from">
-                FROM
+            <li>
+              <label className="c-form-label" htmlFor="from">
+                From
               </label>
               <input
                 type="text"
@@ -49,9 +52,9 @@ class SearchBar extends Component {
               />
             </li>
 
-            <li className="c-form-list__item">
-              <label className="c-form-label" for="to">
-                TO
+            <li>
+              <label className="c-form-label" htmlFor="to">
+                To
               </label>
               <input
                 type="text"
@@ -64,9 +67,9 @@ class SearchBar extends Component {
               />
             </li>
 
-            <li className="c-form-list__item">
-              <label className="c-form-label" for="f-date">
-                DATE
+            <li>
+              <label className="c-form-label" htmlFor="f-date">
+                Date
               </label>
               <input
                 type="date"
@@ -79,9 +82,9 @@ class SearchBar extends Component {
               />
             </li>
 
-            <li className="c-form-list__item">
+            <li>
               <button type="submit" className="c-btn c-btn--primary">
-                SEARCH
+                Search
               </button>
             </li>
           </ul>
