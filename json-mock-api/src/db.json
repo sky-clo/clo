@@ -51,6 +51,22 @@
                 "from": "London Stansted",
                 "to": "Split",
                 "duration": 120
+              },
+              {
+                "id": "2",
+                "code": "BA 99",
+                "date": "2020-01-01T12:05:00",
+                "from": "London Stansted",
+                "to": "Split",
+                "duration": 130
+              },
+              {
+                "id": "3",
+                "code": "BA 901",
+                "date": "2020-02-01T12:00:00",
+                "from": "London Stansted",
+                "to": "Split",
+                "duration": 150
               }
             ]
           
