@@ -54,7 +54,7 @@ export default function Home() {
           <div className="o-container">
             <h2 className="c-heading-bravo">Popular Locations</h2>
             <div className={"o-layout " + styles.locationCards}>
-              {locations.map((location, index) => (
+              {locations.map((item, index) => (
                 <LocationCard
                   name={item.name}
                   img_urls={item.img_urls}
