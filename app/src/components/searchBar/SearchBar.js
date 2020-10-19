@@ -22,10 +22,15 @@ class SearchBar extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert(
-      `Submitting search for ${this.state.from}, ${this.state.to}, ${this.state.date}`
-    );
-    //need to change this to actually fetch request from mock api for now?
+    fetch(`http://localhost:3000/flights`)
+      .then((response) => response.json())
+      .then((flights) => {
+        alert("Looking for your flights!");
+        this.setState({ flights: flights });
+      })
+      .catch((error) => {
+        alert("Sorry, we couldn't find that flight, try again!");
+      });
   }
 
   render() {
@@ -59,7 +64,7 @@ class SearchBar extends Component {
               <input
                 type="text"
                 className="c-form-input"
-                placeholder="e.g. Croatia"
+                placeholder="e.g. Split"
                 name="to"
                 id="to"
                 onChange={(event) => this.handleChange(event)}
@@ -89,6 +94,14 @@ class SearchBar extends Component {
             </li>
           </ul>
         </fieldset>
+        {this.state.flights
+          ? this.state.flights.map((flight) => (
+              <p>
+                Flight from {flight.from} to {flight.to} - Duration{" "}
+                {flight.duration} mins - Flight code {flight.code}
+              </p>
+            ))
+          : ""}
       </form>
     );
   }

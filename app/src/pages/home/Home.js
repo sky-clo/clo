@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import React, { useEffect, useState } from "react";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
@@ -20,6 +21,27 @@ export default function Home() {
     locations.push(new Location("TEST", "TESTING"));
   }
 
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/locations")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
   return (
     <>
       <Helmet>
@@ -34,7 +56,12 @@ export default function Home() {
             <h2 className="c-heading-bravo">Popular Locations</h2>
             <div className={"o-layout " + styles.locationCards}>
               {locations.map((location, index) => (
-                <LocationCard location={location} key={index} />
+                <LocationCard
+                name={item.name}
+                img_urls={item.img_urls}
+                featured_in={item.featured_in[0]}
+                key={index}
+              />
               ))}
             </div>
           </div>
