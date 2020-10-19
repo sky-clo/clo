@@ -11,14 +11,14 @@ class LocationCard extends Component {
                 <img
                   alt="Example image"
                   className="c-tile__poster"
-                  src={this.props.location.img_urls}
+                  src={this.props.img_urls}
                 />
               </div>
               <div className="c-tile__body c-tile__caption">
                 <p className="c-tile__title c-heading-delta">
-                  {this.props.location.name}
+                  {this.props.name}
                 </p>
-                <p class="c-text-body">{this.props.location.featured_in[0]}</p>
+                <p class="c-text-body">{this.props.featured_in}</p>
               </div>
             </div>
           </a>

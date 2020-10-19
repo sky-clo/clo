@@ -49,7 +49,12 @@ export default function Home() {
           <div className={"o-layout " + styles.locationCards}>
             <p>{items.length}</p>
             {items.map((item, index) => (
-              <LocationCard location={item} key={index} />
+              <LocationCard
+                name={item.name}
+                img_urls={item.img_urls}
+                featured_in={item.featured_in[0]}
+                key={index}
+              />
             ))}
           </div>
         </div>
