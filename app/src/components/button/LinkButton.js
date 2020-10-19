@@ -7,7 +7,7 @@ export default function LinkButton(props) {
 
   return (
     <a href={props.href} className={className}>
-      {props.text}
+      {props.children}
     </a>
   );
 }
