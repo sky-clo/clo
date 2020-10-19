@@ -5,6 +5,7 @@ h1 {
 section {
   width: 50%;
   margin: 0 auto;
+  padding-top: 50px;
 }
 
 li {
