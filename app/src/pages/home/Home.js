@@ -1,6 +1,5 @@
-import React from "react";
-import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
@@ -57,11 +56,11 @@ export default function Home() {
             <div className={"o-layout " + styles.locationCards}>
               {locations.map((location, index) => (
                 <LocationCard
-                name={item.name}
-                img_urls={item.img_urls}
-                featured_in={item.featured_in[0]}
-                key={index}
-              />
+                  name={item.name}
+                  img_urls={item.img_urls}
+                  featured_in={item.featured_in[0]}
+                  key={index}
+                />
               ))}
             </div>
           </div>
