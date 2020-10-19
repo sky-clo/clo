@@ -1,3 +1,19 @@
 h1 {
   text-align: center;
 }
+
+section {
+  width: 50%;
+  margin: 0 auto;
+}
+
+li {
+  float: left;
+  width: 50%;
+  padding: 20px;
+}
+
+button {
+  margin-bottom: 10px;
+  float: right;
+}

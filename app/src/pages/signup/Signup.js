@@ -111,6 +111,12 @@ export default function Signup() {
                 required
               />
             </li>
+
+            <li>
+              <button type="submit" className="c-btn c-btn--primary">
+                Next
+              </button>
+            </li>
           </ul>
         </fieldset>
       </form>
