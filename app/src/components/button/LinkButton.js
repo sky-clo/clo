@@ -6,7 +6,7 @@ export default function LinkButton(props) {
   const className = `c-btn ${toolkitClass} ${props.className}`;
 
   return (
-    <a href={props.href} className={className}>
+    <a href={props.href} className={className} data-test={props.dataTest}>
       {props.children}
     </a>
   );

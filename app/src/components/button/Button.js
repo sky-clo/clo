@@ -6,7 +6,12 @@ export default function Button(props) {
   const className = `c-btn ${toolkitClass} ${props.className}`;
 
   return (
-    <button onClick={props.onClick} className={className} type={props.type}>
+    <button
+      onClick={props.onClick}
+      className={className}
+      type={props.type}
+      data-test={props.dataTest}
+    >
       {props.children}
     </button>
   );
