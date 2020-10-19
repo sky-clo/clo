@@ -46,7 +46,7 @@ export default function Header() {
           <a href="/" className="c-btn c-btn--secondary">
             Sign In
           </a>
-          <a href="/" className="c-btn c-btn--primary">
+          <a href="/signup" className="c-btn c-btn--primary">
             Create an Account
           </a>
         </div>
