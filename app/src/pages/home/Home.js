@@ -1,8 +1,11 @@
+import React from "react";
+import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
 import LocationCard from "../../components/locationCard/LocationCard";
+import heroImage from "../../images/hero.png";
 import styles from "./home.module.scss";
 
 class Location {
@@ -40,25 +43,30 @@ export default function Home() {
       );
   }, []);
   return (
-    <article className={styles.home}>
-      <Hero />
-      <SearchBar />
-      <section className={styles.locations}>
-        <div className="o-container">
-          <h2 className="c-heading-bravo">Popular Locations</h2>
-          <div className={"o-layout " + styles.locationCards}>
-            <p>{items.length}</p>
-            {items.map((item, index) => (
-              <LocationCard
+    <>
+      <Helmet>
+        <title>Home | Sky Clo</title>
+      </Helmet>
+
+      <article className={styles.home}>
+        <Hero title="Where would you like to go?" image={heroImage} />
+        <SearchBar />
+        <section className={styles.locations}>
+          <div className="o-container">
+            <h2 className="c-heading-bravo">Popular Locations</h2>
+            <div className={"o-layout " + styles.locationCards}>
+              {locations.map((location, index) => (
+                <LocationCard
                 name={item.name}
                 img_urls={item.img_urls}
                 featured_in={item.featured_in[0]}
                 key={index}
               />
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </article>
+        </section>
+      </article>
+    </>
   );
 }
