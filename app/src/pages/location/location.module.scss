@@ -8,7 +8,30 @@
     "flights";
 }
 
-.flights {
-  margin-top: 40px;
+.flightsContainer {
   grid-area: flights;
+  width: 100%;
+  margin-top: 40px;
+  display: grid;
+  grid-template-areas:
+    "title        title"
+    "flights      map  ";
+  grid-template-columns: min-content 1fr;
+  gap: 24px;
+
+  h2 {
+    grid-area: title;
+  }
+
+  .flights {
+    grid-area: flights;
+
+    & > :not(:last-child) {
+      margin-bottom: 24px;
+    }
+  }
+
+  .map {
+    grid-area: map;
+  }
 }
