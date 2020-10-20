@@ -14,13 +14,14 @@
   margin-top: 40px;
   display: grid;
   grid-template-areas:
-    "title        title"
-    "flights      map  ";
-  grid-template-columns: min-content 1fr;
+    "title"
+    "flights";
   gap: 24px;
+  padding: 24px;
 
   h2 {
     grid-area: title;
+    margin-bottom: 0;
   }
 
   .flights {
@@ -32,6 +33,20 @@
   }
 
   .map {
-    grid-area: map;
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .flightsContainer {
+    grid-template-areas:
+      "title   title"
+      "flights map  ";
+    grid-template-columns: 400px 1fr;
+
+    .map {
+      grid-area: map;
+      display: block;
+    }
   }
 }
