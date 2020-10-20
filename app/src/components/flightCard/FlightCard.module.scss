@@ -1,0 +1,33 @@
+@import "sky-toolkit-ui/all";
+
+.flightCard {
+  display: grid;
+  grid-template-areas:
+    "title price"
+    "time  price";
+  gap: 8px;
+  box-shadow: $global-shadow;
+  padding: 24px;
+
+  p {
+    margin: 0;
+    color: #4a4a4a;
+  }
+}
+
+.title {
+  grid-area: title;
+  font-weight: bold;
+}
+
+.time {
+  grid-area: time;
+}
+
+.price {
+  grid-area: price;
+  align-self: center;
+  justify-self: end;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
