@@ -31,16 +31,19 @@ export default function Location() {
               title="London Stansted to Split"
               time="6h 9m"
               price="£41"
+              href="/location"
             />
             <FlightCard
               title="London Stansted to Split"
               time="6h 9m"
               price="£41"
+              href="/location"
             />
             <FlightCard
               title="London Stansted to Split"
               time="6h 9m"
               price="£41"
+              href="/location"
             />
           </div>
 
