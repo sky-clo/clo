@@ -3,12 +3,6 @@
   grid-column: 1 / -1;
   display: grid;
   justify-items: center;
-  background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.4) 17.71%,
-      rgba(0, 0, 0, 0) 100%
-    ),
-    url("../../images/hero.png");
   background-size: cover;
   padding: 24px;
   padding-top: 16vh;

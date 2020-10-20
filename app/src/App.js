@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import Location from "./pages/location/Location";
+
 import Signup from "./pages/signup/Signup";
-import styles from "./App.module.css";
+import styles from "./App.module.scss";
+
 
 export default function App() {
   return (
@@ -20,7 +22,7 @@ export default function App() {
           </Switch>
         </Router>
       </main>
-      <footer>Footer</footer>
+      <footer>© {new Date().getFullYear()} Sky UK</footer>
     </div>
   );
 }
