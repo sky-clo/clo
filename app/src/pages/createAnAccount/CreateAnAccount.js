@@ -3,15 +3,15 @@ import styles from "./createAnAccount.module.css";
 
 export default function CreateAnAccount() {
   return (
-    <section className={styles.signup}>
-      <h1 class="c-heading-alpha">Create an Account</h1>
+    <section id="createAccountSection" className={styles.CreateAnAccount}>
+      <h1 className="c-heading-alpha">Create an Account</h1>
 
       <form>
         <fieldset>
-          <legend class="c-form-caption">Example</legend>
-          <ul class="c-form-list">
-            <li class="c-form-list__item">
-              <label class="c-form-label" for="f-firstname">
+          <legend className="c-form-caption">Example</legend>
+          <ul className="c-form-list">
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="f-firstname">
                 First name{" "}
                 <abbr title="This field is required" class="c-form-required">
                   *
@@ -19,7 +19,7 @@ export default function CreateAnAccount() {
               </label>
               <input
                 type="text"
-                class="c-form-input"
+                className="c-form-input"
                 placeholder="e.g. Joe"
                 name="f-firstname"
                 id="f-firstname"
@@ -27,7 +27,7 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <li class="c-form-list__item">
+            <li className="c-form-list__item">
               <label class="c-form-label" for="f-lastname">
                 Last name{" "}
                 <abbr title="This field is required" class="c-form-required">
@@ -36,7 +36,7 @@ export default function CreateAnAccount() {
               </label>
               <input
                 type="text"
-                class="c-form-input"
+                className="c-form-input"
                 placeholder="e.g. Smith"
                 name="f-lasstname"
                 id="f-lastname"
@@ -44,8 +44,8 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <li class="c-form-list__item">
-              <label class="c-form-label" for="f-email">
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="f-email">
                 Email{" "}
                 <abbr title="This field is required" class="c-form-required">
                   *
@@ -53,7 +53,7 @@ export default function CreateAnAccount() {
               </label>
               <input
                 type="email"
-                class="c-form-input"
+                className="c-form-input"
                 placeholder="e.g. joe@bloggs.com"
                 name="f-email"
                 id="f-email"
@@ -61,8 +61,8 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <li class="c-form-list__item">
-              <label class="c-form-label" for="f-password">
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="f-password">
                 Password{" "}
                 <abbr title="This field is required" class="c-form-required">
                   *
@@ -70,7 +70,7 @@ export default function CreateAnAccount() {
               </label>
               <input
                 type="password"
-                class="c-form-input"
+                className="c-form-input"
                 placeholder="*****"
                 name="f-password"
                 id="f-password"
@@ -78,8 +78,8 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <li class="c-form-list__item">
-              <label class="c-form-label" for="f-housenumber">
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="f-housenumber">
                 House Number / Name{" "}
                 <abbr title="This field is required" class="c-form-required">
                   *
@@ -87,7 +87,7 @@ export default function CreateAnAccount() {
               </label>
               <input
                 type="text"
-                class="c-form-input"
+                className="c-form-input"
                 placeholder="e.g. 1 Grant Way"
                 name="f-housenumber"
                 id="f-housenumber"
@@ -95,8 +95,8 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <li class="c-form-list__item">
-              <label class="c-form-label" for="f-postcode">
+            <li className="c-form-list__item">
+              <label className="c-form-label" for="f-postcode">
                 Postcode{" "}
                 <abbr title="This field is required" class="c-form-required">
                   *
@@ -104,7 +104,7 @@ export default function CreateAnAccount() {
               </label>
               <input
                 type="text"
-                class="c-form-input"
+                className="c-form-input"
                 placeholder="e.g. SW1W 0NY"
                 name="f-postcode"
                 id="f-postcode"
