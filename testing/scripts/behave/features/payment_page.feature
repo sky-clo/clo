@@ -2,15 +2,15 @@ Feature: Payment Page
 	This is the form where you enter your payment details, after you've filled in your flight details
 
 
-	Scenario: The user is presented with the payment page
-		Given the user has landed on the payment page
-		Then all of the related form elements are loaded and displayed correctly
+Scenario: The user is presented with the payment page
+	Given the user has landed on the payment page
+	Then all of the related form elements are loaded and displayed correctly
 
 
-	Scenario Outline: The user tries to input valid data into the payment text fields
-		Given the user is on the payment page
-		When the user tries to input <text> into the <fieldName> field
-		Then the <fieldName> field contains <text> and no validation error message is displayed
+Scenario Outline: The user tries to input valid data into the payment text fields
+	Given the user is on the payment page
+	When the user tries to input <text> into the <fieldName> field
+	Then the <fieldName> field contains <text> and no validation error message is displayed
 
     Examples: Account Names
     | text                 | fieldName   |
@@ -37,10 +37,10 @@ Feature: Payment Page
     | 789     | CVV       |
 
 
-	Scenario Outline: The user tries to input invalid data into the payment form fields
-		Given the user is on the payment page
-		When the user tries to input <text> into the <fieldName> field
-		Then the user is shown the corresponding <fieldNameError> validation error message
+Scenario Outline: The user tries to input invalid data into the payment form fields
+	Given the user is on the payment page
+	When the user tries to input <text> into the <fieldName> field
+	Then the user is shown the corresponding <fieldNameError> validation error message
 
     Examples: Invalid Account Names
     | text          | fieldName   | fieldNameError      |
@@ -67,16 +67,16 @@ Feature: Payment Page
     | 5       | CVV       | Invalid CVV    |
 
 
-	Scenario: The user tries to click next after filling everything in properly
-		Given the user is on the payment page and filled in the form fields correctly
-		When the user clicks the "Next" button
-		Then they land on the Order Confirmation page
+Scenario: The user tries to click next after filling everything in properly
+	Given the user is on the payment page and filled in the form fields correctly
+	When the user clicks the "Next" button
+	Then they land on the Order Confirmation page
 
 
-	Scenario: The user tries to click next when they haven't filled stuff in properly
-		Given the user is on the payment page and at least one field has invalid data in it
-		When the user clicks the "Next" button
-		Then the user will be prevented from proceeding and shown an error message
+Scenario: The user tries to click next when they haven't filled stuff in properly
+	Given the user is on the payment page and at least one field has invalid data in it
+	When the user clicks the "Next" button
+	Then the user will be prevented from proceeding and shown an error message
 
 
 
