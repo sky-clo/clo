@@ -32,7 +32,7 @@ export default function Header() {
           <a href="/" className="c-btn c-btn--secondary u-margin-right">
             Sign In
           </a>
-          <a href="/" className="c-btn c-btn--primary">
+          <a href="/create-an-account" className="c-btn c-btn--primary">
             Create an Account
           </a>
         </div>
@@ -47,7 +47,7 @@ export default function Header() {
           <LinkButton href="/" primary={false}>
             Sign In
           </LinkButton>
-          <LinkButton href="/" primary={false}>
+          <LinkButton href="/create-an-account" primary={false}>
             Create an Account
           </LinkButton>
         </div>
