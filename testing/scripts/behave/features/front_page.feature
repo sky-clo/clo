@@ -1,4 +1,5 @@
 Feature: Accessing the landing page
+This is the front page that is displayed when the user browsers our webpage. 
 
 	Scenario: The user enters the webpage
 		Given the user has tried to access our webpage
