@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
 
 class SearchBar extends Component {
@@ -88,9 +90,7 @@ class SearchBar extends Component {
             </li>
 
             <li>
-              <button type="submit" className="c-btn c-btn--primary">
-                Search
-              </button>
+              <Button type="submit">Search</Button>
             </li>
           </ul>
         </fieldset>
