@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkButton should render a primary button 1`] = `
+<a
+  className="c-btn c-btn--primary test"
+  data-test="my-button"
+  href="/"
+>
+  My Button
+</a>
+`;
+
+exports[`LinkButton should render a secondary button 1`] = `
+<a
+  className="c-btn c-btn--secondary test"
+  data-test="my-button"
+  href="/"
+>
+  My Button
+</a>
+`;

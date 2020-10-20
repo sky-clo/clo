@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render a primary button 1`] = `
+<button
+  className="c-btn c-btn--primary test"
+  data-test="my-button"
+  onClick={[Function]}
+  type="submit"
+>
+  My Button
+</button>
+`;
+
+exports[`Button should render a secondary button 1`] = `
+<button
+  className="c-btn c-btn--secondary test"
+  data-test="my-button"
+  onClick={[Function]}
+  type="submit"
+>
+  My Button
+</button>
+`;
