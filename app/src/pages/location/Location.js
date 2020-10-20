@@ -1,19 +1,33 @@
 import React from "react";
-import styles from "./location.module.css";
+import { Helmet } from "react-helmet";
+
+import Hero from "../../components/hero/Hero";
+import SearchBar from "../../components/searchBar/SearchBar";
+import heroImage from "../../images/location-hero.png";
+import styles from "./location.module.scss";
 
 export default function Location() {
   return (
-    <article className={styles.home}>
-      {/* Hero */}
-      <section style={{ gridArea: "hero", background: "red" }}>Hero</section>
+    <>
+      <Helmet>
+        <title>London | Sky Clo</title>
+      </Helmet>
 
-      {/* Search */}
-      <section style={{ gridArea: "search", background: "green" }}>
-        Search
-      </section>
+      <article className={styles.location}>
+        <Hero
+          title="Dubrovnik, Croatia"
+          description="Croatia has had a turbulent history but is establishing itself as an exciting destination great for all the family. Among other things, you may not be aware that the small Central European country pioneered fountain pens and invented the necktie."
+          image={heroImage}
+        />
 
-      {/* Available Flights */}
-      <section style={{ gridArea: "flights", background: "blue" }} />
-    </article>
+        <SearchBar />
+
+        <section className={styles.flights}>
+          <div className="o-container">
+            <h2 className="c-heading-bravo">Available Flights</h2>
+          </div>
+        </section>
+      </article>
+    </>
   );
 }

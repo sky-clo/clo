@@ -1,0 +1,14 @@
+.location {
+  display: grid;
+  grid-template-rows: minmax(min-content, 40vh) repeat(3, auto);
+  grid-template-areas:
+    "hero"
+    "search"
+    "search"
+    "flights";
+}
+
+.flights {
+  margin-top: 40px;
+  grid-area: flights;
+}
