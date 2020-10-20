@@ -1,14 +1,20 @@
 Feature: Accessing the landing page
 
-	Scenario: The user enters the webpage 
+	Scenario: The user enters the webpage
 		Given the user has tried to access our webpage
 		When the user has loaded the correct page
 		Then the user should be presented with the search form, buttons and popular locations
 
-	Scenario: The user tries to input something into the form
-		Given the user is wanting to input data into from, to and date
-		When the user clicks on the from, to and date
+	Scenario Outline: The user tries to input something into the form
+		Given the user is wanting to input data into <from>, <to> and <date>
+		When the user clicks on the <from>, <to> and <date>
 		Then the user should be able to input data into fields
+
+	Examples: Inputs
+		|	from 	|		to 			| 		date	|	
+		|	London	|		Spain		|	28-10-2020	|
+		|	Croatia	|		Copenhagen	|	29-10-2020	|
+		|	Berlin	|		Ibiza		|	30-10-2020	|
 
 	Scenario: The user form input is validated
 		Given the user has entered input into the form
