@@ -1,24 +1,18 @@
 import React from "react";
 
-export default function Button({
+export default function LinkButton({
   children,
   className,
-  onClick,
+  href,
   primary,
-  type,
   ...props
 }) {
   const toolkitClass =
     primary === false ? "c-btn--secondary" : "c-btn--primary";
 
   return (
-    <button
-      onClick={onClick}
-      type={type}
-      className={`c-btn ${toolkitClass} ${className}`}
-      {...props}
-    >
+    <a href={href} className={`c-btn ${toolkitClass} ${className}`} {...props}>
       {children}
-    </button>
+    </a>
   );
 }

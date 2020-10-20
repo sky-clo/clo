@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import LinkButton from "../button/LinkButton";
+import LinkButton from "../linkButton/LinkButton";
 import { ReactComponent as Logo } from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "../../images/menu.svg";
 import { ReactComponent as ExitIcon } from "../../images/exit.svg";
