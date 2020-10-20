@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./signup.module.css";
+import styles from "./createAnAccount.module.css";
 
-export default function Signup() {
+export default function CreateAnAccount() {
   return (
     <section className={styles.signup}>
       <h1 class="c-heading-alpha">Create an Account</h1>
