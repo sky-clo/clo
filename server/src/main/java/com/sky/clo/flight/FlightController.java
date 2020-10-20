@@ -1,6 +1,11 @@
 package com.sky.clo.flight;
 
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @RestController
 public class FlightController {
@@ -28,14 +35,22 @@ public class FlightController {
         locale = "GB";
         originplace = "London";
         destinationplace = "Paris";
-        outboundpartialdate = "anytime";
-        String newUrl = "https://rapidapi.p.rapidapi.com/apiservices/referral/v1.0/{country}/{currency}/{locale}/{originplace}/{destinationplace}/{outboundpartialdate}/{apiKey}";
-        // String url =
-        // "https://api.weatherapi.com/v1/current.json?key={apiKey}&q={query}";
+        outboundpartialdate = "2020-10-25";
+        String newUrl = "https://rapidapi.p.rapidapi.com/apiservices/referral/v1.0/{country}/{currency}/{locale}/{originplace}/{destinationplace}/{outboundpartialdate}/{rapidApiKey}";
+        String url = "https://rapidapi.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/2020-10-25";
+
         uriParams.put("apiKey", rapidApiKey);
         // uriParams.put("query", location);
 
-        Flight weatherResponse = template.getForObject(newUrl, Flight.class, uriParams);
-        return weatherResponse;
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com");
+        headers.set("x-rapidapi-key", rapidApiKey);
+        headers.set("useQueryString", "true");
+
+        HttpEntity<Flight> entity = new HttpEntity<>(headers);
+        ResponseEntity<Flight> response = template.exchange(url, HttpMethod.GET, entity, Flight.class, uriParams);
+
+        Flight temp = response.getBody();
+        return temp;
     }
 }
