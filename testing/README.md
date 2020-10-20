@@ -104,7 +104,7 @@
 
 ### behave
 
-Inside the scripts/behave folder, you'll find Gherkin .feature files and Pyton test scripts for each of the test stories laid out above.
+Inside the scripts/behave folder, you'll find Gherkin feature files and Python test scripts for each of the test stories described above.
 
 # Performance Testing
 
