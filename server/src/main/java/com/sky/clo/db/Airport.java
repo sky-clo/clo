@@ -4,6 +4,11 @@ package com.sky.clo.db;
 import javax.persistence.*;
 import java.util.ArrayList;
 
+/*
+* This class refer's to the Airport code for CRUD methods on a MySQL table.
+* For SkyScanner api methods please check the com.sky.clo.airport package
+* */
+
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "airports")
 public class Airport {
