@@ -1,6 +1,8 @@
 package com.sky.clo;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sky.clo.airport.Airport;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -30,10 +33,7 @@ public class AirportController {
     @GetMapping(path = {"/", ""})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public ObjectNode findAllAirports(@RequestParam(value = "query") String query) {
-        //* USED WITH MySQL DB - Please ignore
-        // This returns a JSON or XML with the users
-        //return airportRepository.findAll();
+    public JsonNode findAllAirports(@RequestParam(value = "query") String query) throws RestClientException {
 
         // Create a new template for making our REST -> GET request
         RestTemplate template = new RestTemplate();
@@ -46,25 +46,26 @@ public class AirportController {
         // Create a new Headers Object to pass through our required headers
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com");
-        headers.set("x-rapidapi-key", "f2b3ba2283msh0bdefed120f9723p199e3ajsnd12deabd2039");
+        headers.set("x-rapidapi-host", rapidApiHost);
+        headers.set("x-rapidapi-key", rapidApiKey);
 
+        // Create a new HTTPEntity, involving most of the data required for our HTTP Request
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-        //ResolvableType resolvableType = ResolvableType.forClassWithGenerics(List.class, Places.class);
-        //ParameterizedTypeReference<List<Places>> typeRef = ParameterizedTypeReference.forType(resolvableType.getType());
-
-        ResponseEntity<Map> respEntity = template.exchange(builder.toUriString(), HttpMethod.GET, entity, Map.class);
-
-        List<Places> placesList = (List<Places>) respEntity.getBody().get("Places");
-
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode rootNode = mapper.createObjectNode();
         try {
-            String json = mapper.writeValueAsString(placesList);
-            rootNode.set("places", mapper.valueToTree(placesList));
-            return rootNode;
-        } catch (Exception e) {
+            // Bundle our Headers, and URL query builder together into our RestTemplate exchange for a full request
+            ResponseEntity<String> respEntity = template.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
+
+            // Retrieve our Stringified JSON response and convert it into a JSON Node
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode actualObj = mapper.readTree(respEntity.getBody());
+            // Send Parsed data back to client who requested it
+            return actualObj;
+        }
+        catch (RestClientException exception) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        catch (JsonProcessingException exception) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
