@@ -18,7 +18,9 @@ export default function App() {
           </Switch>
         </Router>
       </main>
-      <footer>© {new Date().getFullYear()} Sky UK</footer>
+      <footer className="o-container">
+        © {new Date().getFullYear()} Sky UK
+      </footer>
     </div>
   );
 }
