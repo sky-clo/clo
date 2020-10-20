@@ -11,6 +11,7 @@
      * [Confirmation Page](#confirmation-page)
      * [Create an Account](#create-an-account)
 2. [Test Scripts](#test-scripts)
+     * [behave](#behave)
 3. [Performance Testing](#performance-testing)
 
 # Test Stories
@@ -96,12 +97,14 @@
 
 # Test Scripts
 
-Test scripts corresponding to the above stories can be found in the scripts folder.
-
-### Examples on rome2rio.com
+### Basic Examples on rome2rio.com
 
 * [Selenium Webdriver - Python](../testing/scripts/Selenium/rome2RioExample.py)
 * [Cucumber, Gherkin, Selenium - Java](../testing/scripts/Cucumber/rome2RioCucumberExample)
+
+### behave
+
+Inside the scripts/behave folder, you'll find Gherkin feature files and Python test scripts for each of the test stories described above.
 
 # Performance Testing
 
