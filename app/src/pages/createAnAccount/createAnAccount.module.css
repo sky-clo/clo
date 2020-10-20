@@ -4,10 +4,15 @@
 }
 
 .section {
-  display: block;
-  width: 50%;
-  padding-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20em;
+  display: inline;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 50%; /* flex-grow, flex-shrink, flex-basis */
+  margin: 2px;
+  align-content: center;
 }

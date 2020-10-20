@@ -7,10 +7,10 @@ export default function CreateAnAccount() {
     <section className={styles.section}>
       <h1 className={styles.h1}>Create an Account</h1>
 
-      <form>
+      <form className={styles.form}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
-          <ul className={"c-form-list" + styles.formList}>
+          <ul className={"c-form-list " + styles.formList}>
             <li className="c-form-list__item">
               <label className="c-form-label" for="f-firstname">
                 First name{" "}
