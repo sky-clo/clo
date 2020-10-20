@@ -17,7 +17,7 @@ export default function Hero(props) {
         }}
       ></section>
       <div
-        className={`${styles.heroContent} ${
+        className={`o-container ${styles.heroContent} ${
           props.description && styles.alignLeft
         }`}
       >
