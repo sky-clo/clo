@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero should match snapshot 1`] = `
+<section
+  className="section"
+  style={
+    Object {
+      "backgroundImage": "linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.4) 17.71%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      url(\\"undefined\\")",
+    }
+  }
+>
+  <h1
+    className="c-heading-alpha"
+  />
+</section>
+`;
