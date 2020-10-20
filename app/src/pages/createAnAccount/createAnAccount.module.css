@@ -1,25 +1,13 @@
-/*.c-heading-alpha {
+.h1 {
   text-align: center;
+  font-size: 3em;
 }
 
-#createAccountSection {
+.section {
+  display: block;
   width: 50%;
-  margin: 0 auto;
   padding-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20em;
 }
-
-li {
-  float: left;
-  width: 50%;
-  padding: 20px;
-}
-
-button {
-  margin-bottom: 10px;
-  float: right;
-}
-
-body {
-  background-color: white;
-}
-*/

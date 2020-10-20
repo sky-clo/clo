@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./createAnAccount.module.css";
+import Button from "../../components/button/Button";
 
 export default function CreateAnAccount() {
   return (
-    <section id="createAccountSection" className={styles.CreateAnAccount}>
-      <h1 className="c-heading-alpha">Create an Account</h1>
+    <section className={styles.section}>
+      <h1 className={styles.h1}>Create an Account</h1>
 
       <form>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
-          <ul className="c-form-list">
+          <ul className={"c-form-list" + styles.formList}>
             <li className="c-form-list__item">
               <label className="c-form-label" for="f-firstname">
                 First name{" "}
@@ -112,11 +113,7 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <li>
-              <button type="submit" className="c-btn c-btn--primary">
-                Next
-              </button>
-            </li>
+            <Button>Next</Button>
           </ul>
         </fieldset>
       </form>
