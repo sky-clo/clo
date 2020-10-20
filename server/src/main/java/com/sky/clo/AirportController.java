@@ -1,6 +1,8 @@
 package com.sky.clo;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sky.clo.airport.Airport;
 import com.sky.clo.airport.Places;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +10,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
@@ -26,7 +29,8 @@ public class AirportController {
 
     @GetMapping(path = {"/", ""})
     @ResponseBody
-    public List<Places> findAllAirports(@RequestParam(value = "query") String query) {
+    @ResponseStatus(HttpStatus.OK)
+    public ObjectNode findAllAirports(@RequestParam(value = "query") String query) {
         //* USED WITH MySQL DB - Please ignore
         // This returns a JSON or XML with the users
         //return airportRepository.findAll();
@@ -53,12 +57,15 @@ public class AirportController {
         ResponseEntity<Map> respEntity = template.exchange(builder.toUriString(), HttpMethod.GET, entity, Map.class);
 
         List<Places> placesList = (List<Places>) respEntity.getBody().get("Places");
-        return placesList;
-    }
 
-   /* @GetMapping(path = "/find")
-    public @ResponseBody
-    Iterable<Airport> findAllMatching(@RequestParam String query) {
-        return airportRepository.findAny(query);
-    }*/
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode rootNode = mapper.createObjectNode();
+        try {
+            String json = mapper.writeValueAsString(placesList);
+            rootNode.set("places", mapper.valueToTree(placesList));
+            return rootNode;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
