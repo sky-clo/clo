@@ -1,5 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import {
+  GoogleMap,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
@@ -8,6 +12,10 @@ import heroImage from "../../images/location-hero.png";
 import styles from "./location.module.scss";
 
 export default function Location() {
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyB-0HB2-cEsYJqlmrrKSOIqwhOIg4hzS8Y",
+  });
+
   return (
     <>
       <Helmet>
@@ -47,7 +55,17 @@ export default function Location() {
             />
           </div>
 
-          <div className={styles.map}></div>
+          {isLoaded && (
+            <GoogleMap
+              className={styles.map}
+              center={{
+                lat: -3.745,
+                lng: -38.523,
+              }}
+              zoom={5}
+            >
+            </GoogleMap>
+          )}
         </section>
       </article>
     </>
