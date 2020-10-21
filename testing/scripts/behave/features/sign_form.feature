@@ -5,7 +5,7 @@ This is the ability for a user to see a sign-in form.
 		Given the user clicks the sign-in button
 		Then the user should see a sign-in form
 
-	Scenario: The user can add input to the sign-in form
+	Scenario Outline: The user can add input to the sign-in form
 		Given the user has displayed the sign-in form
 		Then the user should be able to input <email> and <password>
 

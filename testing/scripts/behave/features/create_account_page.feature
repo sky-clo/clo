@@ -6,7 +6,7 @@ Feature: Creating an account
         When the user has loaded the page
         Then the create an account form should be displayed
 
-    Scenario: User has input data
+    Scenario Outline: User has input data
         Given the user is on the create account page
         When the user types <text> into the <form element> element of the form
         Then the text should be input into the <form element> element of the form
