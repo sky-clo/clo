@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./signIn.module.css";
 import Button from "../../components/button/Button";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
   return (
@@ -48,7 +49,7 @@ export default function SignIn() {
             <Button>Next</Button>
           </ul>
         </fieldset>
-        <a>Or create an account</a>
+        <Link to={`/create-an-account`}>Or create an account</Link>
       </form>
     </section>
   );

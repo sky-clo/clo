@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./createAnAccount.module.css";
 import Button from "../../components/button/Button";
+import { Link } from "react-router-dom";
 
 export default function CreateAnAccount() {
   return (
@@ -116,7 +117,7 @@ export default function CreateAnAccount() {
             <Button>Next</Button>
           </ul>
         </fieldset>
-        <a>Or sign in</a>
+        <Link to={`/sign-in`}>Or sign in</Link>
       </form>
     </section>
   );
