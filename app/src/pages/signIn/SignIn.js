@@ -2,13 +2,22 @@ import React from "react";
 import styles from "./signIn.module.css";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Thanks for logging in ${email}`); //just a placeholder for our post request
+  };
+
   return (
     <section className={styles.section}>
       <h1 className={styles.h1}>Sign In</h1>
 
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
           <ul className={"c-form-list " + styles.formList}>
@@ -25,6 +34,8 @@ export default function SignIn() {
                 placeholder="e.g. joe@bloggs.com"
                 name="f-email"
                 id="f-email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 required
               />
             </li>
@@ -42,6 +53,8 @@ export default function SignIn() {
                 placeholder="*****"
                 name="f-password"
                 id="f-password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 required
               />
             </li>
