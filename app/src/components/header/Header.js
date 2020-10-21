@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
+import LinkButton from "../linkButton/LinkButton";
 import { ReactComponent as Logo } from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "../../images/menu.svg";
 import { ReactComponent as ExitIcon } from "../../images/exit.svg";
@@ -31,7 +32,7 @@ export default function Header() {
           <a href="/" className="c-btn c-btn--secondary u-margin-right">
             Sign In
           </a>
-          <a href="/" className="c-btn c-btn--primary">
+          <a href="/create-an-account" className="c-btn c-btn--primary">
             Create an Account
           </a>
         </div>
@@ -43,12 +44,12 @@ export default function Header() {
         </button>
 
         <div className={styles.menuItems}>
-          <a href="/" className="c-btn c-btn--secondary">
+          <LinkButton href="/" primary={false}>
             Sign In
-          </a>
-          <a href="/" className="c-btn c-btn--primary">
+          </LinkButton>
+          <LinkButton href="/create-an-account" primary={false}>
             Create an Account
-          </a>
+          </LinkButton>
         </div>
       </dialog>
     </>

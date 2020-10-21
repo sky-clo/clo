@@ -1,11 +1,13 @@
-package com.sky.clo.server;
+package com.sky.clo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+// Initialises and runs the server application
+// Any external classes used for REST/Controllers should be added to the basePackageClasses list
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.sky.clo.weather", "com.sky.clo.flight" })
+@ComponentScan(basePackageClasses = { WeatherController.class, AirportController.class })
 public class ServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);

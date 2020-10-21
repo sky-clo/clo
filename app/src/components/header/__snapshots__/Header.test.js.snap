@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should match snapshot 1`] = `
+<Fragment>
+  <header>
+    <a
+      className="logoContainer"
+      href="/"
+    >
+      <ForwardRef(SvgLogo) />
+    </a>
+    <button
+      className="menuButton"
+      onClick={[Function]}
+    >
+      <ForwardRef(SvgMenu)
+        className="icon"
+        onClick={[Function]}
+      />
+    </button>
+    <div
+      className="authButtons"
+    >
+      <a
+        className="c-btn c-btn--secondary u-margin-right"
+        href="/"
+      >
+        Sign In
+      </a>
+      <a
+        className="c-btn c-btn--primary"
+        href="/"
+      >
+        Create an Account
+      </a>
+    </div>
+  </header>
+  <dialog
+    aria-hidden={true}
+    className="menu"
+  >
+    <button
+      onClick={[Function]}
+    >
+      <ForwardRef(SvgExit)
+        className="icon"
+      />
+    </button>
+    <div
+      className="menuItems"
+    >
+      <LinkButton
+        href="/"
+        primary={false}
+      >
+        Sign In
+      </LinkButton>
+      <LinkButton
+        href="/"
+        primary={false}
+      >
+        Create an Account
+      </LinkButton>
+    </div>
+  </dialog>
+</Fragment>
+`;

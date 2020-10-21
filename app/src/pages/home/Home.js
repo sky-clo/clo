@@ -1,6 +1,5 @@
-import React from "react";
-import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
@@ -12,15 +11,11 @@ class Location {
   constructor(locationTitle, locationDisc) {
     this.locationTitle = locationTitle;
     this.locationDisc = locationDisc;
+    this.featuredIn = [""];
   }
 }
 
 export default function Home() {
-  const locations = [];
-  for (var i = 0; i < 12; i++) {
-    locations.push(new Location("TEST", "TESTING"));
-  }
-
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -55,13 +50,13 @@ export default function Home() {
           <div className="o-container">
             <h2 className="c-heading-bravo">Popular Locations</h2>
             <div className={"o-layout " + styles.locationCards}>
-              {locations.map((location, index) => (
+              {items.map((item, index) => (
                 <LocationCard
-                name={item.name}
-                img_urls={item.img_urls}
-                featured_in={item.featured_in[0]}
-                key={index}
-              />
+                  name={item.name}
+                  img_urls={item.img_urls}
+                  featured_in={item.featured_in[0]}
+                  key={index}
+                />
               ))}
             </div>
           </div>

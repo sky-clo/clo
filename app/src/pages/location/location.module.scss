@@ -1,0 +1,52 @@
+.location {
+  display: grid;
+  grid-template-rows: minmax(min-content, 40vh) repeat(3, auto);
+  grid-template-areas:
+    "hero"
+    "search"
+    "search"
+    "flights";
+}
+
+.flightsContainer {
+  grid-area: flights;
+  width: 100%;
+  margin-top: 40px;
+  display: grid;
+  grid-template-areas:
+    "title"
+    "flights";
+  gap: 24px;
+  padding: 24px;
+
+  h2 {
+    grid-area: title;
+    margin-bottom: 0;
+  }
+
+  .flights {
+    grid-area: flights;
+
+    & > :not(:last-child) {
+      margin-bottom: 24px;
+    }
+  }
+
+  .map {
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .flightsContainer {
+    grid-template-areas:
+      "title   title"
+      "flights map  ";
+    grid-template-columns: 400px 1fr;
+
+    .map {
+      grid-area: map;
+      display: block;
+    }
+  }
+}

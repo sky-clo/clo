@@ -3,12 +3,33 @@
   grid-column: 1 / -1;
   display: grid;
   justify-items: center;
+  align-items: center;
   background-size: cover;
+}
+
+.heroContent {
+  grid-row: 1 / 2;
+  grid-column: 1 / -1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
   padding: 24px;
-  padding-top: 16vh;
+  width: 100%;
 
   h1 {
-    font-size: clamp(40px, 5vw, 72px) !important;
-    color: white;
+    font-size: clamp(40px, 6vw, 72px) !important;
+    margin-bottom: 0 !important;
   }
+
+  p {
+    max-width: 60ch;
+    margin-top: 24px;
+    margin-bottom: 0 !important;
+  }
+}
+
+.alignLeft {
+  align-items: start;
 }

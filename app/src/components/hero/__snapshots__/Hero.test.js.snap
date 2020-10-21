@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero should match snapshot 1`] = `
+<section
+  className="section"
+  style={
+    Object {
+      "backgroundImage": "linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.4) 17.71%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      url(\\"https://static.skyassets.com/contentstack/assets/bltdc2476c7b6b194dd/blt556529d1b8bf298d/5edfe30f98e62f38ec84dadd/2020_Sky_Logo.png\\")",
+    }
+  }
+>
+  <h1
+    className="c-heading-alpha"
+  >
+    Sky
+  </h1>
+  <p
+    className="c-text-lead"
+  >
+    Europe’s leading direct-to-consumer media and entertainment company
+  </p>
+</section>
+`;
