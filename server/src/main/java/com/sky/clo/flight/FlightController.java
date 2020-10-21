@@ -17,7 +17,6 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @RestController
 public class FlightController {
@@ -25,24 +24,14 @@ public class FlightController {
     private String rapidApiKey;
 
     @GetMapping("/flights")
-    public JsonNode flightRequest(@RequestParam(value = "location", defaultValue = "London") String location)
+    public JsonNode flightRequest(@RequestParam String originlocation, @RequestParam String destlocation,
+            @RequestParam String locale, @RequestParam String country, @RequestParam String currency,
+            @RequestParam String outboundpartialdate, @RequestParam(required = false) String inboundpartialdate)
             throws RestClientException {
         RestTemplate template = new RestTemplate();
         Map<String, String> uriParams = new HashMap<String, String>();
 
-        String country, currency, locale, originplace, destinationplace, outboundpartialdate, inboundpartialdate,
-                shortapikey;
-        country = "England";
-        currency = "pounds";
-        locale = "GB";
-        originplace = "London";
-        destinationplace = "Paris";
-        outboundpartialdate = "2020-10-25";
-        String newUrl = "https://rapidapi.p.rapidapi.com/apiservices/referral/v1.0/{country}/{currency}/{locale}/{originplace}/{destinationplace}/{outboundpartialdate}/{rapidApiKey}";
-        String url = "https://rapidapi.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/2020-10-25";
-
         uriParams.put("apiKey", rapidApiKey);
-        // uriParams.put("query", location);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com");
@@ -50,6 +39,9 @@ public class FlightController {
         headers.set("useQueryString", "true");
 
         HttpEntity<Flight> entity = new HttpEntity<>(headers);
+
+        String url = getUrl(country, currency, locale, originlocation, destlocation, inboundpartialdate,
+                outboundpartialdate);
 
         ResponseEntity<String> responseTwo = template.exchange(url, HttpMethod.GET, entity, String.class, uriParams);
         try {
@@ -61,5 +53,28 @@ public class FlightController {
 
         }
         return null;
+    }
+
+    // Returns the url for request from API from the params.
+    private String getUrl(String country, String currency, String locale, String originLocation, String destLocation,
+            String inBoundPartialDate, String outBoundPartialDate) {
+        StringBuilder url = new StringBuilder("https://rapidapi.p.rapidapi.com/apiservices/browseroutes/v1.0/");
+        url.append(country);
+        url.append('/');
+        url.append(currency);
+        url.append('/');
+        url.append(locale);
+        url.append('/');
+        url.append(originLocation);
+        url.append('/');
+        url.append(destLocation);
+        url.append('/');
+        url.append(outBoundPartialDate);
+        url.append('/');
+
+        if (inBoundPartialDate != null) {
+            url.append(inBoundPartialDate);
+        }
+        return url.toString();
     }
 }
