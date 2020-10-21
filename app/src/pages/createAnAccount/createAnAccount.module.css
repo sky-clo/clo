@@ -1,24 +1,18 @@
-h1 {
+.h1 {
   text-align: center;
+  font-size: 3em;
 }
 
-section {
-  width: 50%;
-  margin: 0 auto;
-  padding-top: 50px;
+.section {
+  display: inline;
+  align-items: center;
 }
 
-li {
-  float: left;
-  width: 50%;
-  padding: 20px;
-}
-
-button {
-  margin-bottom: 10px;
-  float: right;
-}
-
-body {
-  background-color: white;
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 50%; /* flex-grow, flex-shrink, flex-basis */
+  margin: 2px;
+  align-content: center;
 }
