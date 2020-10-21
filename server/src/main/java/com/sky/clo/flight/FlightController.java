@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @RestController
@@ -23,7 +25,7 @@ public class FlightController {
     private String rapidApiKey;
 
     @GetMapping("/flights")
-    public Flight flightRequest(@RequestParam(value = "location", defaultValue = "London") String location)
+    public JsonNode flightRequest(@RequestParam(value = "location", defaultValue = "London") String location)
             throws RestClientException {
         RestTemplate template = new RestTemplate();
         Map<String, String> uriParams = new HashMap<String, String>();
@@ -48,9 +50,16 @@ public class FlightController {
         headers.set("useQueryString", "true");
 
         HttpEntity<Flight> entity = new HttpEntity<>(headers);
-        ResponseEntity<Flight> response = template.exchange(url, HttpMethod.GET, entity, Flight.class, uriParams);
 
-        Flight temp = response.getBody();
-        return temp;
+        ResponseEntity<String> responseTwo = template.exchange(url, HttpMethod.GET, entity, String.class, uriParams);
+        try {
+            ObjectMapper objMap = new ObjectMapper();
+            JsonNode jsonNode = objMap.readTree(responseTwo.getBody());
+            return jsonNode;
+
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 }
