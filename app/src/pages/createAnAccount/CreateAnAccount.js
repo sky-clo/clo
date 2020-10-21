@@ -116,6 +116,7 @@ export default function CreateAnAccount() {
             <Button>Next</Button>
           </ul>
         </fieldset>
+        <a>Or sign in</a>
       </form>
     </section>
   );
