@@ -2,8 +2,16 @@ import React from "react";
 import styles from "./createAnAccount.module.css";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 export default function CreateAnAccount() {
+  const [firstName, setFirstName] = useState("dave");
+  const [lastName, setLastName] = useState("smith");
+  const [email, setEmail] = useState("afsfwe@aasdasd.com");
+  const [password, setPassword] = useState("password");
+  const [houseNumber, setHouseNumber] = useState("number 99");
+  const [postcode, setPostcode] = useState("W1a 1aa");
+
   return (
     <section className={styles.section}>
       <h1 className={styles.h1}>Create an Account</h1>
