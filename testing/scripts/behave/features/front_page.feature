@@ -7,15 +7,21 @@ This is the front page that is displayed when the user browsers our webpage.
 		Then the user should be presented with the search form, buttons and popular locations
 
 	Scenario Outline: The user tries to input something into the form
-		Given the user is wanting to input data into <from>, <to> and <date>
-		When the user clicks on the <from>, <to> and <date>
-		Then the user should be able to input data into fields
+		Given the user is wanting to input data into <fieldName> 
+		When the user clicks on the <fieldName>
+		Then the user should be able to input <text>
 
-	Examples: Inputs
-		|	from 	|		to 			| 		date	|	
-		|	London	|		Spain		|	28-10-2020	|
-		|	Croatia	|		Copenhagen	|	29-10-2020	|
-		|	Berlin	|		Ibiza		|	30-10-2020	|
+	Examples: fromInputs
+		|	text 	|	fieldName	|	
+		|	London	|	from		|
+		|	Croatia	|	from		|
+		|	Berlin	|	from		|
+
+	Examples: toInputs
+		|	text  	|	fieldName	|	
+		|	Ibiza	|	to 			|
+		|	Warsaw	|	to 			|
+		|	Berlin	|	to 			|
 
 	Scenario: The user form input is validated
 		Given the user has entered input into the form
