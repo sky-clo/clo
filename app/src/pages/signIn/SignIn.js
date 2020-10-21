@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./createAnAccount.module.css";
+import styles from "./signIn.module.css";
 import Button from "../../components/button/Button";
 
-export default function CreateAnAccount() {
+export default function SignIn() {
   return (
     <section className={styles.section}>
-      <h1 className={styles.h1}>Create an Account</h1>
+      <h1 className={styles.h1}>Sign In</h1>
 
       <form className={styles.form}>
         <fieldset>
