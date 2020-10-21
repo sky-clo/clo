@@ -29,7 +29,7 @@ export default function CreateAnAccount() {
             </li>
 
             <li className="c-form-list__item">
-              <label class="c-form-label" for="f-lastname">
+              <label className="c-form-label" for="f-lastname">
                 Last name{" "}
                 <abbr title="This field is required" class="c-form-required">
                   *
@@ -39,7 +39,7 @@ export default function CreateAnAccount() {
                 type="text"
                 className="c-form-input"
                 placeholder="e.g. Smith"
-                name="f-lasstname"
+                name="f-lastname"
                 id="f-lastname"
                 required
               />
