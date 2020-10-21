@@ -38,7 +38,7 @@ public class FlightController {
         headers.set("x-rapidapi-key", rapidApiKey);
         headers.set("useQueryString", "true");
 
-        HttpEntity<Flight> entity = new HttpEntity<>(headers);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
         String url = getUrl(country, currency, locale, originlocation, destlocation, inboundpartialdate,
                 outboundpartialdate);
