@@ -29,7 +29,7 @@ export default function Header() {
 
         {/* Desktop inline header buttons */}
         <div className={styles.authButtons}>
-          <a href="/" className="c-btn c-btn--secondary u-margin-right">
+          <a href="/sign-in" className="c-btn c-btn--secondary u-margin-right">
             Sign In
           </a>
           <a href="/create-an-account" className="c-btn c-btn--primary">
@@ -44,7 +44,7 @@ export default function Header() {
         </button>
 
         <div className={styles.menuItems}>
-          <LinkButton href="/" primary={false}>
+          <LinkButton href="/sign-in" primary={false}>
             Sign In
           </LinkButton>
           <LinkButton href="/create-an-account" primary={false}>
