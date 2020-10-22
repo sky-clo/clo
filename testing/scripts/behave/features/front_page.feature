@@ -22,24 +22,38 @@ This is the front page that is displayed when the user browsers our webpage.
 		|	Warsaw	|	to 			|
 		|	Berlin	|	to 			|
 
-	# Scenario: The user form input is validated
-	# 	Given the user has entered input into the form
-	# 	Then the data inputted should be validated
+	Scenario Outline: The user form input is validated when correct
+		Given the user has tried to access our webpage
+		Then the data inputted into <to> and <fromLocat> should be valid
 
-	# Scenario: Checking if the data is submitted
-	# 	Given the user has clicked the search button
-	# 	And the input is valid
-	# 	Then the correct next page should be displayed
+	Examples: validFromInputs
+		|	to 	 	|	fromLocat	|	
+		|	London	|	Ibiza		|
+		|	Croatia	|	Warsaw		|
+		|	Berlin	|	Berlin		|
 
-	# Scenario: Checking if user can see sign-in form
-	# 	Given the user has clicked sign-in
-	# 	Then the sign-in form should be displayed
 
-	# Scenario: Checking if user can see create account form
-	# 	Given the user has clicked the create account button
-	# 	Then the create-account form should be displayed
+	Scenario Outline: The user form input is validated when incorrect
+		Given the user has tried to access our webpage
+		Then the data inputted into <to> and <fromLocat> should be invalid
 
-	# Scenario: Correct popular locations details are displayed
-	# 	Given the user has clicked on a popular location
-	# 	When the location information has been displayed
-	# 	Then the information should be correct for that location
+	Examples: invalidFromInputs
+		|	to 		|	fromLocat	|	
+		|	1234	|	dk21'		|
+		|	$s!'Sd'	|	    		|
+		|	    	|	"}[2"		|
+
+	Scenario: Checking if user can see sign-in form
+		Given the user has tried to access our webpage
+		When the user has clicked sign-in
+		Then the sign-in form should be displayed
+
+	Scenario: Checking if user can see create account form
+		Given the user has tried to access our webpage
+		When the user has clicked the create account button
+		Then the create-account form should be displayed
+
+	Scenario: Correct popular locations details are displayed
+		Given the user has clicked on a popular location
+		When the location information has been displayed
+		Then the information should be correct for that location

@@ -5,10 +5,9 @@ import time
 import unittest
 from behave import *
 
-url = "http://localhost:3000/"
+url = "http://localhost:3000"
 
 class TestFrontPage(unittest.TestCase):
-
 	@given("the user has tried to access our webpage")
 	def setUp(self):
 		self.driver = webdriver.Chrome()
@@ -22,10 +21,10 @@ class TestFrontPage(unittest.TestCase):
 			toText = self.driver.find_element_by_id("to")
 			dateText = self.driver.find_element_by_id("f-date")
 			found = True
-			#self.assertTrue(found)
 		except NoSuchElementException:
 			pass
-			#self.assertTrue(found)
+		finally:
+			assert found
 
 	@when("the user clicks on the {fieldName}")
 	def testInputFields(self, fieldName):
@@ -46,25 +45,75 @@ class TestFrontPage(unittest.TestCase):
 			field.clear()
 			field.send_keys(text)
 			success = (field.get_attribute("value") == text)
-			print("""
-				!
-				!
-				!
-				!
-				""")
-			print(field.get_attribute("value"))
-			print("""
-				!
-				!
-				!
-				!
-				""")
 		except NoSuchElementException:
 			print("Element not found")
 		finally:
 			assert success
 
+	@then("the data inputted into {to} and {fromLocat} should be valid")
+	def testValidateValidInput(self, to, fromLocat):
+		succes = False
+		try:
+			field = self.driver.find_element_by_id("to")
+			field.clear()
+			field.send_keys(to)
+			fromField = self.driver.find_element_by_id("from")
+			fromField.clear()
+			fromField.sendkeys(fromLocat)
+			submitButton = self.driver.find_element_by_attribute("Home-search")
+			submitButton.click()
+			success = self.driver.current_url == "http://localhost:3000/location"
+		except NoSuchElementException:
+			print("Element not found")
+		finally:
+			assert success
 
+	@then("the data inputted into {to} and {fromLocat} should be invalid")
+	def testValidateInvalidInput(self, text, fieldName):
+		succes = False
+		try:
+			field = self.driver.find_element_by_id("to")
+			field.clear()
+			field.send_keys(to)
+			fromField = self.driver.find_element_by_id("from")
+			fromField.clear()
+			fromField.sendkeys(fromLocat)
+			submitButton = self.driver.find_element_by_attribute("Home-search")
+			submitButton.click()
+			success = self.driver.current_url == url
+		except NoSuchElementException:
+			print("Element not found")
+		finally:
+			assert success
+
+	@when("the user has clicked sign-in")
+	def testIfButtonExists(self):
+		found = False
+		try:
+			signInButton = self.driver.find_element_by_attribute("Header-sign-in")
+			found = True
+		except NoSuchElementException:
+			pass
+		finally:
+			assert found
+
+	@then("the sign-in form should be displayed")
+	def testForSignInForm(self):
+		signInButton = self.driver.find_element_by_attribute("Header-sign-in")
+		signInButton.click()
+		assert "sign-in" in self.driver.current_url
+
+	@when("the user has clicked the create account button")
+	def testIfCreateAccountButtonExists(self):
+		found = False
+		try:
+			accountInButton = self.driver.find_element_by_attribute("Header-create-account")
+			found = True
+		except NoSuchElementException:
+			pass
+		finally:
+			assert found
+			 
 	def tearDown(self):
 		self.driver.close()
 
