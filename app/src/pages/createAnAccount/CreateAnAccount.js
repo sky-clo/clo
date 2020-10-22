@@ -42,6 +42,7 @@ export default function CreateAnAccount() {
                 id="f-firstname"
                 onChange={(e) => setFirstName(e.target.value)}
                 value={firstName}
+                data-test="CreateAnAccount-first-name"
                 required
               />
             </li>
@@ -61,6 +62,7 @@ export default function CreateAnAccount() {
                 id="f-lastname"
                 onChange={(e) => setLastName(e.target.value)}
                 value={lastName}
+                data-test="CreateAnAccount-last-name"
                 required
               />
             </li>
@@ -80,6 +82,7 @@ export default function CreateAnAccount() {
                 id="f-email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                data-test="CreateAnAccount-email"
                 required
               />
             </li>
@@ -99,6 +102,7 @@ export default function CreateAnAccount() {
                 id="f-password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                data-test="CreateAnAccount-password"
                 required
               />
             </li>
@@ -118,6 +122,7 @@ export default function CreateAnAccount() {
                 id="f-housenumber"
                 onChange={(e) => setHouseNumber(e.target.value)}
                 value={houseNumber}
+                data-test="CreateAnAccount-house-number"
                 required
               />
             </li>
@@ -137,14 +142,17 @@ export default function CreateAnAccount() {
                 id="f-postcode"
                 onChange={(e) => setPostcode(e.target.value)}
                 value={postcode}
+                data-test="CreateAnAccount-postcode"
                 required
               />
             </li>
 
-            <Button>Next</Button>
+            <Button data-test="CreateAnAccount-next">Next</Button>
           </ul>
         </fieldset>
-        <Link to={`/sign-in`}>Or sign in</Link>
+        <Link to={`/sign-in`} data-test="CreateAnAccount-sign-in">
+          Or sign in
+        </Link>
       </form>
     </section>
   );

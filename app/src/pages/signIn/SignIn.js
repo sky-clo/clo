@@ -36,6 +36,7 @@ export default function SignIn() {
                 id="f-email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                data-test="SignIn-email"
                 required
               />
             </li>
@@ -55,14 +56,17 @@ export default function SignIn() {
                 id="f-password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                data-test="SignIn-password"
                 required
               />
             </li>
 
-            <Button>Next</Button>
+            <Button data-test="SignIn-next">Next</Button>
           </ul>
         </fieldset>
-        <Link to={`/create-an-account`}>Or create an account</Link>
+        <Link to={`/create-an-account`} data-test="SignIn-create-an-account">
+          Or create an account
+        </Link>
       </form>
     </section>
   );
