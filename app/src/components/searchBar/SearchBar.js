@@ -56,6 +56,7 @@ class SearchBar extends Component {
                 id="from"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.from}
+                data-test="SearchBar-from"
               />
             </li>
 
@@ -71,6 +72,7 @@ class SearchBar extends Component {
                 id="to"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.to}
+                data-test="SearchBar-to"
               />
             </li>
 
@@ -86,11 +88,14 @@ class SearchBar extends Component {
                 id="f-date"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.date}
+                data-test="SearchBar-date"
               />
             </li>
 
             <li>
-              <Button type="submit">Search</Button>
+              <Button type="submit" data-test="SearchBar-submit">
+                Search
+              </Button>
             </li>
           </ul>
         </fieldset>
