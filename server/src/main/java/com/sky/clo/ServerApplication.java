@@ -21,7 +21,7 @@ import java.util.UUID;
 // Any external classes used for REST/Controllers should be added to the basePackageClasses list
 @SpringBootApplication
 @RestController
-@ComponentScan(basePackageClasses = {WeatherController.class, AirportController.class})
+@ComponentScan(basePackageClasses = {WeatherController.class, AirportController.class, AuthenticateController.class})
 public class ServerApplication {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.sky.clo;
+package com.sky.clo.services;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class myUserDetailsService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         //TODO: Replace with user MySQL DB Connection
