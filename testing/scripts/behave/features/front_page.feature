@@ -40,20 +40,20 @@ This is the front page that is displayed when the user browsers our webpage.
 	Examples: invalidFromInputs
 		|	to 		|	fromLocat	|	
 		|	1234	|	dk21'		|
-		|	$s!'Sd'	|	    		|
-		|	    	|	"}[2"		|
+		|	$s!'Sd'	|	"    " 		|
+		|	"  "   	|	"}[2"		|
 
 	Scenario: Checking if user can see sign-in form
 		Given the user has tried to access our webpage
 		When the user has clicked sign-in
 		Then the sign-in form should be displayed
 
-	Scenario: Checking if user can see create account form
-		Given the user has tried to access our webpage
-		When the user has clicked the create account button
-		Then the create-account form should be displayed
+	# Scenario: Checking if user can see create account form
+	# 	Given the user has tried to access our webpage
+	# 	When the user has clicked the create account button
+	# 	Then the create-account form should be displayed
 
-	Scenario: Correct popular locations details are displayed
-		Given the user has clicked on a popular location
-		When the location information has been displayed
-		Then the information should be correct for that location
+	# Scenario: Correct popular locations details are displayed
+	# 	Given the user has tried to access our webpage
+	# 	When the user can see popular location
+	# 	Then the user can click on the popular location
