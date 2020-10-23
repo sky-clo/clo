@@ -19,11 +19,11 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Transactional
+    // Load user from the database from their unique email
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findUserByEmail(email);
 
-        //user.orElseThrow(() -> new UsernameNotFoundException("Invalid Credentials"));
-        //return user.map(UserService::new).get();
+        // Build user using Spring Security built in class to send back
         return buildUserForAuthentication(user);
     }
 

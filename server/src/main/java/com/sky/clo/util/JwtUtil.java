@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+*  JWT Utility class for Json Web Token related methods, such as token creation/extraction
+* */
+
 @Service
 public class JwtUtil {
     @Value("${jwt.privatekey")
@@ -43,7 +47,7 @@ public class JwtUtil {
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
-
+        // Token is set to expire 10 hours after creation
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();

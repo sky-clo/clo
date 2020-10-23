@@ -35,17 +35,20 @@ public class AuthenticateController {
     @PostMapping(path = "/login")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authReq) throws Exception {
+        // Find a user in our DB from the provided email address
         User userExists = userService.findUserByEmail(authReq.getUsername());
 
+        // If no user is found return an error back immediately
         if (userExists == null) {
-            throw new Exception("Invalid Credentials");
+            return new ResponseEntity<>("Invalid Credentials", HttpStatus.BAD_REQUEST);
         }
 
+        // Load our located user into a UserDetails object
         final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authReq.getUsername());
-
         // Compare saved BCrypt value with provided unencrypted string
         final boolean isValidPass = userService.verifyBCrypt(userDetails.getPassword(), authReq.getPassword());
 
+        // If the provided value does not match then return an invalid credentials issue to the user
         if(!isValidPass) {
             return new ResponseEntity<>("Invalid Credentials", HttpStatus.BAD_REQUEST);
         }
@@ -53,6 +56,7 @@ public class AuthenticateController {
         // Generate user JWT if the user is valid
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
+        // Return authenticated user JWT value to response
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 }

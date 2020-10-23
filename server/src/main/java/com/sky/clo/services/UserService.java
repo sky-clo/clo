@@ -21,15 +21,18 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    // Find user in MySQL db by email
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
+    // Set encrypted password and save user to MySQL db
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
+    // Verify plaintext password provided against a saved BCrypt value
     public boolean verifyBCrypt(String hash, String pass) {
         return bCryptPasswordEncoder.matches(pass, hash);
     }
