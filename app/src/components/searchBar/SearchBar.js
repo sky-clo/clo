@@ -78,17 +78,31 @@ class SearchBar extends Component {
 
             <li>
               <label className="c-form-label" htmlFor="f-date">
-                Date
+                Outbound Date
               </label>
               <input
                 type="date"
                 className="c-form-date"
                 placeholder="dd/mm/yyyy"
                 name="date"
-                id="f-date"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.date}
-                data-test="SearchBar-date"
+                data-test="SearchBar-outbound-date"
+              />
+            </li>
+
+            <li>
+              <label className="c-form-label" htmlFor="f-date">
+                Inbound Date
+              </label>
+              <input
+                type="date"
+                className="c-form-date"
+                placeholder="dd/mm/yyyy"
+                name="date"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.date}
+                data-test="SearchBar-inbound-date"
               />
             </li>
 
