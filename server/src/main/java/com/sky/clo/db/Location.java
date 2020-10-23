@@ -14,6 +14,8 @@ public class Location {
     private String description;
     //private ArrayList<String> featured_in;
     private String img_url;
+    private Float lat;
+    private Float lng;
 
     public Integer getId() {
         return id;
@@ -61,5 +63,21 @@ public class Location {
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
+    }
+    
+    public Float getLat() {
+        return lat;
+    }
+
+    public void setLat(Float lat) {
+        this.lat = lat;
+    }
+
+    public Float getLng() {
+        return lng;
+    }
+
+    public void setLng(Float lng) {
+        this.lng = lng;
     }
 }
