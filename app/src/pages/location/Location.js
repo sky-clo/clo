@@ -9,13 +9,12 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 
+import useApi from "../../hooks/useApi";
+import config from "../../config";
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
 import FlightCard from "../../components/flightCard/FlightCard";
-import heroImage from "../../images/location-hero.png";
 import styles from "./location.module.scss";
-import config from "../../config";
-import useApi from "../../hooks/useApi";
 
 function LatLngBounds({ origin, destination }) {
   const map = useGoogleMap();
@@ -36,7 +35,7 @@ function LatLngBounds({ origin, destination }) {
 
 export default function Location() {
   const { locationName } = useParams();
-  const { body } = useApi("/location/" + locationName);
+  const { body } = useApi("/locations/" + locationName);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: config.googleMapsApiKey,
@@ -56,14 +55,14 @@ export default function Location() {
   return (
     <>
       <Helmet>
-        <title>London | Sky Clo</title>
+        <title>{`${body ? body.name : ""} | Sky Clo`}</title>
       </Helmet>
 
       <article className={styles.location}>
         <Hero
-          title="Dubrovnik, Croatia"
-          description="Croatia has had a turbulent history but is establishing itself as an exciting destination great for all the family. Among other things, you may not be aware that the small Central European country pioneered fountain pens and invented the necktie."
-          image={heroImage}
+          title={body && `${body.name}, ${body.country}`}
+          description={body && body.description}
+          image={body && body.img_url}
         />
 
         <SearchBar />
