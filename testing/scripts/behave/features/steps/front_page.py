@@ -123,22 +123,22 @@ class TestFrontPage(unittest.TestCase):
 		createAccountButton.click()
 		assert "create-an-account" in self.driver.current_url
 
-	# @when("the user can see popular location")
-	# def testForPopularLocations(self):
-	# 	try:
-	# 		listOfPopular = self.driver.find_elements_by_xpath("Home-location")
-	# 		assert len(listOfPopular) > 0
-	# 	except NoSuchElementException:
-	# 		assert False
+	@when("the user can see popular location")
+	def testForPopularLocations(self):
+		try:
+			listOfPopular = self.driver.find_elements_by_class_name("o-layout home_locationCards__1ePVo")
+			assert len(listOfPopular) > 0
+		except NoSuchElementException:
+			assert False
 
-	# @then("the user can click on the popular location")
-	# def testForPopularLocationClick(self):
-	# 	try:
-	# 		listOfPopular = self.driver.find_elements_by_xpath("Home-location")
-	# 		if len(listOfPopular) > 0:
-	# 			listOfPopular[0].click()
-	# 	except NoSuchElementException:
-	# 		assert False
+	@then("the user can click on the popular location")
+	def testForPopularLocationClick(self):
+		try:
+			listOfPopular = self.driver.find_elements_by_class_name("c-title__link c-shine-context")
+			if len(listOfPopular) > 0:
+				listOfPopular[0].click()
+		except NoSuchElementException:
+			assert False
 
 	def tearDown(self):
 		self.driver.close()
