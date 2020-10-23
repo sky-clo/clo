@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 
 import Hero from "../../components/hero/Hero";
@@ -6,7 +6,7 @@ import SearchBar from "../../components/searchBar/SearchBar";
 import LocationCard from "../../components/locationCard/LocationCard";
 import heroImage from "../../images/hero.png";
 import styles from "./home.module.scss";
-import useApi from "../../services/CloApi";
+import useApi from "../../hooks/useApi";
 
 export default function Home() {
   const { body } = useApi("/locations");
