@@ -1,10 +1,10 @@
 package com.sky.clo;
 
+import com.sky.clo.util.JwtUtil;
 import com.sky.clo.weather.Weather;
+import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +21,17 @@ public class WeatherController {
 
     // Handles all /weather requests, providing a default vaue for ?location= if nothing is passed
     @GetMapping("/weather")
-    public Weather weatherRequest(@RequestParam(value = "location", defaultValue = "London") String location) throws RestClientException {
+    public Weather weatherRequest(@RequestParam(value = "location", defaultValue = "London") String location, @RequestAttribute(value = "email", required = false) String email) throws RestClientException {
+
+        //System.out.println("email = " + email);
+        System.out.println("Finding weather for " + location);
+
+        if(email != null) {
+            System.out.println("Email:" + email);
+        } else {
+            System.out.println("No email sent");
+        }
+
         RestTemplate template = new RestTemplate();
         Map<String, String> uriParams = new HashMap<String, String>();
 

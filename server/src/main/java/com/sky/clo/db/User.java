@@ -11,8 +11,17 @@ public class User {
     private String firstname;
     private String lastname;
     private String email;
+    private String password;
     private String house_no;
     private String postcode;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;

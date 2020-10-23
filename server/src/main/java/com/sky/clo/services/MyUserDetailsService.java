@@ -1,18 +1,34 @@
 package com.sky.clo.services;
 
-import org.springframework.security.core.userdetails.User;
+import com.sky.clo.db.User;
+import com.sky.clo.db.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
-    @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        //TODO: Replace with user MySQL DB Connection
-        return new User("foo", "bar", new ArrayList<>());
+
+    @Autowired // Get and inject userRepository instance via Spring
+    private UserService userService;
+
+    @Transactional
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userService.findUserByEmail(email);
+
+        //user.orElseThrow(() -> new UsernameNotFoundException("Invalid Credentials"));
+        //return user.map(UserService::new).get();
+        return buildUserForAuthentication(user);
+    }
+
+    private UserDetails buildUserForAuthentication(User user) {
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+                true, true, true, true, new ArrayList<>());
     }
 }
