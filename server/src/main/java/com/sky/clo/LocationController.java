@@ -1,17 +1,12 @@
 package com.sky.clo;
 
-
 import com.sky.clo.db.Location;
 import com.sky.clo.db.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.sql.DataSource;
 
 @Controller // Controls all requests incoming to /location
 @RequestMapping(path = "/locations")
@@ -35,7 +30,6 @@ public class LocationController {
         location.setName(name);
         location.setCountry(country);
         location.setDescription(description);
-        //location.setFeatured_in(featured_in);
         location.setImg_url(img_url);
 
         try {

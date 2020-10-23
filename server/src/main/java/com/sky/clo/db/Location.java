@@ -1,9 +1,8 @@
 package com.sky.clo.db;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table(name = "locations")
 public class Location {
     @Id
@@ -12,7 +11,6 @@ public class Location {
     private String name;
     private String country;
     private String description;
-    //private ArrayList<String> featured_in;
     private String img_url;
     private Float lat;
     private Float lng;
@@ -49,14 +47,6 @@ public class Location {
         this.description = description;
     }
 
-    /*public ArrayList<String> getFeatured_in() {
-        return featured_in;
-    }*/
-
-    /*public void setFeatured_in(String featured_in) {
-        this.featured_in.add(featured_in);
-    }*/
-
     public String getImg_url() {
         return img_url;
     }
@@ -64,7 +54,7 @@ public class Location {
     public void setImg_url(String img_url) {
         this.img_url = img_url;
     }
-    
+
     public Float getLat() {
         return lat;
     }
