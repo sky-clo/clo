@@ -65,7 +65,7 @@ export default function Location() {
           image={body && body.img_url}
         />
 
-        <SearchBar hideToField={true} />
+        <SearchBar hideToField={body !== undefined} />
 
         <section className={`o-container ${styles.flightsContainer}`}>
           <h2 className="c-heading-bravo">Available Flights</h2>
