@@ -77,7 +77,7 @@ class SearchBar extends Component {
             </li>
 
             <li>
-              <label className="c-form-label" htmlFor="f-date">
+              <label className="c-form-label" htmlFor="f-out-date">
                 Outbound Date
               </label>
               <input
@@ -85,6 +85,7 @@ class SearchBar extends Component {
                 className="c-form-date"
                 placeholder="dd/mm/yyyy"
                 name="date"
+                id="f-out-date"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.date}
                 data-test="SearchBar-outbound-date"
@@ -92,7 +93,7 @@ class SearchBar extends Component {
             </li>
 
             <li>
-              <label className="c-form-label" htmlFor="f-date">
+              <label className="c-form-label" htmlFor="f-in-date">
                 Inbound Date
               </label>
               <input
@@ -100,6 +101,7 @@ class SearchBar extends Component {
                 className="c-form-date"
                 placeholder="dd/mm/yyyy"
                 name="date"
+                id="f-in-date"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.date}
                 data-test="SearchBar-inbound-date"
