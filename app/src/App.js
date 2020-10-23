@@ -16,7 +16,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/location" component={Location} />
+            <Route path="/location/:locationName" component={Location} />
             <Route path="/create-an-account" component={CreateAnAccount} />
             <Route path="/sign-in" component={SignIn} />
           </Switch>

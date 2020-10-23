@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 import {
   GoogleMap,
   Marker,
@@ -14,12 +15,13 @@ import FlightCard from "../../components/flightCard/FlightCard";
 import heroImage from "../../images/location-hero.png";
 import styles from "./location.module.scss";
 import config from "../../config";
+import useApi from "../../hooks/useApi";
 
 function LatLngBounds({ origin, destination }) {
   const map = useGoogleMap();
 
   useEffect(() => {
-    if (map) {
+    if (map && origin && destination) {
       const bounds = new window.google.maps.LatLngBounds();
       bounds.extend(new window.google.maps.LatLng(origin.lat, origin.lng));
       bounds.extend(
@@ -33,15 +35,23 @@ function LatLngBounds({ origin, destination }) {
 }
 
 export default function Location() {
+  const { locationName } = useParams();
+  const { body } = useApi("/location/" + locationName);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: config.googleMapsApiKey,
   });
 
-  const [origin, setOrigin] = useState({ lat: 37.772, lng: -122.214 });
-  const [destination, setDestination] = useState({
-    lat: -27.467,
-    lng: 153.027,
-  });
+  // Points for Google Maps
+  const [origin, setOrigin] = useState();
+  const [destination, setDestination] = useState();
+
+  // Once fetched location details from our API, set the google Maps destination point
+  useEffect(() => {
+    if (body) {
+      setDestination({ lat: body.lat, lng: body.lng });
+    }
+  }, [body]);
 
   return (
     <>
