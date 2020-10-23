@@ -4,8 +4,8 @@ import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
 
 class SearchBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       from: "",
       to: "",
@@ -60,21 +60,23 @@ class SearchBar extends Component {
               />
             </li>
 
-            <li>
-              <label className="c-form-label" htmlFor="to">
-                To
-              </label>
-              <input
-                type="text"
-                className="c-form-input"
-                placeholder="e.g. Split"
-                name="to"
-                id="to"
-                onChange={(event) => this.handleChange(event)}
-                value={this.state.to}
-                data-test="SearchBar-to"
-              />
-            </li>
+            {!this.props.hideToField && (
+              <li>
+                <label className="c-form-label" htmlFor="to">
+                  To
+                </label>
+                <input
+                  type="text"
+                  className="c-form-input"
+                  placeholder="e.g. Split"
+                  name="to"
+                  id="to"
+                  onChange={(event) => this.handleChange(event)}
+                  value={this.state.to}
+                  data-test="SearchBar-to"
+                />
+              </li>
+            )}
 
             <li>
               <label className="c-form-label" htmlFor="f-out-date">
