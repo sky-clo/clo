@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-
 import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
+import moment from "moment";
+import "react-datepicker/dist/react-datepicker.css";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class SearchBar extends Component {
     this.state = {
       from: "",
       to: props.to || "",
-      date: "",
+      inboundDate: "",
+      outboundDate: "",
     };
   }
 
@@ -19,7 +21,6 @@ class SearchBar extends Component {
 
   handleChange(event) {
     const value = event.target.value;
-    console.log(event.target.name);
     this.setState({
       ...this.state,
       [event.target.name]: value,
@@ -88,10 +89,11 @@ class SearchBar extends Component {
                 type="date"
                 className="c-form-date"
                 placeholder="dd/mm/yyyy"
-                name="date"
+                name="outboundDate"
                 id="f-out-date"
+                min={moment().format("YYYY-MM-DD")}
                 onChange={(event) => this.handleChange(event)}
-                value={this.state.date}
+                value={this.state.outboundDate}
                 data-test="SearchBar-outbound-date"
               />
             </li>
@@ -104,10 +106,11 @@ class SearchBar extends Component {
                 type="date"
                 className="c-form-date"
                 placeholder="dd/mm/yyyy"
-                name="date"
+                name="inboundDate"
                 id="f-in-date"
+                min={this.state.outboundDate}
                 onChange={(event) => this.handleChange(event)}
-                value={this.state.date}
+                value={this.state.inboundDate}
                 data-test="SearchBar-inbound-date"
               />
             </li>
