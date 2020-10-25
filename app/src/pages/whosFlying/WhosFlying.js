@@ -96,12 +96,14 @@ export default function WhosFlying() {
               />
             </li>
 
+            <Link>Add Another Person</Link>
+
+            <br />
+            <br />
+
             <Button data-test="SignIn-next">Next</Button>
           </ul>
         </fieldset>
-        <Link to={`/create-an-account`} data-test="SignIn-create-an-account">
-          Or create an account
-        </Link>
       </form>
     </section>
   );
