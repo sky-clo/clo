@@ -7,6 +7,7 @@ import Location from "./pages/location/Location";
 import CreateAnAccount from "./pages/createAnAccount/CreateAnAccount";
 import styles from "./App.module.scss";
 import SignIn from "./pages/signIn/SignIn";
+import WhosFlying from "./pages/whosFlying/WhosFlying";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/location/:locationName" component={Location} />
             <Route path="/create-an-account" component={CreateAnAccount} />
             <Route path="/sign-in" component={SignIn} />
+            <Route path="/whos-flying" component={WhosFlying} />
           </Switch>
         </Router>
       </main>
