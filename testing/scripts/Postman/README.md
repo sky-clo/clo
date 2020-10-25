@@ -8,6 +8,8 @@ Import the collection files into Postman, open the Postman Runner and select the
 
 ### Command Line
 
-Put some instructions here.
+Navigate to relevant directory and, using newman, specify collection and test data files like so:
+
+``` newman run weatherAPITesting.postman_collection.json -d weatherAPITestData.json ```
 
 
