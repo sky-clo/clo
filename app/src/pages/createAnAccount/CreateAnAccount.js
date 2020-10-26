@@ -147,7 +147,7 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <Button data-test="CreateAnAccount-next">Next</Button>
+            <Button data-test="CreateAnAccount-next">Create</Button>
           </ul>
         </fieldset>
 
