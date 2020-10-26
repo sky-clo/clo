@@ -70,5 +70,9 @@ details summary::-webkit-details-marker {
   .authButtons {
     margin: 8px 24px;
     display: block;
+
+    & > :not(:last-child) {
+      margin-right: 16px;
+    }
   }
 }
