@@ -20,7 +20,7 @@ export default function WhosFlying() {
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: dateOfBirth,
-        passportnumber: passportNumber,
+        passportNumber: passportNumber,
       },
     ]);
   };
@@ -34,20 +34,24 @@ export default function WhosFlying() {
     <section className={styles.section}>
       <h1 className={styles.h1}>Who's Flying</h1>
 
-      {passengers.length > 0 && (
-        <>
-          <p>Passengers</p>
-          <ul>
-            {passengers.map((passenger) => (
-              <li>{passenger.firstName}</li>
-            ))}
-          </ul>
-        </>
-      )}
-
       <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
+
+          {passengers.length > 0 && (
+            <>
+              <ul>
+                {passengers.map((passenger) => (
+                  <li>
+                    <b>Name:</b> {passenger.firstName} {passenger.lastName}{" "}
+                    <b> Date Of Birth:</b>{" "}
+                    {passenger.dateOfBirth.split("-").reverse().join("-")}{" "}
+                    <b> Passport Number:</b> {passenger.passportNumber}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           <ul className={"c-form-list " + styles.formList}>
             <PassengerForm
