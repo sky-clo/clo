@@ -59,7 +59,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource()
     {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(origin, "*"));
+        configuration.setAllowedOrigins(Arrays.asList(origin));
         //or any domain that you want to restrict to
         configuration.setAllowedMethods(Arrays.asList("GET","POST"));
         //Add the method support as you like

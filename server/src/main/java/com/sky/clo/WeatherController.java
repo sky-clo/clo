@@ -20,15 +20,7 @@ public class WeatherController {
     // Handles all /weather requests, providing a default vaue for ?location= if nothing is passed
     @GetMapping("/weather")
     public Weather weatherRequest(@RequestParam(value = "location", defaultValue = "London") String location, @RequestAttribute(value = "email", required = false) String email) throws RestClientException {
-
-        //System.out.println("email = " + email);
         System.out.println("Finding weather for " + location);
-
-        if(email != null) {
-            System.out.println("Email:" + email);
-        } else {
-            System.out.println("No email sent");
-        }
 
         RestTemplate template = new RestTemplate();
         Map<String, String> uriParams = new HashMap<String, String>();

@@ -1,7 +1,7 @@
 package com.sky.clo;
 
 import com.sky.clo.db.User;
-import com.sky.clo.models.AuthenticationRequest;
+import com.sky.clo.models.RegisterAccountRequest;
 import com.sky.clo.models.AuthenticationResponse;
 import com.sky.clo.services.MyUserDetailsService;
 import com.sky.clo.services.UserService;
@@ -38,7 +38,7 @@ public class AuthenticateController {
 
     @PostMapping(path = "/login")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authReq) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody RegisterAccountRequest authReq) throws Exception {
         // Find a user in our DB from the provided email address (getUsername here is our Email)
         User userExists = userService.findUserByEmail(authReq.getUsername());
 
@@ -82,7 +82,6 @@ public class AuthenticateController {
 
         try {
             userService.saveUser(user);
-            AuthenticationRequest authRequest = new AuthenticationRequest(user.getEmail(), user.getPassword());
             // Generate user JWT if the user is valid
             final String jwt = jwtTokenUtil.generateToken(userDetails);
 

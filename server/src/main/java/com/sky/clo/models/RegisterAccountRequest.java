@@ -1,13 +1,13 @@
 package com.sky.clo.models;
 
-public class AuthenticationRequest {
+public class RegisterAccountRequest {
     private String username;
     private String password;
 
-    public AuthenticationRequest() {
+    public RegisterAccountRequest() {
     }
 
-    public AuthenticationRequest(String username, String password) {
+    public RegisterAccountRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }
