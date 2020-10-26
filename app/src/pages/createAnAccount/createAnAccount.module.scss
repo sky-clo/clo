@@ -13,21 +13,34 @@
   flex-direction: column;
   align-items: center;
 
+  fieldset {
+    width: 100%;
+  }
+
   .formList {
     display: flex;
     flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    justify-self: flex-end;
+    align-self: flex-end;
   }
 }
 
 @media (min-width: 600px) {
   .form {
+    fieldset {
+      width: initial;
+    }
+
     .formList {
       display: grid;
+      align-content: center;
       justify-content: center;
-      justify-items: center;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-      max-width: 800px;
     }
 
     button {
