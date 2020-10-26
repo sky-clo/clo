@@ -3,12 +3,12 @@ package com.sky.clo.services;
 import com.sky.clo.db.User;
 import com.sky.clo.db.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import javax.validation.ConstraintViolationException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Service
 public class UserService {
@@ -27,7 +27,7 @@ public class UserService {
     }
 
     // Set encrypted password and save user to MySQL db
-    public User saveUser(User user) {
+    public User saveUser(User user) throws SQLIntegrityConstraintViolationException, DataIntegrityViolationException, ConstraintViolationException {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

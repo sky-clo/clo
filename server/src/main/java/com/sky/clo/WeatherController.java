@@ -1,8 +1,6 @@
 package com.sky.clo;
 
-import com.sky.clo.util.JwtUtil;
 import com.sky.clo.weather.Weather;
-import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;

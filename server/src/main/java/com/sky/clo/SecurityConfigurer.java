@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -45,7 +43,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.cors(); // Enable CORS for all React app requests
         // Disable CSRF and add no-auth/auth routes to spring security
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/airports", "/authenticate/*"/*, "/weather"*/ ).permitAll()
+                .authorizeRequests().antMatchers("/airports/*", "/authenticate/*", "weather" ).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

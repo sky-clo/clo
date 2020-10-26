@@ -1,7 +1,6 @@
 package com.sky.clo.services;
 
 import com.sky.clo.db.User;
-import com.sky.clo.db.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -24,6 +22,10 @@ public class MyUserDetailsService implements UserDetailsService {
         User user = userService.findUserByEmail(email);
 
         // Build user using Spring Security built in class to send back
+        return buildUserForAuthentication(user);
+    }
+
+    public UserDetails loadByUser(User user) {
         return buildUserForAuthentication(user);
     }
 

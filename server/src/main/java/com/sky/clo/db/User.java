@@ -1,16 +1,24 @@
 package com.sky.clo.db;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @NotNull @NotBlank @NotEmpty
     private String firstname;
+    @NotNull(message = "Lastname is a required field") @NotBlank(message = "EEE") @NotEmpty(message = "EEEE")
     private String lastname;
+    @NotNull @NotBlank @NotEmpty @Email @Column(nullable = false)
     private String email;
+    @NotNull @NotBlank @NotEmpty
     private String password;
     private String house_no;
     private String postcode;
