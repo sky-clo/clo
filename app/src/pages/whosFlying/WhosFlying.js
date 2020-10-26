@@ -10,21 +10,19 @@ export default function WhosFlying() {
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [passportNumber, setPassportNumber] = useState("");
-  let [passengerCount, setPassengerCount] = useState(1);
-  const [passengers, setPassengers] = useState({});
+  const [passengers, setPassengers] = useState([]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    setPassengers({
+    setPassengers([
       ...passengers,
-      [passengerCount]: {
+      {
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: dateOfBirth,
         passportnumber: passportNumber,
       },
-    });
-    setPassengerCount((passengerCount += 1));
+    ]);
   };
 
   const handleSubmit = (e) => {
@@ -36,6 +34,17 @@ export default function WhosFlying() {
     <section className={styles.section}>
       <h1 className={styles.h1}>Who's Flying</h1>
 
+      {passengers.length > 0 && (
+        <>
+          <p>Passengers</p>
+          <ul>
+            {passengers.map((passenger) => (
+              <li>{passenger.firstName}</li>
+            ))}
+          </ul>
+        </>
+      )}
+
       <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
@@ -43,7 +52,6 @@ export default function WhosFlying() {
           <ul className={"c-form-list " + styles.formList}>
             <PassengerForm
               passengers={passengers}
-              passengerCount={passengerCount}
               setPassengers={setPassengers}
               setFirstName={setFirstName}
               firstName={firstName}
