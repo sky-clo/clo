@@ -4,13 +4,17 @@ import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
 
 class SearchBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       from: "",
-      to: "",
+      to: props.to || "",
       date: "",
     };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ to: props.to });
   }
 
   handleChange(event) {
@@ -77,18 +81,34 @@ class SearchBar extends Component {
             </li>
 
             <li>
-              <label className="c-form-label" htmlFor="f-date">
-                Date
+              <label className="c-form-label" htmlFor="f-out-date">
+                Outbound Date
               </label>
               <input
                 type="date"
                 className="c-form-date"
                 placeholder="dd/mm/yyyy"
                 name="date"
-                id="f-date"
+                id="f-out-date"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.date}
-                data-test="SearchBar-date"
+                data-test="SearchBar-outbound-date"
+              />
+            </li>
+
+            <li>
+              <label className="c-form-label" htmlFor="f-in-date">
+                Inbound Date
+              </label>
+              <input
+                type="date"
+                className="c-form-date"
+                placeholder="dd/mm/yyyy"
+                name="date"
+                id="f-in-date"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.date}
+                data-test="SearchBar-inbound-date"
               />
             </li>
 
