@@ -1,0 +1,38 @@
+.section {
+  padding: 24px;
+}
+
+.h1 {
+  text-align: center;
+  font-size: 3em;
+  padding-top: 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .formList {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 600px) {
+  .form {
+    .formList {
+      display: grid;
+      justify-content: center;
+      justify-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 800px;
+    }
+
+    button {
+      grid-column: 1 / 3;
+      justify-self: end;
+    }
+  }
+}
