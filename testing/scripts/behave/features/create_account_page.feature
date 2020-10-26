@@ -2,57 +2,72 @@ Feature: Creating an account
     This is the form to be able to create an account
 
     Scenario: User has clicked on create account
-        Given the user has clicked on a create account button
-        When the user has loaded the page
+        Given the user is on the create account page
         Then the create an account form should be displayed
 
     Scenario Outline: User has input data
         Given the user is on the create account page
-        When the user types <text> into the <form element> element of the form
-        Then the text should be input into the <form element> element of the form
+        When the user clicks the <formElement> element of the form
+        Then the user should be able to input <text> into the <formElement>
 
     Examples: First Name
-    | text          | form element  |
-    | Nathan        | first name    |
-    | Rich          | first name    |
-    | Marcin        | first name    |
+    | text          | formElement   |
+    | Nathan        | f-firstname   |
+    | Rich          | f-firstname   |
+    | Marcin        | f-firstname   |
 
     Examples: Last Name
-    | text          | form element  |
-    | Tuckwell      | last name     |
-    | Vaughan       | last name     |
-    | Grabarczyk    | last name     |
+    | text          | formElement   |
+    | Tuckwell      | f-lastname    |
+    | Vaughan       | f-lastname    |
+    | Grabarczyk    | f-lastname    |
 
     Examples: Email
-    | text                      | form element |
-    | nathan.tuckwell@sky.uk    | email        |
-    | rich.vaughan@sky.uk       | email        |
-    | marcin.grabarczyk@sky.uk  | email        |
+    | text                      | formElement    |
+    | nathan.tuckwell@sky.uk    | f-email        |
+    | rich.vaughan@sky.uk       | f-email        |
+    | marcin.grabarczyk@sky.uk  | f-email        |
     
     Examples: Password
-    | text          | form element  |
-    | password123   | password      |
-    | richIsTheB3st | password      |
-    | bronzeSmurf   | password      |
+    | text          | formElement     |
+    | password123   | f-password      |
+    | richIsTheB3st | f-password      |
+    | bronzeSmurf   | f-password      |
 
     Examples: House Number
-    | text          | form element  |
-    | 8             | house number  |
-    | 420           | house number  |
-    | 69            | house number  |
+    | text          | formElement    |
+    | 8             | f-housenumber  |
+    | 420           | f-housenumber  |
+    | 69            | f-housenumber  |
 
     Examples: Postcode
-    | text          | form element  |
-    | AB12 3XY      | postcode      |
-    | XY32 1AB      | postcode      |
-    | OP45 6LP      | postcode      |
+    | text          | formElement     |
+    | AB12 3XY      | f-postcode      |
+    | XY32 1AB      | f-postcode      |
+    | OP45 6LP      | f-postcode      |
 
-    Scenario: User has completed input
-        When the user has completed input in a form element
-        Then the input should be validated
+    Scenario: User has completed form with valid input
+        Given the user is on the create account page
+        When the user has completed the form with valid input and clicked create account
+        Then they should be directed to the sign in page
+
+    Scenario Outline: User has completed form with invalid input
+        Given the user is on the create account page
+        When the user has input <firstName> <lastName> <email> <password> <houseNumber> <postcode> and clicked create account
+        Then they should be stay on the current page
+
+    Examples:
+    | firstName     | lastName      | email             | password      | houseNumber   | postcode      |
+    | 09/'          | Bloggs        | joe@bloggs.com    | password123   | 123           | AB12 3CD      |
+    | Joe           | )sd_=0        | joe@bloggs.com    | password123   | 123           | AB12 3CD      |
+    | Joe           | Bloggs        | skps9870)-=;'1    | password123   | 123           | AB12 3CD      |
+    | Joe           | Bloggs        | joe@bloggs.com    | password123   | no            | AB12 3CD      |
+    | Joe           | Bloggs        | joe@bloggs.com    | password123   | 123           | hello         |
+
 
      Scenario: User has clicked the sign in option
-        When the user has clicked the sign in option
-        Then the user should be able to sign in
+         Given the user is on the create account page
+         When the user has clicked the sign in option
+         Then the user should be directed to the sign in page
 
     
