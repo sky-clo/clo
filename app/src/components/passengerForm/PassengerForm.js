@@ -1,12 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export default function PassengerForm() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [passportNumber, setPassportNumber] = useState("");
-
+const PassengerForm = (props) => {
   return (
     <>
       <li className="c-form-list__item">
@@ -21,8 +16,8 @@ export default function PassengerForm() {
           placeholder="e.g. John"
           name="f-firstName"
           id="f-firstName"
-          onChange={(e) => setFirstName(e.target.value)}
-          value={firstName}
+          onChange={(e) => props.setFirstName(e.target.value)}
+          value={props.firstName}
           data-test="WhosFlying-first-name"
           required
         />
@@ -40,8 +35,8 @@ export default function PassengerForm() {
           placeholder="e.g. Smith"
           name="f-lastName"
           id="f-lastName"
-          onChange={(e) => setLastName(e.target.value)}
-          value={lastName}
+          onChange={(e) => props.setLastName(e.target.value)}
+          value={props.lastName}
           data-test="WhosFlying-last-name"
           required
         />
@@ -57,8 +52,8 @@ export default function PassengerForm() {
           placeholder="dd/mm/yyyy"
           name="dateOfBirth"
           id="f-dateOfBirth"
-          onChange={(e) => setDateOfBirth(e.target.value)}
-          value={dateOfBirth}
+          onChange={(e) => props.setDateOfBirth(e.target.value)}
+          value={props.dateOfBirth}
           data-test="WhosFlying-dateOfBirth"
         />
       </li>
@@ -75,12 +70,14 @@ export default function PassengerForm() {
           placeholder="e.g. 123456789"
           name="f-passportNumber"
           id="f-passportNumber"
-          onChange={(e) => setPassportNumber(e.target.value)}
-          value={passportNumber}
+          onChange={(e) => props.setPassportNumber(e.target.value)}
+          value={props.passportNumber}
           data-test="WhosFlying-passport-number"
           required
         />
       </li>
     </>
   );
-}
+};
+
+export default PassengerForm;

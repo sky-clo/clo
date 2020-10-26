@@ -3,20 +3,36 @@ import styles from "./whosFlying.module.css";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import PassengerForm from "../../components/passengerForm/PassengerForm";
+import PassengerForm from "../../components/passengerForm/PassengerForm.js";
 
 export default function WhosFlying() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [passportNumber, setPassportNumber] = useState("");
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setPassengers({
+      ...passengers,
+      passengerCount: {
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: dateOfBirth,
+        passportnumber: passportNumber,
+      },
+    });
+    passengerCount += 1;
+  };
+
   let passengerCount = 1;
+  const [passengers, setPassengers] = useState({
+    1: { firstName: "", lastName: "", dateOfBirth: "", passportNumber: "" },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Thanks for travelling with CLO`); //just a placeholder for our request
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    passengerCount += 1;
-    alert(`you now have ${passengerCount} passengers`);
   };
 
   return (
@@ -27,7 +43,19 @@ export default function WhosFlying() {
         <fieldset>
           <legend className="c-form-caption">Example</legend>
           <ul className={"c-form-list " + styles.formList}>
-            <PassengerForm />
+            <PassengerForm
+              passengers={passengers}
+              passengerCount={passengerCount}
+              setPassengers={setPassengers}
+              setFirstName={setFirstName}
+              firstName={firstName}
+              setLastName={setLastName}
+              lastName={lastName}
+              setDateOfBirth={setDateOfBirth}
+              dateOfBirth={dateOfBirth}
+              setPassportNumber={setPassportNumber}
+              passportNumber={passportNumber}
+            />
 
             <Link onClick={(e) => handleClick(e)}>Add Another Person</Link>
 
