@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
-import moment from "moment";
-import "react-datepicker/dist/react-datepicker.css";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -91,7 +89,7 @@ class SearchBar extends Component {
                 placeholder="dd/mm/yyyy"
                 name="outboundDate"
                 id="f-out-date"
-                min={moment().format("YYYY-MM-DD")}
+                min={new Date().toISOString().split("T")[0]}
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.outboundDate}
                 data-test="SearchBar-outbound-date"
