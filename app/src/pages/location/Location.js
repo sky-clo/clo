@@ -73,15 +73,18 @@ export default function Location() {
 
         <section className={`o-container ${styles.flightsContainer}`}>
           <h2 className="c-heading-bravo"> Available Flights </h2>
-
-          <Flights
-            originLocation={location ? location["Places"][0]["PlaceId"] : null}
-            destinationLocation={
-              destinationLocation
-                ? destinationLocation["Places"][0]["PlaceId"]
-                : null
-            }
-          />
+          <div className={styles.flights}>
+            <Flights
+              originLocation={
+                location ? location["Places"][0]["PlaceId"] : null
+              }
+              destinationLocation={
+                destinationLocation
+                  ? destinationLocation["Places"][0]["PlaceId"]
+                  : null
+              }
+            />
+          </div>
 
           {isLoaded && (
             <GoogleMap

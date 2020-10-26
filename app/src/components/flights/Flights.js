@@ -1,7 +1,6 @@
 import useApi from "../../hooks/useApi";
 import React, { useEffect, useState } from "react";
 import FlightCard from "../flightCard/FlightCard";
-import styles from "./location.module.scss";
 
 function findLocation(places, key) {
   for (var i = 0; i < places.length; i++) {
@@ -20,7 +19,7 @@ export default function (props) {
       "&locale=en_GB&country=GB&currency=GBP&outboundpartialdate=2020-10-30"
   );
   return (
-    <div className={styles.flights}>
+    <div>
       {quotes &&
         quotes["Quotes"] &&
         quotes["Quotes"]
