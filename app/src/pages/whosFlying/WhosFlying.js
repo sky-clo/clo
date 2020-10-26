@@ -27,7 +27,29 @@ export default function WhosFlying() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Thanks for travelling with CLO`); //just a placeholder for our request
+
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(passengers),
+    };
+
+    fetch("http://localhost:3000/passengers", configObj) //not sure what url to post this to??
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (object) {
+        console.log(object);
+      })
+      .catch(function (error) {
+        alert(
+          "We are sorry, we seem to be having issues, please try again later!"
+        );
+        console.log(error.message);
+      });
   };
 
   return (
@@ -72,7 +94,9 @@ export default function WhosFlying() {
             <br />
             <br />
 
-            <Button data-test="SignIn-next">Next</Button>
+            <Button data-test="WhosFlying-next" type="submit">
+              Next
+            </Button>
           </ul>
         </fieldset>
       </form>
