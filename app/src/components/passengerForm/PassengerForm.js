@@ -6,9 +6,6 @@ const PassengerForm = (props) => {
       <li className="c-form-list__item">
         <label className="c-form-label" for="f-firstName">
           First Name{" "}
-          <abbr title="This field is required" class="c-form-required">
-            *
-          </abbr>
         </label>
         <input
           className="c-form-input"
@@ -18,16 +15,12 @@ const PassengerForm = (props) => {
           onChange={(e) => props.setFirstName(e.target.value)}
           value={props.firstName}
           data-test="WhosFlying-first-name"
-          required
         />
       </li>
 
       <li className="c-form-list__item">
         <label className="c-form-label" for="f-lastName">
           Last Name{" "}
-          <abbr title="This field is required" class="c-form-required">
-            *
-          </abbr>
         </label>
         <input
           className="c-form-input"
@@ -37,7 +30,6 @@ const PassengerForm = (props) => {
           onChange={(e) => props.setLastName(e.target.value)}
           value={props.lastName}
           data-test="WhosFlying-last-name"
-          required
         />
       </li>
 
@@ -51,6 +43,7 @@ const PassengerForm = (props) => {
           placeholder="dd/mm/yyyy"
           name="dateOfBirth"
           id="f-dateOfBirth"
+          max={new Date().toISOString().split("T")[0]}
           onChange={(e) => props.setDateOfBirth(e.target.value)}
           value={props.dateOfBirth}
           data-test="WhosFlying-dateOfBirth"
@@ -60,9 +53,6 @@ const PassengerForm = (props) => {
       <li className="c-form-list__item">
         <label className="c-form-label" for="f-passportNumber">
           Passport Number{" "}
-          <abbr title="This field is required" class="c-form-required">
-            *
-          </abbr>
         </label>
         <input
           className="c-form-input"
@@ -72,7 +62,6 @@ const PassengerForm = (props) => {
           onChange={(e) => props.setPassportNumber(e.target.value)}
           value={props.passportNumber}
           data-test="WhosFlying-passport-number"
-          required
         />
       </li>
     </>

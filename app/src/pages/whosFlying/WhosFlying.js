@@ -23,7 +23,7 @@ export default function WhosFlying() {
         passportNumber: passportNumber,
       },
     ]);
-    setFirstName(""); //clear from after submitting each user
+    setFirstName(""); //clear from after submitting each passenger
     setLastName("");
     setDateOfBirth("");
     setPassportNumber("");
@@ -96,7 +96,7 @@ export default function WhosFlying() {
               passportNumber={passportNumber}
             />
 
-            <Link onClick={(e) => handleClick(e)}>Add Another Person</Link>
+            <Link onClick={(e) => handleClick(e)}>Add Passenger</Link>
 
             <br />
             <br />
