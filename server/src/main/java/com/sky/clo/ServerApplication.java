@@ -1,10 +1,15 @@
 package com.sky.clo;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RestController;
+=======
+import org.springframework.context.annotation.Configuration;
+>>>>>>> 51bcffd6cf76d3eb65c37576d6d55c6ba16be828
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,6 +19,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RestController
 @ComponentScan(basePackageClasses = {WeatherController.class, AirportController.class, AuthenticateController.class})
 public class ServerApplication {
+	@Value("${cors.origin}")
+	private String origin;
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);

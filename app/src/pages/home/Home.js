@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 
 import Hero from "../../components/hero/Hero";
@@ -6,37 +6,11 @@ import SearchBar from "../../components/searchBar/SearchBar";
 import LocationCard from "../../components/locationCard/LocationCard";
 import heroImage from "../../images/hero.png";
 import styles from "./home.module.scss";
-
-class Location {
-  constructor(locationTitle, locationDisc) {
-    this.locationTitle = locationTitle;
-    this.locationDisc = locationDisc;
-    this.featuredIn = [""];
-  }
-}
+import useApi from "../../hooks/useApi";
 
 export default function Home() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const { body } = useApi("/locations");
 
-  useEffect(() => {
-    fetch("http://localhost:3000/locations")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
   return (
     <>
       <Helmet>
@@ -50,14 +24,14 @@ export default function Home() {
           <div className="o-container">
             <h2 className="c-heading-bravo">Popular Locations</h2>
             <div className={"o-layout " + styles.locationCards}>
-              {items.map((item, index) => (
-                <LocationCard
-                  name={item.name}
-                  img_urls={item.img_urls}
-                  featured_in={item.featured_in[0]}
-                  key={index}
-                />
-              ))}
+              {body &&
+                body.map((item, index) => (
+                  <LocationCard
+                    name={item.name}
+                    img_url={item.img_url}
+                    key={index}
+                  />
+                ))}
             </div>
           </div>
         </section>
