@@ -23,6 +23,10 @@ export default function WhosFlying() {
         passportNumber: passportNumber,
       },
     ]);
+    setFirstName(""); //clear from after submitting each user
+    setLastName("");
+    setDateOfBirth("");
+    setPassportNumber("");
   };
 
   const handleSubmit = (e) => {
@@ -65,9 +69,12 @@ export default function WhosFlying() {
               <ul>
                 {passengers.map((passenger) => (
                   <li>
-                    <b>Name:</b> {passenger.firstName} {passenger.lastName}{" "}
-                    <b> Date Of Birth:</b>{" "}
-                    {passenger.dateOfBirth.split("-").reverse().join("-")}{" "}
+                    <b>Name:</b> {passenger.firstName} {passenger.lastName}
+                    {"  "}
+                    <b>Date Of Birth:</b>
+                    {"  "}
+                    {passenger.dateOfBirth.split("-").reverse().join("-")}
+                    {"  "}
                     <b> Passport Number:</b> {passenger.passportNumber}
                   </li>
                 ))}
