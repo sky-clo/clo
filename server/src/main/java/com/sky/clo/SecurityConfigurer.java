@@ -49,15 +49,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Enable CORS for all React app requests
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
-        // Disable CSRF and add no-auth/auth routes to spring security
-        .authorizeRequests().antMatchers("/airports/*", "/authenticate/*", "/weather" ).permitAll()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/airports/*", "/authenticate/*", "/weather" ).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
-        // Add a custom filter before each request to see if a JWT exists in our user request
-        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 public class WeatherController {
     // Extract weatherApi Key from application.properties
-    // TODO: Refresh this and add it to server .ENV variables
+    // TODO: Refresh this and add it to server .env variables
     @Value("${com.weatherapi.key}")
     private String weatherApiKey;
 
