@@ -10,7 +10,7 @@
      * [Payment Details Form](#payment-details-form)
      * [Confirmation Page](#confirmation-page)
      * [Create an Account](#create-an-account)
-2. [UI Testing](#test-scripts)
+2. [UI Testing](#ui-testing)
      * [behave](#behave)
 3. [API Testing](#api-testing)
      * [Postman](#postman)
