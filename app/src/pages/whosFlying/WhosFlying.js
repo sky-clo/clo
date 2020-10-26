@@ -10,25 +10,22 @@ export default function WhosFlying() {
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [passportNumber, setPassportNumber] = useState("");
+  let [passengerCount, setPassengerCount] = useState(1);
+  const [passengers, setPassengers] = useState({});
 
   const handleClick = (e) => {
     e.preventDefault();
     setPassengers({
       ...passengers,
-      passengerCount: {
+      [passengerCount]: {
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: dateOfBirth,
         passportnumber: passportNumber,
       },
     });
-    passengerCount += 1;
+    setPassengerCount((passengerCount += 1));
   };
-
-  let passengerCount = 1;
-  const [passengers, setPassengers] = useState({
-    1: { firstName: "", lastName: "", dateOfBirth: "", passportNumber: "" },
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +39,7 @@ export default function WhosFlying() {
       <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
+
           <ul className={"c-form-list " + styles.formList}>
             <PassengerForm
               passengers={passengers}
