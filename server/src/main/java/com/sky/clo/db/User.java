@@ -14,7 +14,7 @@ public class User {
     private Integer id;
     @NotNull @NotBlank @NotEmpty
     private String firstname;
-    @NotNull(message = "Lastname is a required field") @NotBlank(message = "EEE") @NotEmpty(message = "EEEE")
+    @NotNull(message = "Lastname is a required field") @NotBlank @NotEmpty
     private String lastname;
     @NotNull @NotBlank @NotEmpty @Email @Column(nullable = false)
     private String email;

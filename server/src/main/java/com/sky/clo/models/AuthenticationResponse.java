@@ -22,11 +22,11 @@ public class AuthenticationResponse {
 
     public UserResponse getUser() {
         return new UserResponse(
-                this.user.getFirstname(),
-                this.user.getLastname(),
-                this.user.getEmail(),
-                this.user.getHouse_no(),
-                this.user.getPostcode()
+            this.user.getFirstname(),
+            this.user.getLastname(),
+            this.user.getEmail(),
+            this.user.getHouse_no(),
+            this.user.getPostcode()
         );
     }
 }
