@@ -48,12 +48,17 @@ This is the front page that is displayed when the user browsers our webpage.
 		When the user has clicked sign-in
 		Then the sign-in form should be displayed
 
-	# Scenario: Checking if user can see create account form
-	# 	Given the user has tried to access our webpage
-	# 	When the user has clicked the create account button
-	# 	Then the create-account form should be displayed
+	Scenario: Checking if user can see create account form
+		Given the user has tried to access our webpage
+		When the user has clicked the create account button
+		Then the create-account form should be displayed
 
-	# Scenario: Correct popular locations details are displayed
-	# 	Given the user has tried to access our webpage
-	# 	When the user can see popular location
-	# 	Then the user can click on the popular location
+	Scenario: Correct popular locations details are displayed
+		Given the user has tried to access our webpage
+		When the user can see popular location
+		Then the user can click on the popular location
+
+	Scenario: User should only be allowed to enter a correct outbound date and inbound
+		Given the user has tried to access our webpage
+		When clicked on select date
+		Then the user should be able to select a valid date

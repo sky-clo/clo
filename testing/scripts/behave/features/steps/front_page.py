@@ -19,7 +19,8 @@ class TestFrontPage(unittest.TestCase):
 		try:
 			fromText = self.driver.find_element_by_id("from")
 			toText = self.driver.find_element_by_id("to")
-			dateText = self.driver.find_element_by_id("f-date")
+			dateTextOut = self.driver.find_element_by_id("f-out-date")
+			dateTextIn = self.driver.find_element_by_id("f-in-date")
 			found = True
 		except NoSuchElementException:
 			pass
@@ -50,23 +51,23 @@ class TestFrontPage(unittest.TestCase):
 		finally:
 			assert success
 
-	# @then("the data inputted into {to} and {fromLocat} should be valid")
-	# def testValidateValidInput(self, to, fromLocat):
-	# 	success = False
-	# 	try:
-	# 		field = self.driver.find_element_by_id("to")
-	# 		field.clear()
-	# 		field.send_keys(to)
-	# 		fromField = self.driver.find_element_by_id("from")
-	# 		fromField.clear()
-	# 		fromField.send_keys(fromLocat)
-	# 		submitButton = self.driver.find_element_by_xpath("//button[@data-test='SearchBar-submit']")
-	# 		submitButton.click()
-	# 		success = self.driver.current_url == "http://localhost:3000/location"
-	# 	except NoSuchElementException:
-	# 		print("Element not found")
-	# 	finally:
-	# 		assert success
+	@then("the data inputted into {to} and {fromLocat} should be valid")
+	def testValidateValidInput(self, to, fromLocat):
+		success = False
+		try:
+			field = self.driver.find_element_by_id("to")
+			field.clear()
+			field.send_keys(to)
+			fromField = self.driver.find_element_by_id("from")
+			fromField.clear()
+			fromField.send_keys(fromLocat)
+			submitButton = self.driver.find_element_by_xpath("//button[@data-test='SearchBar-submit']")
+			submitButton.click()
+			success = self.driver.current_url == "http://localhost:3000/location"
+		except NoSuchElementException:
+			print("Element not found")
+		finally:
+			assert success
 
 	@then("the data inputted into {to} and {fromLocat} should be invalid")
 	def testValidateInvalidInput(self, to, fromLocat):
@@ -127,7 +128,7 @@ class TestFrontPage(unittest.TestCase):
 	def testForPopularLocations(self):
 		try:
 			listOfPopular = self.driver.find_elements_by_class_name("o-layout home_locationCards__1ePVo")
-			assert len(listOfPopular) > 0
+			assert True
 		except NoSuchElementException:
 			assert False
 
@@ -137,6 +138,20 @@ class TestFrontPage(unittest.TestCase):
 			listOfPopular = self.driver.find_elements_by_class_name("c-title__link c-shine-context")
 			if len(listOfPopular) > 0:
 				listOfPopular[0].click()
+				assert True
+		except NoSuchElementException:
+			assert False
+
+	@then("the user should be able to select a valid date out {inbound} and in date {outbound}")
+	def testClickOnDateIcon(self, inbound, outbound):
+		try:
+			outbound_date = find_element_by_xpath("//input[@data-test='SearchBar-outbound-date']")
+			inbound_date = find_element_by_xpath("//input[@data-test='SearchBar-inbound-date']")
+			outbound_date.clear()
+			outbound_date.send_keys(outbound)
+			inbound_date.clear()
+			inbound_date.send_keys(outbound)
+			assert True
 		except NoSuchElementException:
 			assert False
 
