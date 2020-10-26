@@ -58,7 +58,12 @@ This is the front page that is displayed when the user browsers our webpage.
 		When the user can see popular location
 		Then the user can click on the popular location
 
-	Scenario: User should only be allowed to enter a correct outbound date and inbound
+	Scenario Outline: User should only be allowed to enter a correct outbound date and inbound
 		Given the user has tried to access our webpage
-		When clicked on select date
-		Then the user should be able to select a valid date
+		Then the user should be able to select a valid date out <inbound> and in date <outbound>
+
+	Examples: datesForFlightValid
+		|		inbound		|		outbound		|
+		|		12122020	|		14122020		|
+		|		13122020	|		15122020		|
+		|		16122020	|		18122020		|
