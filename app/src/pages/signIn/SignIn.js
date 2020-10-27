@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./signIn.module.css";
-import Button from "../../components/button/Button";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+
+import Button from "../../components/button/Button";
+import styles from "./signIn.module.scss";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -64,6 +64,7 @@ export default function SignIn() {
             <Button data-test="SignIn-next">Next</Button>
           </ul>
         </fieldset>
+
         <Link to={`/create-an-account`} data-test="SignIn-create-an-account">
           Or create an account
         </Link>
