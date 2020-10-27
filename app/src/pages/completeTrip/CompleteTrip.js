@@ -17,7 +17,9 @@ export default function CompleteTrip() {
 
       <Map className={styles.map} origin={undefined} destination={undefined} />
 
-      <LinkButton>Finish</LinkButton>
+      <LinkButton href="/" data-test="CompleteTrip-finish">
+        Finish
+      </LinkButton>
     </section>
   );
 }
