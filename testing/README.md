@@ -10,9 +10,11 @@
      * [Payment Details Form](#payment-details-form)
      * [Confirmation Page](#confirmation-page)
      * [Create an Account](#create-an-account)
-2. [Test Scripts](#test-scripts)
+2. [UI Testing](#ui-testing)
      * [behave](#behave)
-3. [Performance Testing](#performance-testing)
+3. [API Testing](#api-testing)
+     * [Postman](#postman)
+4. [Performance Testing](#performance-testing)
 
 # Test Stories
 
@@ -95,7 +97,7 @@
    * Postcode
 3. Check if you can click the sign in option
 
-# Test Scripts
+# UI Testing
 
 ### Basic Examples on rome2rio.com
 
@@ -104,7 +106,13 @@
 
 ### behave
 
-Inside the scripts/behave folder, you'll find Gherkin feature files and Python test scripts for each of the test stories described above.
+Inside the scripts/behave folder, you'll find Gherkin feature files and selenium scripts for each of the test stories described above.
+
+# API Testing
+
+### Postman
+
+Inside the scripts/Postman folder you'll find Postman collections for the Flights, Weather and Authentication APIs, along with corresponding sample data files for each API. The tests can be run from the command line using newman. 
 
 # Performance Testing
 
