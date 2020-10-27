@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Button from "../../components/button/Button";
 import styles from "./Payment.module.scss";
@@ -43,7 +43,7 @@ export default function Payment() {
                 </abbr>
               </label>
               <input
-                type="text"
+                type="number"
                 className="c-form-input"
                 placeholder="e.g. 123456789"
                 name="f-account-number"

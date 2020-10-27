@@ -1,9 +1,9 @@
 @import "sky-toolkit-ui/all";
 @import "sky-toolkit-core/all";
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -13,9 +13,18 @@ body {
 }
 
 button {
-    all: unset;
+  all: unset;
 }
 
 :root {
-    --yellow: #ffe68d;
+  --yellow: #ffe68d;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
