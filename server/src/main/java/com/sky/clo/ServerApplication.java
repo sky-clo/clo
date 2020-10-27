@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // Any external classes used for REST/Controllers should be added to the basePackageClasses list
 @SpringBootApplication
 @RestController
-@ComponentScan(basePackageClasses = {WeatherController.class, AirportController.class, AuthenticateController.class})
+@ComponentScan(basePackageClasses = {AirportController.class, AuthenticateController.class})
 public class ServerApplication {
 	@Value("${cors.origin}")
 	private String origin;

@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "../../images/menu.svg";
 import { ReactComponent as ExitIcon } from "../../images/exit.svg";
 import styles from "./header.module.scss";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,21 +30,20 @@ export default function Header() {
 
         {/* Desktop inline header buttons */}
         <div className={styles.authButtons}>
-          <LinkButton
-            href="/sign-in"
-            primary={false}
+          <Link
+            to="/sign-in"
+            className="c-btn c-btn--secondary u-margin-right"
             data-test="Header-sign-in"
           >
             Sign In
-          </LinkButton>
-
-          <LinkButton
-            href="/create-an-account"
-            primary={true}
+          </Link>
+          <Link
+            to="/create-an-account"
+            className="c-btn c-btn--primary"
             data-test="Header-create-an-account"
           >
             Create an Account
-          </LinkButton>
+          </Link>
         </div>
       </header>
 
