@@ -34,8 +34,6 @@ export default function Search() {
             body["Places"] &&
             `${body["Places"][0]["CityName"]}, ${body["Places"][0]["CountryName"]}`
           }
-          //description={body && body.description}
-          //image={body && body.img_url}
         />
 
         <SearchBar to={body ? body.name : ""} />
