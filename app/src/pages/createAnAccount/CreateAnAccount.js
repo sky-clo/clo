@@ -6,17 +6,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function CreateAnAccount() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [houseNumber, setHouseNumber] = useState("");
-  const [postcode, setPostcode] = useState("");
-
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    //e.preventDefault();
     console.log(data);
     alert(`Thanks for signing you up with these details`); //just a placeholder for our post request
   };
