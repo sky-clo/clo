@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 import config from "../config";
 
-export default function useApi(url, method = "GET") {
+function generateUrlSearchParams(params) {
+  if (!params) return "";
+
+  const entries = Object.entries(params);
+  const urlSearchParams = new URLSearchParams(entries);
+
+  return "&" + urlSearchParams.toString();
+}
+
+export default function useApi(endpoint, options = {}) {
   const [status, setStatus] = useState();
   const [body, setBody] = useState();
   const [error, setError] = useState();
 
+  const urlSearchParams = generateUrlSearchParams(options.urlSearchParams);
+  const url = config.apiUrl + endpoint + urlSearchParams;
+
   useEffect(() => {
-    fetch(config.apiUrl + url, {
-      method,
+    fetch(url, {
+      method: options.method || "GET",
       headers: {
         Accept: "application/json",
       },
@@ -19,7 +31,7 @@ export default function useApi(url, method = "GET") {
       })
       .then((json) => setBody(json))
       .catch((error) => setError(error));
-  }, [url, method]);
+  }, [url, options.method]);
 
   return { status, body, error };
 }
