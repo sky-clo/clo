@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import config from "../../config";
-import styles from "./signIn.module.css";
+import styles from "./signIn.module.scss";
 import { AuthContext } from "../../authContext";
 import Button from "../../components/button/Button";
 
