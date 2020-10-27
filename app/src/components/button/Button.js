@@ -15,7 +15,7 @@ export default function Button({
     <button
       onClick={onClick}
       type={type}
-      className={`c-btn ${toolkitClass} ${className}`}
+      className={`c-btn ${toolkitClass} ${className ? className : ""}`}
       {...props}
     >
       {children}
