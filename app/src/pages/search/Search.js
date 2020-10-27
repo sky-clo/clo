@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
 
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
 import FlightCard from "../../components/flightCard/FlightCard";
 import Map from "../../components/map/Map";
 import useApi from "../../hooks/useApi";
-import styles from "./location.module.scss";
+import useUrlSearchParams from "../../hooks/useUrlSearchParams";
+import styles from "./Search.module.scss";
 
-export default function Location() {
-  const { locationName } = useParams();
-  const { body } = useApi("/locations/" + locationName);
-
-  // Points for Google Maps
-  const [origin, setOrigin] = useState();
-  const [destination, setDestination] = useState();
-
-  // Once fetched location details from our API, set the google Maps destination point
-  useEffect(() => {
-    if (body) {
-      setDestination({ lat: body.lat, lng: body.lng });
-    }
-  }, [body]);
+export default function Search() {
+  const urlSearchParams = useUrlSearchParams();
+  const { body } = useApi("/search", { urlSearchParams });
 
   return (
     <>
@@ -65,8 +54,8 @@ export default function Location() {
 
           <Map
             className={styles.map}
-            origin={origin}
-            destination={destination}
+            origin={undefined}
+            destination={undefined}
           />
         </section>
       </article>
