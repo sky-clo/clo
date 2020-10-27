@@ -1,4 +1,5 @@
-# CLO
+# CLO ✈️
 
-> A travel information website ✈️
-> Made by Team CLO for Sky Developer/Testing Training
+## A travel information website 📍
+
+Built by Team CLO during the Sky SEA Training Bootcamp 2020. ⛔🤐
