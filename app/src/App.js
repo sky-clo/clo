@@ -7,6 +7,7 @@ import Location from "./pages/location/Location";
 import CreateAnAccount from "./pages/createAnAccount/CreateAnAccount";
 import SignIn from "./pages/signIn/SignIn";
 import Payment from "./pages/payment/Payment";
+import CompleteTrip from "./pages/completeTrip/CompleteTrip";
 import styles from "./App.module.scss";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/create-an-account" component={CreateAnAccount} />
             <Route path="/sign-in" component={SignIn} />
             <Route path="/payment" component={Payment} />
+            <Route path="/complete" component={CompleteTrip} />
           </Switch>
         </Router>
       </main>

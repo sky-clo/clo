@@ -1,45 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
-import {
-  GoogleMap,
-  Marker,
-  Polyline,
-  useGoogleMap,
-  useJsApiLoader,
-} from "@react-google-maps/api";
 
-import useApi from "../../hooks/useApi";
-import config from "../../config";
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
 import FlightCard from "../../components/flightCard/FlightCard";
+import Map from "../../components/map/Map";
+import useApi from "../../hooks/useApi";
 import styles from "./location.module.scss";
-
-function LatLngBounds({ origin, destination }) {
-  const map = useGoogleMap();
-
-  useEffect(() => {
-    if (map && origin && destination) {
-      const bounds = new window.google.maps.LatLngBounds();
-      bounds.extend(new window.google.maps.LatLng(origin.lat, origin.lng));
-      bounds.extend(
-        new window.google.maps.LatLng(destination.lat, destination.lng)
-      );
-      map.fitBounds(bounds);
-    }
-  }, [map, origin, destination]);
-
-  return null;
-}
 
 export default function Location() {
   const { locationName } = useParams();
   const { body } = useApi("/locations/" + locationName);
-
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: config.googleMapsApiKey,
-  });
 
   // Points for Google Maps
   const [origin, setOrigin] = useState();
@@ -91,25 +63,11 @@ export default function Location() {
             />
           </div>
 
-          {isLoaded && (
-            <GoogleMap
-              className={styles.map}
-              options={{ disableDefaultUI: true }}
-            >
-              <Polyline
-                path={[origin, destination]}
-                options={{
-                  strokeColor: "#0073c5",
-                  strokeWeight: 3,
-                  clickable: false,
-                  paths: [origin, destination],
-                }}
-              />
-              <Marker position={origin} options={{ clickable: false }} />
-              <Marker position={destination} options={{ clickable: false }} />
-              <LatLngBounds origin={origin} destination={destination} />
-            </GoogleMap>
-          )}
+          <Map
+            className={styles.map}
+            origin={origin}
+            destination={destination}
+          />
         </section>
       </article>
     </>
