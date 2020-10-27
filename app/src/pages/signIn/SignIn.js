@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+
 import Button from "../../components/button/Button";
 import styles from "./signIn.module.scss";
 
@@ -35,8 +36,6 @@ export default function SignIn() {
                 name="f-email"
                 id="f-email"
                 ref={register({ required: true })}
-                //onChange={(e) => setEmail(e.target.value)}
-                //value={email}
                 data-test="SignIn-email"
                 required
               />
@@ -59,8 +58,6 @@ export default function SignIn() {
                 name="f-password"
                 id="f-password"
                 ref={register({ required: true })}
-                //onChange={(e) => setPassword(e.target.value)}
-                //value={password}
                 data-test="SignIn-password"
                 required
               />
