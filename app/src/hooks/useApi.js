@@ -7,7 +7,7 @@ function generateUrlSearchParams(params) {
   const entries = Object.entries(params);
   const urlSearchParams = new URLSearchParams(entries);
 
-  return "&" + urlSearchParams.toString();
+  return "?" + urlSearchParams.toString();
 }
 
 export default function useApi(endpoint, options = {}) {
