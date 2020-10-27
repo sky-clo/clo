@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationCard should match snapshot 1`] = `
+<div
+  className="o-layout__item"
+>
+  <div
+    className="c-tile c-tile--square"
+  >
+    <a
+      className="c-tile__link c-shine-context"
+      href="/location/london"
+    >
+      <div
+        className="c-tile__content"
+      >
+        <div
+          className="c-tile__media"
+        >
+          <img
+            alt="London"
+            className="c-tile__poster"
+            src="https://static.skyassets.com/contentstack/assets/bltdc2476c7b6b194dd/blt556529d1b8bf298d/5edfe30f98e62f38ec84dadd/2020_Sky_Logo.png"
+          />
+        </div>
+        <div
+          className="c-tile__body c-tile__caption"
+        >
+          <p
+            className="c-tile__title c-heading-delta"
+          >
+            London
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+`;
