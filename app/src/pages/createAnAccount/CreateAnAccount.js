@@ -1,9 +1,10 @@
-import React from "react";
-import styles from "./createAnAccount.module.css";
-import Button from "../../components/button/Button";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import Button from "../../components/button/Button";
+import styles from "./createAnAccount.module.scss";
 
 export default function CreateAnAccount() {
   const { register, handleSubmit, errors } = useForm();
@@ -165,10 +166,15 @@ export default function CreateAnAccount() {
               />
             </li>
 
-            <Button data-test="CreateAnAccount-next">Next</Button>
+            <Button data-test="CreateAnAccount-next">Create</Button>
           </ul>
         </fieldset>
-        <Link to={`/sign-in`} data-test="CreateAnAccount-sign-in">
+
+        <Link
+          to={`/sign-in`}
+          data-test="CreateAnAccount-sign-in"
+          className={styles.signIn}
+        >
           Or sign in
         </Link>
       </form>

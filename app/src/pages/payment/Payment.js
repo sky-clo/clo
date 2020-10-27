@@ -48,7 +48,7 @@ export default function Payment() {
                 placeholder="e.g. 123456789"
                 name="f-account-number"
                 id="f-account-number"
-                data-test="CreateAnAccount-account-number"
+                data-test="Payment-account-number"
                 required
               />
             </li>
@@ -66,7 +66,7 @@ export default function Payment() {
                 placeholder="e.g. 01-01-01"
                 name="f-sort-code"
                 id="f-sort-code"
-                data-test="CreateAnAccount-sort-code"
+                data-test="Payment-sort-code"
                 required
               />
             </li>
@@ -84,12 +84,12 @@ export default function Payment() {
                 placeholder="*****"
                 name="f-cvv"
                 id="f-cvv"
-                data-test="CreateAnAccount-cvv"
+                data-test="Payment-cvv"
                 required
               />
             </li>
 
-            <Button data-test="CreateAnAccount-next">Next</Button>
+            <Button data-test="Payment-next">Next</Button>
           </ul>
         </fieldset>
       </form>

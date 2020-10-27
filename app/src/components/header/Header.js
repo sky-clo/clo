@@ -62,7 +62,7 @@ export default function Header() {
           </LinkButton>
           <LinkButton
             href="/create-an-account"
-            primary={false}
+            primary={true}
             data-test="Header-create-an-account"
           >
             Create an Account
