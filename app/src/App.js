@@ -5,9 +5,10 @@ import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import Location from "./pages/location/Location";
 import CreateAnAccount from "./pages/createAnAccount/CreateAnAccount";
-import styles from "./App.module.scss";
 import SignIn from "./pages/signIn/SignIn";
 import WhosFlying from "./pages/whosFlying/WhosFlying";
+import Payment from "./pages/payment/Payment";
+import styles from "./App.module.scss";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/create-an-account" component={CreateAnAccount} />
             <Route path="/sign-in" component={SignIn} />
             <Route path="/whos-flying" component={WhosFlying} />
+            <Route path="/payment" component={Payment} />
           </Switch>
         </Router>
       </main>
