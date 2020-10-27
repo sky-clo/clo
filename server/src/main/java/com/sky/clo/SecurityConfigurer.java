@@ -49,20 +49,19 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/airports/*", "/authenticate/*", "/weather" ).permitAll()
-                .anyRequest().authenticated()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers("/airports", "/authenticate/*", "/weather", "/search").permitAll().anyRequest()
+                .authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource()
-    {
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(origin));
-        //or any domain that you want to restrict to
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-        //Add the method support as you like
+        // or any domain that you want to restrict to
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+        // Add the method support as you like
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

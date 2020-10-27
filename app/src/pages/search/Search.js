@@ -9,6 +9,14 @@ import useApi from "../../hooks/useApi";
 import useUrlSearchParams from "../../hooks/useUrlSearchParams";
 import styles from "./Search.module.scss";
 
+function findLocation(places, key) {
+  for (var i = 0; i < places.length; i++) {
+    if (places[i]["PlaceId"] == key) {
+      return places[i];
+    }
+  }
+}
+
 export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/search", { urlSearchParams });
@@ -21,9 +29,13 @@ export default function Search() {
 
       <article className={styles.location}>
         <Hero
-          title={body && `${body.name}, ${body.country}`}
-          description={body && body.description}
-          image={body && body.img_url}
+          title={
+            body &&
+            body["Places"] &&
+            `${body["Places"][0]["CityName"]}, ${body["Places"][0]["CountryName"]}`
+          }
+          //description={body && body.description}
+          //image={body && body.img_url}
         />
 
         <SearchBar to={body ? body.name : ""} />
@@ -32,24 +44,32 @@ export default function Search() {
           <h2 className="c-heading-bravo">Available Flights</h2>
 
           <div className={styles.flights}>
-            <FlightCard
-              title="London Stansted to Split"
-              time="6h 9m"
-              price="£41"
-              href="/location"
-            />
-            <FlightCard
-              title="London Stansted to Split"
-              time="6h 9m"
-              price="£41"
-              href="/location"
-            />
-            <FlightCard
-              title="London Stansted to Split"
-              time="6h 9m"
-              price="£41"
-              href="/location"
-            />
+            {body &&
+              body["Quotes"] &&
+              body["Quotes"]
+                .sort(function (a, b) {
+                  return a["MinPrice"] - b["MinPrice"];
+                })
+                .map((item, index) => {
+                  return (
+                    <FlightCard
+                      title={
+                        findLocation(
+                          body["Places"],
+                          item["OutboundLeg"]["OriginId"]
+                        )["Name"] +
+                        " to " +
+                        findLocation(
+                          body["Places"],
+                          item["OutboundLeg"]["DestinationId"]
+                        )["Name"]
+                      }
+                      time=""
+                      price={`£${item["MinPrice"]}`}
+                      href="/location"
+                    />
+                  );
+                })}
           </div>
 
           <Map
