@@ -9,7 +9,7 @@ import useApi from "../../hooks/useApi";
 import useUrlSearchParams from "../../hooks/useUrlSearchParams";
 import styles from "./Search.module.scss";
 
-export default function Location() {
+export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/search", { urlSearchParams });
 
