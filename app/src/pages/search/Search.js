@@ -10,11 +10,8 @@ import useUrlSearchParams from "../../hooks/useUrlSearchParams";
 import styles from "./Search.module.scss";
 
 export default function Location() {
-  const { from, to, inboundDate, outboundDate } = useUrlSearchParams();
-
-  const { body } = useApi("/search", {
-    urlSearchParams: { from, to, inboundDate, outboundDate },
-  });
+  const urlSearchParams = useUrlSearchParams();
+  const { body } = useApi("/search", { urlSearchParams });
 
   return (
     <>
