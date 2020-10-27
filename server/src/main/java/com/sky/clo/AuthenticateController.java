@@ -43,7 +43,6 @@ public class AuthenticateController {
 
         // If no user is found return an error back immediately
         if (userExists == null) {
-            System.out.println("No user exists, returning BAD_REQUEST code");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No user found."); //new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
         }
 
