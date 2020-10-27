@@ -78,7 +78,6 @@
 							"            .and.to.have.status(500);         ",
 							"    }",
 							"});",
-							"",
 							""
 						],
 						"type": "text/javascript"
@@ -89,10 +88,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/flights?originlocation={{originlocation}}&destlocation={{destlocation}}&outboundpartialdate={{outboundpartialdate}}&inboundpartialdate={{inboundpartialdate}}&locale=en_GB&country=GB&currency=GBP",
-					"protocol": "http",
+					"raw": "18.134.153.152:8080/flights?originlocation={{originlocation}}&destlocation={{destlocation}}&outboundpartialdate={{outboundpartialdate}}&inboundpartialdate={{inboundpartialdate}}&locale=en_GB&country=GB&currency=GBP",
 					"host": [
-						"localhost"
+						"18",
+						"134",
+						"153",
+						"152"
 					],
 					"port": "8080",
 					"path": [
