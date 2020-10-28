@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import config from "../../config";
 import { AuthContext } from "../../authContext";
@@ -10,11 +10,18 @@ import styles from "./createAnAccount.module.scss";
 export default function CreateAnAccount() {
   const { register, handleSubmit, errors } = useForm();
   const { dispatch, auth } = useContext(AuthContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (auth?.jwt) {
+      history.push("/");
+    }
+  }, [auth]);
 
   async function onLoginSubmit(data) {
     // Build JSON payload to send to our server
     const payload = {
-      username: data["f-email"],
+      email: data["f-email"],
       password: data["f-password"],
       firstname: data["f-firstname"],
       lastname: data["f-lastname"],
@@ -25,11 +32,11 @@ export default function CreateAnAccount() {
     // Create fetch request and check correct status code is provided
     fetch(`${config.apiUrl}/authenticate/register`, {
       method: "POST",
-      body: JSON.stringify(payload),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(payload),
     })
       .then((j) => {
         // If status code marks success extract JSON for parsing and saving
