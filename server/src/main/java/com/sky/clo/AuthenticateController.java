@@ -38,12 +38,14 @@ public class AuthenticateController {
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody RegisterAccountRequest authReq) throws Exception {
-        // Find a user in our DB from the provided email address (getUsername here is our Email)
+        // Find a user in our DB from the provided email address (getUsername here is
+        // our Email)
         User userExists = userService.findUserByEmail(authReq.getUsername());
 
         // If no user is found return an error back immediately
         if (userExists == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No user found."); //new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No user found."); // new
+                                                                                         // ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
         }
 
         // Load our located user into a UserDetails object
@@ -51,8 +53,9 @@ public class AuthenticateController {
         // Compare saved BCrypt value with provided unencrypted string
         final boolean isValidPass = userService.verifyBCrypt(userDetails.getPassword(), authReq.getPassword());
 
-        // If the provided value does not match then return an invalid credentials issue to the user
-        if(!isValidPass) {
+        // If the provided value does not match then return an invalid credentials issue
+        // to the user
+        if (!isValidPass) {
             return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
         }
 
@@ -64,15 +67,16 @@ public class AuthenticateController {
     }
 
     @PostMapping(path = "/register")
-    //@ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult bindingResult) throws Exception {
+    // @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult bindingResult)
+            throws Exception {
         // Find a user in our DB from the provided email address
         User userExists = userService.findUserByEmail(user.getEmail());
 
         // Load our located user into a UserDetails object
         final UserDetails userDetails = myUserDetailsService.loadByUser(user);
 
-        // If no user is found return an error back immediately
+        // If user is found return an error back immediately
         if (userExists != null) {
             return new ResponseEntity<>("User Already Exists", HttpStatus.BAD_REQUEST);
         }

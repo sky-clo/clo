@@ -1,16 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import config from "../../config";
+import { AuthContext } from "../../authContext";
 
 import Button from "../../components/button/Button";
 import styles from "./createAnAccount.module.scss";
 
 export default function CreateAnAccount() {
   const { register, handleSubmit, errors } = useForm();
-  
+  const { dispatch, auth } = useContext(AuthContext);
+
+  async function onLoginSubmit(data) {
+    // Build JSON payload to send to our server
+    const payload = {
+      username: data["f-email"],
+      password: data["f-password"],
+      firstname: data["f-firstname"],
+      lastname: data["f-lastname"],
+      house_no: data["f-housenumber"],
+      postcode: data["f-postcode"],
+    };
+
+    // Create fetch request and check correct status code is provided
+    fetch(`${config.apiUrl}/authenticate/register`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((j) => {
+        // If status code marks success extract JSON for parsing and saving
+        if (j.status === 200) {
+          return j.json();
+        } else {
+          throw new Error("Bad Request");
+        }
+      })
+      .then(({ user, jwt }) => {
+        const authPayload = { ...user, jwt };
+        // Clear any previous localstorage data
+        // Destructure user and jwt from our response body
+        // And update our user in local auth
+        dispatch({ type: "update", payload: authPayload });
+      })
+      .catch((e) => console.log(e));
+  }
+
   const onSubmit = (data) => {
     console.log(data);
-    alert(`Thanks for signing you up with these details`); //just a placeholder for our post request
+    onLoginSubmit(data);
   };
 
   return (
