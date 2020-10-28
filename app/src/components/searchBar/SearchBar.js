@@ -2,7 +2,22 @@ import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
 import React, { useEffect, useState } from "react";
 import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import useApi from "../../hooks/useApi";
+import debounce from "lodash.debounce";
+
+export const colourOptions = [
+  { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+  { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
+  { value: "purple", label: "Purple", color: "#5243AA" },
+  { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+  { value: "orange", label: "Orange", color: "#FF8B00" },
+  { value: "yellow", label: "Yellow", color: "#FFC400" },
+  { value: "green", label: "Green", color: "#36B37E" },
+  { value: "forest", label: "Forest", color: "#00875A" },
+  { value: "slate", label: "Slate", color: "#253858" },
+  { value: "silver", label: "Silver", color: "#666666" },
+];
 
 export default function SearchBar() {
   const [from, setFrom] = useState("");
@@ -21,63 +36,60 @@ export default function SearchBar() {
       });
   };
 
-  const loadOptions = (from) => {
-    return new Promise((resolve) => {
-      let options = {
-        method: "GET",
-        headers: { Accept: "application/json" },
-      };
+  function loadOptions(inputValue, callback) {
+    const options = {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    };
 
-      fetch(`http://localhost:8080/airports?query=${from}`, options)
-        .then((response) => response.json())
-        .then((locations) => {
-          //setOutLocationOptions(locations);
-          console.log(locations.Places);
-          resolve(
-            locations.map((value) => {
-              return { value: value.PlaceId, label: value.PlaceName };
-            })
-          );
-        })
-        .catch((error) => {
-          //do something...
-        });
-    });
-  };
+    fetch(`http://localhost:8080/airports?query=${inputValue}`, options)
+      .then((response) => response.json())
+      .then(({ Places }) => {
+        const values = Places.map(({ PlaceId, PlaceName }) => ({
+          value: PlaceId,
+          label: PlaceName,
+        }));
+
+        callback(values);
+      });
+  }
+
+  const debouncedFetchPlaces = debounce(loadOptions, 300);
+
+  function getPlaceOptions(input, callback) {
+    if (input?.length === 0 || !input) {
+      return callback(null, { options: [] });
+    }
+
+    debouncedFetchPlaces(input, callback);
+  }
 
   return (
     <form onSubmit={(event) => handleSubmit(event)} className={styles.form}>
       <fieldset>
         <legend className="c-form-caption">Example</legend>
         <ul className={"c-form-list " + styles.formList}>
-          <li>
+          <li className={styles.reactSelectContainer}>
             <label className="c-form-label" htmlFor="from">
               From
             </label>
-
             <AsyncSelect
+              cacheOptions
               defaultOptions
-              name="from"
-              id="from"
-              data-test="SearchBar-from"
-              loadOptions={loadOptions}
-              onInputChange={(e) => setFrom(e)}
+              loadOptions={getPlaceOptions}
+              onChange={(e) => setFrom(e)}
             />
           </li>
 
-          <li>
+          <li className={styles.reactSelectContainer}>
             <label className="c-form-label" htmlFor="to">
               To
             </label>
-            <input
-              type="text"
-              className="c-form-input"
-              placeholder="e.g. Split"
-              name="to"
-              id="to"
-              onChange={(e) => setTo(e.target.value)}
-              value={to}
-              data-test="SearchBar-to"
+            <AsyncSelect
+              cacheOptions
+              defaultOptions
+              loadOptions={getPlaceOptions}
+              onChange={(e) => setTo(e)}
             />
           </li>
 
