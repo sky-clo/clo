@@ -17,11 +17,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping(path = "/airports")
 public class AirportController {
 
-    @Value("${com.rapidapi.key}")
-    private String rapidApiKey;
+    @Value("${com.rapidapi.key}") private String rapidApiKey;
 
-    @Value("${com.rapidapi.host}")
-    private String rapidApiHost;
+    @Value("${com.rapidapi.host}") private String rapidApiHost;
 
     @GetMapping(path = {"/", ""})
     @ResponseBody
