@@ -24,10 +24,8 @@ public class SearchController {
     private String rapidApiKey;
 
     @GetMapping("/search")
-    public JsonNode searchRequest(@RequestParam String originlocation, @RequestParam String destlocation,
-            @RequestParam String locale, @RequestParam String country, @RequestParam String currency,
-            @RequestParam String outboundpartialdate, @RequestParam(required = false) String inboundpartialdate)
-            throws RestClientException {
+    public JsonNode searchRequest(@RequestParam String from, @RequestParam String to, @RequestParam String outboundDate,
+            @RequestParam(required = false) String inboundDate) throws RestClientException {
         RestTemplate template = new RestTemplate();
         Map<String, String> uriParams = new HashMap<String, String>();
 
@@ -40,8 +38,7 @@ public class SearchController {
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        String url = getUrl(country, currency, locale, originlocation, destlocation, inboundpartialdate,
-                outboundpartialdate);
+        String url = getUrl("GB", "GBP", "en_GB", from, to, inboundDate, outboundDate);
 
         ResponseEntity<String> responseTwo = template.exchange(url, HttpMethod.GET, entity, String.class, uriParams);
         try {
