@@ -1,23 +1,42 @@
 import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import AsyncSelect from "react-select/async";
+import useApi from "../../hooks/useApi";
 
 export default function SearchBar() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
+  const [locationOptions, setLocationOptions] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`http://localhost:3000/flights`)
       .then((response) => response.json())
       .then((flights) => {
-        alert("Looking for your flights!");
         this.setState({ flights: flights });
       })
       .catch((error) => {
         alert("Sorry, we couldn't find that flight, try again!");
+      });
+  };
+
+  const loadOptions = (from) => {
+    let options = {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    };
+
+    fetch(`http://localhost:8080/airports?query=${from}`, options)
+      .then((response) => response.json())
+      .then((locations) => {
+        console.log(locations);
+        setLocationOptions(locations);
+      })
+      .catch((error) => {
+        //do something...
       });
   };
 
@@ -30,15 +49,13 @@ export default function SearchBar() {
             <label className="c-form-label" htmlFor="from">
               From
             </label>
-            <input
-              type="text"
-              className="c-form-input"
-              placeholder="e.g. London"
+
+            <AsyncSelect
               name="from"
               id="from"
-              onChange={(e) => setFrom(e.target.value)}
-              value={from}
               data-test="SearchBar-from"
+              loadOptions={loadOptions}
+              onInputChange={(e) => setFrom(e)}
             />
           </li>
 

@@ -9,8 +9,8 @@ import styles from "./home.module.scss";
 import useApi from "../../hooks/useApi";
 
 export default function Home() {
-  const { body } = useApi("/locations");
-
+  //const { body } = useApi("/locations");
+  const body = [];
   return (
     <>
       <Helmet>
