@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function LocationCard(props) {
-  console.log(props);
   return (
     <div className="o-layout__item">
       <div className="c-tile c-tile--square">
@@ -14,7 +13,7 @@ export default function LocationCard(props) {
               <img
                 alt={props.name}
                 className="c-tile__poster"
-                src={props.img_url}
+                src={props.imgSrc}
               />
             </div>
             <div className="c-tile__body c-tile__caption">
