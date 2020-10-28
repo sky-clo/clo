@@ -30,7 +30,7 @@ public class UnsplashService {
     }
 
     @Async
-    public CompletableFuture<UnsplashRandomPhotoResponse> randomPhoto(String query) throws InterruptedException {
+    public CompletableFuture<UnsplashRandomPhotoResponse> randomPhoto(String query) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept-Version", "v1");
         headers.set("Authorization", "Client-ID " + this.accessKey);
