@@ -9,35 +9,40 @@ export default function SearchBar() {
   const [to, setTo] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
-  const [locationOptions, setLocationOptions] = useState("");
+  const [outLocationOptions, setOutLocationOptions] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/flights`)
+    fetch(`http://localhost:3000/flights`) //change this to add details to request
       .then((response) => response.json())
-      .then((flights) => {
-        this.setState({ flights: flights });
-      })
+      .then()
       .catch((error) => {
-        alert("Sorry, we couldn't find that flight, try again!");
+        alert("Sorry, we couldn't find any flights, try again!");
       });
   };
 
   const loadOptions = (from) => {
-    let options = {
-      method: "GET",
-      headers: { Accept: "application/json" },
-    };
+    return new Promise((resolve) => {
+      let options = {
+        method: "GET",
+        headers: { Accept: "application/json" },
+      };
 
-    fetch(`http://localhost:8080/airports?query=${from}`, options)
-      .then((response) => response.json())
-      .then((locations) => {
-        console.log(locations);
-        setLocationOptions(locations);
-      })
-      .catch((error) => {
-        //do something...
-      });
+      fetch(`http://localhost:8080/airports?query=${from}`, options)
+        .then((response) => response.json())
+        .then((locations) => {
+          //setOutLocationOptions(locations);
+          console.log(locations.Places);
+          resolve(
+            locations.map((value) => {
+              return { value: value.PlaceId, label: value.PlaceName };
+            })
+          );
+        })
+        .catch((error) => {
+          //do something...
+        });
+    });
   };
 
   return (
@@ -51,6 +56,7 @@ export default function SearchBar() {
             </label>
 
             <AsyncSelect
+              defaultOptions
               name="from"
               id="from"
               data-test="SearchBar-from"
