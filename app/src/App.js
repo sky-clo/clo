@@ -13,10 +13,10 @@ import styles from "./App.module.scss";
 
 export default function App() {
   return (
-    <div className={styles.container}>
-      <Header />
-      <main>
-        <Router>
+    <Router>
+      <div className={styles.container}>
+        <Header />
+        <main>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/search" component={Search} />
@@ -26,11 +26,11 @@ export default function App() {
             <Route path="/payment" component={Payment} />
             <Route path="/complete" component={CompleteTrip} />
           </Switch>
-        </Router>
-      </main>
-      <footer className="o-container">
-        © {new Date().getFullYear()} Sky UK
-      </footer>
-    </div>
+        </main>
+        <footer className="o-container">
+          © {new Date().getFullYear()} Sky UK
+        </footer>
+      </div>
+    </Router>
   );
 }
