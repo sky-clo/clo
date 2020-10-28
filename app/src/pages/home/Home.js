@@ -28,7 +28,7 @@ export default function Home() {
                 body.map((item, index) => (
                   <LocationCard
                     name={item.name}
-                    img_url={item.img_url}
+                    imgSrc={item.img_url}
                     key={index}
                   />
                 ))}
