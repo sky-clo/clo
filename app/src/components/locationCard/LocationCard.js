@@ -13,7 +13,7 @@ export default function LocationCard(props) {
               <img
                 alt={props.name}
                 className="c-tile__poster"
-                src={props.imgSrc}
+                src={props.imgUrl}
               />
             </div>
             <div className="c-tile__body c-tile__caption">
