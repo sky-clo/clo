@@ -23,7 +23,16 @@ export default function Home() {
         <section className={styles.locations}>
           <div className="o-container">
             <h2 className="c-heading-bravo">Popular Locations</h2>
-            <div className={"o-layout " + styles.locationCards}></div>
+            <div className={"o-layout " + styles.locationCards}>
+              {body &&
+                body.map((item, index) => (
+                  <LocationCard
+                    name={item.name}
+                    img_url={item.img_url}
+                    key={index}
+                  />
+                ))}
+            </div>
           </div>
         </section>
       </article>
