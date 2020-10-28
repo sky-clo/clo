@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
 import Button from "../../components/button/Button";
 import styles from "./createAnAccount.module.scss";
 
 export default function CreateAnAccount() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [houseNumber, setHouseNumber] = useState("");
-  const [postcode, setPostcode] = useState("");
-
-  const { register, handleSubmit, watch, errors } = useForm();
-
+  const { register, handleSubmit, errors } = useForm();
+  
   const onSubmit = (data) => {
-    //e.preventDefault();
     console.log(data);
     alert(`Thanks for signing you up with these details`); //just a placeholder for our post request
   };
@@ -45,8 +38,6 @@ export default function CreateAnAccount() {
                 placeholder="e.g. Joe"
                 name="f-firstname"
                 id="f-firstname"
-                //onChange={(e) => setFirstName(e.target.value)}
-                //value={firstName}
                 data-test="CreateAnAccount-first-name"
                 required
               />
@@ -69,8 +60,6 @@ export default function CreateAnAccount() {
                 placeholder="e.g. Smith"
                 name="f-lastname"
                 id="f-lastname"
-                //onChange={(e) => setLastName(e.target.value)}
-                //value={lastName}
                 data-test="CreateAnAccount-last-name"
                 required
               />
@@ -93,8 +82,6 @@ export default function CreateAnAccount() {
                 placeholder="e.g. joe@bloggs.com"
                 name="f-email"
                 id="f-email"
-                //onChange={(e) => setEmail(e.target.value)}
-                //value={email}
                 data-test="CreateAnAccount-email"
                 required
               />
@@ -117,8 +104,6 @@ export default function CreateAnAccount() {
                 placeholder="*****"
                 name="f-password"
                 id="f-password"
-                //onChange={(e) => setPassword(e.target.value)}
-                //value={password}
                 data-test="CreateAnAccount-password"
                 required
               />
@@ -141,8 +126,6 @@ export default function CreateAnAccount() {
                 placeholder="e.g. 1 Grant Way"
                 name="f-housenumber"
                 id="f-housenumber"
-                //onChange={(e) => setHouseNumber(e.target.value)}
-                //value={houseNumber}
                 data-test="CreateAnAccount-house-number"
                 required
               />
@@ -165,8 +148,6 @@ export default function CreateAnAccount() {
                 placeholder="e.g. SW1W 0NY"
                 name="f-postcode"
                 id="f-postcode"
-                //onChange={(e) => setPostcode(e.target.value)}
-                //value={postcode}
                 data-test="CreateAnAccount-postcode"
                 required
               />

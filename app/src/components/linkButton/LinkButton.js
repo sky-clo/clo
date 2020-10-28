@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function LinkButton({
   children,
   className,
   href,
+  to,
   primary,
   ...props
 }) {
@@ -11,8 +13,12 @@ export default function LinkButton({
     primary === false ? "c-btn--secondary" : "c-btn--primary";
 
   return (
-    <a href={href} className={`c-btn ${toolkitClass} ${className}`} {...props}>
+    <Link
+      to={href ?? to}
+      className={`c-btn ${toolkitClass} ${className}`}
+      {...props}
+    >
       {children}
-    </a>
+    </Link>
   );
 }

@@ -3,9 +3,9 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import config from "../../config";
+import Button from "../../components/button/Button";
 import styles from "./signIn.module.scss";
 import { AuthContext } from "../../authContext";
-import Button from "../../components/button/Button";
 
 export default function SignIn() {
   const { register, handleSubmit, errors } = useForm();
@@ -74,8 +74,6 @@ export default function SignIn() {
                 name="f-email"
                 id="f-email"
                 ref={register({ required: true })}
-                //onChange={(e) => setEmail(e.target.value)}
-                //value={email}
                 data-test="SignIn-email"
                 required
               />
@@ -98,8 +96,6 @@ export default function SignIn() {
                 name="f-password"
                 id="f-password"
                 ref={register({ required: true })}
-                //onChange={(e) => setPassword(e.target.value)}
-                //value={password}
                 data-test="SignIn-password"
                 required
               />
