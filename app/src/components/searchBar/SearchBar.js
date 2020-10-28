@@ -1,60 +1,80 @@
 import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
 import React, { useState } from "react";
+import AsyncSelect from "react-select/async";
+import debounce from "lodash.debounce";
+import { useHistory } from "react-router-dom";
 
 export default function SearchBar() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const onSearchSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/flights`)
-      .then((response) => response.json())
-      .then((flights) => {
-        alert("Looking for your flights!");
-        this.setState({ flights: flights });
-      })
-      .catch((error) => {
-        alert("Sorry, we couldn't find that flight, try again!");
-      });
+    history.push({
+      pathname: "/search",
+      search: `?from=${from.value}&to=${to.value}&inboundDate=${inboundDate}&outboundDate=${outboundDate}`,
+      state: { from, to, inboundDate, outboundDate },
+    });
   };
 
+  function loadOptions(inputValue, callback) {
+    const options = {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    };
+
+    fetch(`http://localhost:8080/airports?query=${inputValue}`, options)
+      .then((response) => response.json())
+      .then(({ Places }) => {
+        const values = Places.map(({ PlaceId, PlaceName }) => ({
+          value: PlaceId,
+          label: PlaceName,
+        }));
+
+        callback(values);
+      });
+  }
+
+  const debouncedFetchPlaces = debounce(loadOptions, 300);
+
+  function getPlaceOptions(input, callback) {
+    if (input?.length === 0 || !input) {
+      return callback(null, { options: [] });
+    }
+
+    debouncedFetchPlaces(input, callback);
+  }
+
   return (
-    <form onSubmit={(event) => handleSubmit(event)} className={styles.form}>
+    <form onSubmit={onSearchSubmit} className={styles.form}>
       <fieldset>
         <legend className="c-form-caption">Example</legend>
         <ul className={"c-form-list " + styles.formList}>
-          <li>
+          <li className={styles.reactSelectContainer}>
             <label className="c-form-label" htmlFor="from">
               From
             </label>
-            <input
-              type="text"
-              className="c-form-input"
-              placeholder="e.g. London"
-              name="from"
-              id="from"
-              onChange={(e) => setFrom(e.target.value)}
-              value={from}
-              data-test="SearchBar-from"
+            <AsyncSelect
+              cacheOptions
+              defaultOptions
+              loadOptions={getPlaceOptions}
+              onChange={(e) => setFrom(e)}
             />
           </li>
 
-          <li>
+          <li className={styles.reactSelectContainer}>
             <label className="c-form-label" htmlFor="to">
               To
             </label>
-            <input
-              type="text"
-              className="c-form-input"
-              placeholder="e.g. Split"
-              name="to"
-              id="to"
-              onChange={(e) => setTo(e.target.value)}
-              value={to}
-              data-test="SearchBar-to"
+            <AsyncSelect
+              cacheOptions
+              defaultOptions
+              loadOptions={getPlaceOptions}
+              onChange={(e) => setTo(e)}
             />
           </li>
 
