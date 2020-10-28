@@ -5,6 +5,7 @@ import AsyncSelect from "react-select/async";
 import Select from "react-select";
 import useApi from "../../hooks/useApi";
 import debounce from "lodash.debounce";
+import { useHistory } from "react-router-dom";
 
 export const colourOptions = [
   { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
@@ -24,16 +25,15 @@ export default function SearchBar() {
   const [to, setTo] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
-  const [outLocationOptions, setOutLocationOptions] = useState("");
+  const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const onSearchSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/flights`) //change this to add details to request
-      .then((response) => response.json())
-      .then()
-      .catch((error) => {
-        alert("Sorry, we couldn't find any flights, try again!");
-      });
+    history.push({
+      pathname: "/search",
+      search: `?from=${from.value}&to=${to.value}&inboundDate=${inboundDate}&outboundDate=${outboundDate}`,
+      state: { from, to, inboundDate, outboundDate },
+    });
   };
 
   function loadOptions(inputValue, callback) {
@@ -65,7 +65,7 @@ export default function SearchBar() {
   }
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)} className={styles.form}>
+    <form onSubmit={onSearchSubmit} className={styles.form}>
       <fieldset>
         <legend className="c-form-caption">Example</legend>
         <ul className={"c-form-list " + styles.formList}>
