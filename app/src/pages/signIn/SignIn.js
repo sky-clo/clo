@@ -1,20 +1,59 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+import config from "../../config";
 import Button from "../../components/button/Button";
 import styles from "./signIn.module.scss";
+import { AuthContext } from "../../authContext";
 
 export default function SignIn() {
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, errors } = useForm();
+  const { dispatch, auth } = useContext(AuthContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (auth?.jwt) {
+      history.push("/");
+    }
+  }, [auth]);
+
+  async function onLoginSubmit(data) {
+    // Build JSON payload to send to our server
+    const payload = { username: data["f-email"], password: data["f-password"] };
+
+    // Create fetch request and check correct status code is provided
+    fetch(`${config.apiUrl}/authenticate/login`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((j) => {
+        // If status code marks success extract JSON for parsing and saving
+        if (j.status === 200) {
+          return j.json();
+        } else {
+          throw new Error("Bad Request");
+        }
+      })
+      .then(({ user, jwt }) => {
+        const authPayload = { ...user, jwt };
+        // Clear any previous localstorage data
+        // Destructure user and jwt from our response body
+        // And update our user in local auth
+        dispatch({ type: "update", payload: authPayload });
+      })
+      .catch((e) => console.log(e));
+  }
 
   return (
     <section className={styles.section}>
       <h1 className={styles.h1}>Sign In</h1>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      {/* <Button onClick={() => updateAuth({firstName: 'jeff'})}>Click me</Button> */}
+      <form className={styles.form} onSubmit={handleSubmit(onLoginSubmit)}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
           <ul className={"c-form-list " + styles.formList}>

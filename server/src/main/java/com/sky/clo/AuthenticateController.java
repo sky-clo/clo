@@ -10,20 +10,19 @@ import com.sky.clo.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 @Controller // Controls all requests incoming to /location
-@RequestMapping(path = "/authenticate")
+@RequestMapping(path = "/authenticate", consumes = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 public class AuthenticateController {
 
@@ -36,15 +35,17 @@ public class AuthenticateController {
     @Autowired
     JwtUtil jwtTokenUtil;
 
-    @PostMapping(path = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody RegisterAccountRequest authReq) throws Exception {
-        // Find a user in our DB from the provided email address (getUsername here is our Email)
+        // Find a user in our DB from the provided email address (getUsername here is
+        // our Email)
         User userExists = userService.findUserByEmail(authReq.getUsername());
 
         // If no user is found return an error back immediately
         if (userExists == null) {
-            return new ResponseEntity<>("Invalid Credentials", HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No user found."); // new
+                                                                                         // ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
         }
 
         // Load our located user into a UserDetails object
@@ -52,9 +53,10 @@ public class AuthenticateController {
         // Compare saved BCrypt value with provided unencrypted string
         final boolean isValidPass = userService.verifyBCrypt(userDetails.getPassword(), authReq.getPassword());
 
-        // If the provided value does not match then return an invalid credentials issue to the user
-        if(!isValidPass) {
-            return new ResponseEntity<>("Invalid Credentials", HttpStatus.BAD_REQUEST);
+        // If the provided value does not match then return an invalid credentials issue
+        // to the user
+        if (!isValidPass) {
+            return new ResponseEntity<Error>(HttpStatus.BAD_REQUEST);
         }
 
         // Generate user JWT if the user is valid
@@ -65,15 +67,16 @@ public class AuthenticateController {
     }
 
     @PostMapping(path = "/register")
-    //@ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult bindingResult) throws Exception {
+    // @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult bindingResult)
+            throws Exception {
         // Find a user in our DB from the provided email address
         User userExists = userService.findUserByEmail(user.getEmail());
 
         // Load our located user into a UserDetails object
         final UserDetails userDetails = myUserDetailsService.loadByUser(user);
 
-        // If no user is found return an error back immediately
+        // If user is found return an error back immediately
         if (userExists != null) {
             return new ResponseEntity<>("User Already Exists", HttpStatus.BAD_REQUEST);
         }
