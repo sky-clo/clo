@@ -2,6 +2,7 @@ package com.sky.clo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // Any external classes used for REST/Controllers should be added to the basePackageClasses list
 @SpringBootApplication
 @RestController
-@ComponentScan(basePackageClasses = {WeatherController.class, AirportController.class, AuthenticateController.class})
+@EnableAutoConfiguration
 public class ServerApplication {
 	@Value("${cors.origin}")
 	private String origin;
