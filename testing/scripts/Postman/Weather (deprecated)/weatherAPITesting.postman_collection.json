@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "fc1a6f8a-56a5-4fe8-9a46-e9a7a2397aa4",
+		"name": "Weather API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET the weather given a particular location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "678cbb51-09f3-4c22-b474-aeee78b6f273",
+						"exec": [
+							"/* ----- TESTS -----",
+							"",
+							"THE BELOW TESTS COVER THE FOLLOWING:",
+							"",
+							"* Status code returned is expected",
+							"* That the response time is less that 750ms",
+							"* That the response contains both a 'location' and 'current' object, if it's valid input",
+							"* That the location object contains the expected name, region and country",
+							"* That the data types of each field within the location and current objects are as expected",
+							"",
+							"*/",
+							"",
+							"pm.test(\"Status code is expected\", function () {",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.status(200);",
+							"    }",
+							"    else {",
+							"        pm.response.to.have.status(500); ",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 750ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(750);",
+							"});",
+							"",
+							"pm.test(\"Checking that response contains location and current\", function(){",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.jsonBody(\"location\")",
+							"            .and.to.have.jsonBody(\"current\");",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Checking that location contains correct name, region and country values\", function(){",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.jsonBody(\"location[name]\",data[\"expectedName\"])",
+							"            .and.to.have.jsonBody(\"location[region]\",data[\"expectedRegion\"])",
+							"            .and.to.have.jsonBody(\"location[country]\",data[\"expectedCountry\"]);",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.jsonBody(\"message\",\"\")",
+							"            .and.to.have.jsonBody(\"path\",\"/weather\");       ",
+							"    }",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.test(\"Check the data types of each field\", () => {",
+							"    if (data[\"validInput\"]){",
+							"        pm.expect(jsonData).to.be.an(\"object\");",
+							"        pm.expect(jsonData.location).to.be.a(\"object\");",
+							"        pm.expect(jsonData.current).to.be.a(\"object\");",
+							"        pm.expect(jsonData.location.name).to.be.an(\"string\");",
+							"        pm.expect(jsonData.location.region).to.be.an(\"string\");",
+							"        pm.expect(jsonData.location.country).to.be.an(\"string\");",
+							"        pm.expect(jsonData.current.temp_c).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.temp_f).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.wind_mph).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.wind_kph).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.condition).to.be.an(\"object\");",
+							"        pm.expect(jsonData.current.condition.text).to.be.an(\"string\");",
+							"        pm.expect(jsonData.current.condition.icon).to.be.an(\"string\");",
+							"        pm.expect(jsonData.website).to.be.undefined;",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.jsonBody(\"message\",\"\")",
+							"            .and.to.have.jsonBody(\"path\",\"/weather\");        ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fc02d7c3-baf7-4d51-a5f2-e39bb6b9eee3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "18.134.153.152:8080/weather?location={{location}}",
+					"host": [
+						"18",
+						"134",
+						"153",
+						"152"
+					],
+					"port": "8080",
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "{{location}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

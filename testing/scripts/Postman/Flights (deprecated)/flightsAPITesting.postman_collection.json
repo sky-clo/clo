@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "83290244-d665-485d-ada2-f1879c1826a2",
+		"name": "Flights API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET flights info, given to, from and outbound date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8c205220-006b-44d5-b11d-33fc15ae495b",
+						"exec": [
+							"/* ",
+							"",
+							"All fields in this request are required except for the inboundpartialdate, but we expect the user to input that on the front page. We assume that locale, country and currency will always be set to en_GB, GB, and GBP respectively.",
+							"",
+							"----- TESTS -----",
+							"",
+							"THE BELOW TESTS COVER THE FOLLOWING:",
+							"",
+							"* That the status code returned is as expected",
+							"* That the response time is less that 750ms",
+							"* That the response contains a Routes, Quotes, Places, Carriers and Currencies key (if the request is valid)",
+							"* That the Quotes object contains at least one quote in it (if the request is valid)",
+							"* That the QuoteId in the first Quote within the Quotes object is of type number (if the request is valid)",
+							"",
+							"*/",
+							"",
+							"pm.test(\"Status code is expected\", function () {",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.status(200);",
+							"    }",
+							"    else {",
+							"        pm.response.to.have.status(500); ",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 750ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(750);",
+							"});",
+							"",
+							"pm.test(\"If request is valid, check that response contains a Routes key, a Quotes key, a Places key, a Carriers key and a Currencies key\", function(){",
+							"    if(data[\"validInput\"]){",
+							"        pm.response.to.have.jsonBody(\"Routes\")",
+							"            .and.to.have.jsonBody(\"Quotes\")",
+							"            .and.to.have.jsonBody(\"Places\")",
+							"            .and.to.have.jsonBody(\"Carriers\")",
+							"            .and.to.have.jsonBody(\"Currencies\");",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.status(500);    ",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"If request is valid, check that the Quotes object contains quotes\", function(){",
+							"    if (data[\"validInput\"]){",
+							"        pm.expect(Object.keys(pm.response.json()[\"Quotes\"]).length).greaterThan(0)",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.status(500);         ",
+							"    }",
+							"",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.test(\"If request is valid, test data type of the first QuoteId\", () => {",
+							"    if (data[\"validInput\"]) {",
+							"        pm.expect(jsonData.Quotes).to.be.an(\"array\");",
+							"        pm.expect(jsonData.Quotes[0].QuoteId).to.be.an(\"number\");        ",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.status(500);         ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "18.134.153.152:8080/flights?originlocation={{originlocation}}&destlocation={{destlocation}}&outboundpartialdate={{outboundpartialdate}}&inboundpartialdate={{inboundpartialdate}}&locale=en_GB&country=GB&currency=GBP",
+					"host": [
+						"18",
+						"134",
+						"153",
+						"152"
+					],
+					"port": "8080",
+					"path": [
+						"flights"
+					],
+					"query": [
+						{
+							"key": "originlocation",
+							"value": "{{originlocation}}"
+						},
+						{
+							"key": "destlocation",
+							"value": "{{destlocation}}"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "{{outboundpartialdate}}"
+						},
+						{
+							"key": "inboundpartialdate",
+							"value": "{{inboundpartialdate}}"
+						},
+						{
+							"key": "locale",
+							"value": "en_GB"
+						},
+						{
+							"key": "country",
+							"value": "GB"
+						},
+						{
+							"key": "currency",
+							"value": "GBP"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
