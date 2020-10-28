@@ -22,7 +22,7 @@
 							"THE BELOW TESTS COVER THE FOLLOWING:",
 							"",
 							"* That the status code returned is as expected",
-							"* That the response time is less that 500ms",
+							"* That the response time is less that 750ms",
 							"* That the response contains a Routes, Quotes, Places, Carriers and Currencies key (if the request is valid)",
 							"* That the Quotes object contains at least one quote in it (if the request is valid)",
 							"* That the QuoteId in the first Quote within the Quotes object is of type number (if the request is valid)",
@@ -38,8 +38,8 @@
 							"    }",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"pm.test(\"Response time is less than 750ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(750);",
 							"});",
 							"",
 							"pm.test(\"If request is valid, check that response contains a Routes key, a Quotes key, a Places key, a Carriers key and a Currencies key\", function(){",
@@ -78,7 +78,6 @@
 							"            .and.to.have.status(500);         ",
 							"    }",
 							"});",
-							"",
 							""
 						],
 						"type": "text/javascript"
@@ -89,10 +88,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/flights?originlocation={{originlocation}}&destlocation={{destlocation}}&outboundpartialdate={{outboundpartialdate}}&inboundpartialdate={{inboundpartialdate}}&locale=en_GB&country=GB&currency=GBP",
-					"protocol": "http",
+					"raw": "18.134.153.152:8080/flights?originlocation={{originlocation}}&destlocation={{destlocation}}&outboundpartialdate={{outboundpartialdate}}&inboundpartialdate={{inboundpartialdate}}&locale=en_GB&country=GB&currency=GBP",
 					"host": [
-						"localhost"
+						"18",
+						"134",
+						"153",
+						"152"
 					],
 					"port": "8080",
 					"path": [

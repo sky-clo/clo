@@ -19,12 +19,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
-public class FlightController {
+public class SearchController {
     @Value("${com.rapidapi.key}")
     private String rapidApiKey;
 
-    @GetMapping("/flights")
-    public JsonNode flightRequest(@RequestParam String originlocation, @RequestParam String destlocation,
+    @GetMapping("/search")
+    public JsonNode searchRequest(@RequestParam String originlocation, @RequestParam String destlocation,
             @RequestParam String locale, @RequestParam String country, @RequestParam String currency,
             @RequestParam String outboundpartialdate, @RequestParam(required = false) String inboundpartialdate)
             throws RestClientException {
@@ -50,6 +50,7 @@ public class FlightController {
             return jsonNode;
 
         } catch (Exception e) {
+            System.err.println(e);
 
         }
         return null;
