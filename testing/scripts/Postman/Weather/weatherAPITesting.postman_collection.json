@@ -18,7 +18,7 @@
 							"THE BELOW TESTS COVER THE FOLLOWING:",
 							"",
 							"* Status code returned is expected",
-							"* That the response time is less that 500ms",
+							"* That the response time is less that 750ms",
 							"* That the response contains both a 'location' and 'current' object, if it's valid input",
 							"* That the location object contains the expected name, region and country",
 							"* That the data types of each field within the location and current objects are as expected",
@@ -34,8 +34,8 @@
 							"    }",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"pm.test(\"Response time is less than 750ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(750);",
 							"});",
 							"",
 							"pm.test(\"Checking that response contains location and current\", function(){",
@@ -102,9 +102,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/weather?location={{location}}",
+					"raw": "18.134.153.152:8080/weather?location={{location}}",
 					"host": [
-						"localhost"
+						"18",
+						"134",
+						"153",
+						"152"
 					],
 					"port": "8080",
 					"path": [

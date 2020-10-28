@@ -21,18 +21,20 @@ exports[`Header should match snapshot 1`] = `
     <div
       className="authButtons"
     >
-      <a
-        className="c-btn c-btn--secondary u-margin-right"
-        href="/"
+      <LinkButton
+        data-test="Header-sign-in"
+        href="/sign-in"
+        primary={false}
       >
         Sign In
-      </a>
-      <a
-        className="c-btn c-btn--primary"
-        href="/"
+      </LinkButton>
+      <LinkButton
+        data-test="Header-create-an-account"
+        href="/create-an-account"
+        primary={true}
       >
         Create an Account
-      </a>
+      </LinkButton>
     </div>
   </header>
   <dialog
@@ -50,14 +52,16 @@ exports[`Header should match snapshot 1`] = `
       className="menuItems"
     >
       <LinkButton
-        href="/"
+        data-test="Header-sign-in"
+        href="/sign-in"
         primary={false}
       >
         Sign In
       </LinkButton>
       <LinkButton
-        href="/"
-        primary={false}
+        data-test="Header-create-an-account"
+        href="/create-an-account"
+        primary={true}
       >
         Create an Account
       </LinkButton>
