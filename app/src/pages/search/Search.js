@@ -58,9 +58,9 @@ export default function Search() {
                         item.OutboundLeg.DestinationId
                       ).CityName
                     }
-                    time=""
                     price={`£${item.MinPrice}`}
                     href="/location"
+                    key={index}
                   />
                 );
               })}
