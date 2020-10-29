@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import config from "../../config";
@@ -8,7 +8,7 @@ import Button from "../../components/button/Button";
 import styles from "./createAnAccount.module.scss";
 
 export default function CreateAnAccount() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const { dispatch, auth } = useContext(AuthContext);
   const history = useHistory();
 
@@ -16,7 +16,7 @@ export default function CreateAnAccount() {
     if (auth?.jwt) {
       history.push("/");
     }
-  }, [auth]);
+  }, [auth, history]);
 
   async function onLoginSubmit(data) {
     // Build JSON payload to send to our server
