@@ -17,23 +17,18 @@ public class LocationController {
     @Autowired
     UnsplashService unsplashService;
 
-    private final Location[] popularLocations = {
-        new Location("London", "United Kingdom"),
-            new Location("Paris", "France"),
-            new Location("Tokyo", "Japan"),
-            new Location("Rome", "Italy"),
-            new Location("Barcelona", "Spain"),
-            new Location("New York City", "New York"),
-            new Location("Sydney", "Australia"),
-            new Location("Yosemite", "California"),
-            new Location("Santorini", "Greece"),
-    };
+    private final Location[] popularLocations = { new Location("London", "United Kingdom"),
+            new Location("Paris", "France"), new Location("Tokyo", "Japan"), new Location("Rome", "Italy"),
+            new Location("Barcelona", "Spain"), new Location("New York City", "New York"),
+            new Location("Sydney", "Australia"), new Location("Yosemite", "California"),
+            new Location("Santorini", "Greece"), };
 
     @PostConstruct
     private void generateLocationPhotos() {
         try {
             for (Location location : popularLocations) {
-                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService.randomPhoto(location.getName());
+                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService
+                        .randomPhoto(location.getName());
                 UnsplashRandomPhotoResponse photo = response.get();
                 location.setImgUrl(photo.getUrls().getFull());
             }
@@ -43,9 +38,8 @@ public class LocationController {
         }
     }
 
-
     /** Returns popular locations */
-    @GetMapping
+    @GetMapping(path = { "/", "" })
     public @ResponseBody Location[] getPopularLocations() {
         return popularLocations;
     }
