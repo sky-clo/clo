@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./LocationCard.module.css";
 
 export default function LocationCard(props) {
   return (
@@ -12,7 +13,7 @@ export default function LocationCard(props) {
             <div className="c-tile__media">
               <img
                 alt={props.name}
-                className="c-tile__poster"
+                className={`c-tile__poster ${styles.fullWidth}`}
                 src={props.imgUrl}
               />
             </div>
