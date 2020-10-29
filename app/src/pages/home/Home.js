@@ -9,8 +9,7 @@ import styles from "./home.module.scss";
 import useApi from "../../hooks/useApi";
 
 export default function Home() {
-  const { body } = useApi("/locations");
-
+  const { status, body } = useApi("/locations");
   return (
     <>
       <Helmet>
@@ -24,7 +23,8 @@ export default function Home() {
           <div className="o-container">
             <h2 className="c-heading-bravo">Popular Locations</h2>
             <div className={"o-layout " + styles.locationCards}>
-              {body &&
+              {status === 200 &&
+                body &&
                 body.map((item, index) => (
                   <LocationCard
                     name={item.name}

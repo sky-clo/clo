@@ -11,7 +11,7 @@ import styles from "./Search.module.scss";
 
 function findLocation(places, key) {
   for (const place of places) {
-    if (place.PlaceId == key) {
+    if (place.PlaceId === key) {
       return place;
     }
   }
@@ -19,17 +19,19 @@ function findLocation(places, key) {
 
 export default function Search() {
   const urlSearchParams = useUrlSearchParams();
-  const { body } = useApi("/search", { urlSearchParams });
+  const { body } = useApi("/locations/search", { urlSearchParams });
 
+  const place = body?.flights.Places?.[0];
   return (
     <>
       <Helmet>
-        <title>{`${body ? body.name : ""} | Sky Clo`}</title>
+        <title>{`${place?.CityName || ""} | Sky Clo`}</title>
       </Helmet>
 
       <article className={styles.location}>
         <Hero
-          title={`${body?.Places?.[0]?.CityName}, ${body?.Places?.[0]?.CountryName}`}
+          title={place ? `${place.CityName}, ${place.CountryName}` : ""}
+          image={body?.photos?.urls.full}
         />
 
         <SearchBar to={body ? body.name : ""} />
@@ -38,23 +40,30 @@ export default function Search() {
           <h2 className="c-heading-bravo">Available Flights</h2>
 
           <div className={styles.flights}>
-            {body?.Quotes?.sort(function (a, b) {
-              return a.MinPrice - b.MinPrice;
-            }).map((item, index) => {
-              return (
-                <FlightCard
-                  title={
-                    findLocation(body.Places, item.OutboundLeg.OriginId).Name +
-                    " to " +
-                    findLocation(body.Places, item.OutboundLeg.DestinationId)
-                      .Name
-                  }
-                  time=""
-                  price={`£${item.MinPrice}`}
-                  href="/location"
-                />
-              );
-            })}
+            {body?.flights?.Quotes?.slice(0, 5)
+              .sort(function (a, b) {
+                return a.MinPrice - b.MinPrice;
+              })
+              .map((item, index) => {
+                return (
+                  <FlightCard
+                    title={
+                      findLocation(
+                        body?.flights.Places,
+                        item.OutboundLeg.OriginId
+                      ).CityName +
+                      " to " +
+                      findLocation(
+                        body?.flights.Places,
+                        item.OutboundLeg.DestinationId
+                      ).CityName
+                    }
+                    price={`£${item.MinPrice}`}
+                    href="/location"
+                    key={index}
+                  />
+                );
+              })}
           </div>
 
           <Map

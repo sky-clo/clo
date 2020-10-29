@@ -35,6 +35,11 @@ export default function Map({ origin, destination, className }) {
     isLoaded && (
       <GoogleMap
         options={{ disableDefaultUI: true }}
+        zoom={3}
+        center={{
+          lat: -3.745,
+          lng: -38.523,
+        }}
         mapContainerClassName={className}
       >
         <Polyline

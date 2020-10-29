@@ -13,6 +13,7 @@ import {
   isDateSupported,
   noLocationProvidedStr,
 } from "../../utils";
+import config from "../../config";
 
 // Regex that checks for DD/MM/YYYY or DD-MM-YYYY
 const dayMonthYearRegex = /[0-9]{2}(\/|-)[0-9]{2}(\/|-)[0-9]{4}/;

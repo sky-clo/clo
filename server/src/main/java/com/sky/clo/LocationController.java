@@ -1,21 +1,28 @@
 package com.sky.clo;
 
-import com.sky.clo.models.Location;
-import com.sky.clo.models.UnsplashRandomPhotoResponse;
+import com.sky.clo.models.*;
+import com.sky.clo.services.FlightService;
 import com.sky.clo.services.UnsplashService;
+import com.sky.clo.services.WeatherService;
+import com.sky.clo.weather.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-@Controller
+@RestController
 @RequestMapping(path = "/locations")
 public class LocationController {
     @Autowired
     UnsplashService unsplashService;
+
+    @Autowired
+    FlightService flightService;
+
+    @Autowired
+    WeatherService weatherService;
 
     private final Location[] popularLocations = {
         new Location("London", "United Kingdom"),
@@ -43,10 +50,32 @@ public class LocationController {
         }
     }
 
-
     /** Returns popular locations */
-    @GetMapping
+    @GetMapping()
     public @ResponseBody Location[] getPopularLocations() {
         return popularLocations;
+    }
+
+    /** Search for a location */
+    @GetMapping(path="/search")
+    public SearchResponse search(@RequestParam String from, @RequestParam String to, @RequestParam String outboundDate, @RequestParam(required = false) String inboundDate) throws ExecutionException, InterruptedException {
+        CompletableFuture<FlightResponse> flightsResponse = flightService.getFlights(from, to, outboundDate, inboundDate);
+        FlightResponse flights = flightsResponse.get();
+
+        int originId = flights.getQuotes()[0].getOutboundLeg().getOriginId();
+        String cityName = null;
+
+        for (FlightResponsePlaces place : flights.getPlaces()) {
+            if (place.getPlaceId() == originId) {
+                cityName = place.getCityName();
+                break;
+            }
+        }
+
+        CompletableFuture<Weather> weatherResponse = weatherService.search(cityName);
+        CompletableFuture<UnsplashRandomPhotoResponse> photoResponse = unsplashService.randomPhoto(cityName);
+        CompletableFuture.allOf(weatherResponse, photoResponse);
+
+        return new SearchResponse(flights, weatherResponse.get(), photoResponse.get());
     }
 }
