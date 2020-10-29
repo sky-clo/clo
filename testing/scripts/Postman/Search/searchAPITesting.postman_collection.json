@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "ac055832-7353-432a-813b-84572e6e9dcf",
+		"name": "Search API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET flights info and weather, given to, from, inbound date and outbound date ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9cef0c6-8d97-4690-a54d-1c542ee8219d",
+						"exec": [
+							"/* ",
+							"",
+							"----- TESTS -----",
+							"",
+							"THE BELOW TESTS COVER THE FOLLOWING:",
+							"",
+							"* That the status code returned is as expected",
+							"* That the response time is less that 750ms",
+							"",
+							"Flights:",
+							"* That the response contains a Routes, Quotes, Places, Carriers and Currencies key (if the request is valid)",
+							"* That the Quotes object contains at least one quote in it (if the request is valid)",
+							"* That the QuoteId in the first Quote within the Quotes object is of type number (if the request is valid)",
+							"",
+							"Weather:",
+							"* That the response contains both a 'location' and 'current' object, if it's valid input",
+							"* That the location object contains the expected name, region and country",
+							"* That the data types of each field within the location and current objects are as expected",
+							"",
+							"*/",
+							"",
+							"// ----- FLIGHTS TESTS -----",
+							"",
+							"pm.test(\"Status code is expected\", function () {",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.status(200);",
+							"    }",
+							"    else {",
+							"        pm.response.to.have.status(500); ",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 750ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(750);",
+							"});",
+							"",
+							"pm.test(\"If request is valid, check that response contains a Routes key, a Quotes key, a Places key, a Carriers key and a Currencies key\", function(){",
+							"    if(data[\"validInput\"]){",
+							"        pm.response.to.have.jsonBody(\"Routes\")",
+							"            .and.to.have.jsonBody(\"Quotes\")",
+							"            .and.to.have.jsonBody(\"Places\")",
+							"            .and.to.have.jsonBody(\"Carriers\")",
+							"            .and.to.have.jsonBody(\"Currencies\");",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.status(500);    ",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"If request is valid, check that the Quotes object contains quotes\", function(){",
+							"    if (data[\"validInput\"]){",
+							"        pm.expect(Object.keys(pm.response.json()[\"Quotes\"]).length).greaterThan(0)",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.status(500);         ",
+							"    }",
+							"",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.test(\"If request is valid, test data type of the first QuoteId\", () => {",
+							"    if (data[\"validInput\"]) {",
+							"        pm.expect(jsonData.Quotes).to.be.an(\"array\");",
+							"        pm.expect(jsonData.Quotes[0].QuoteId).to.be.an(\"number\");        ",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.status(500);         ",
+							"    }",
+							"});",
+							"",
+							"// ----- WEATHER TESTS -----",
+							"",
+							"pm.test(\"Checking that response contains location and current\", function(){",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.jsonBody(\"location\")",
+							"            .and.to.have.jsonBody(\"current\");",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Checking that location contains correct name, region and country values\", function(){",
+							"    if (data[\"validInput\"]){",
+							"        pm.response.to.have.jsonBody(\"location[name]\",data[\"expectedName\"])",
+							"            .and.to.have.jsonBody(\"location[region]\",data[\"expectedRegion\"])",
+							"            .and.to.have.jsonBody(\"location[country]\",data[\"expectedCountry\"]);",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.jsonBody(\"message\",\"\")",
+							"            .and.to.have.jsonBody(\"path\",\"/weather\");       ",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Check the data types of each field\", () => {",
+							"    if (data[\"validInput\"]){",
+							"        pm.expect(jsonData).to.be.an(\"object\");",
+							"        pm.expect(jsonData.location).to.be.a(\"object\");",
+							"        pm.expect(jsonData.current).to.be.a(\"object\");",
+							"        pm.expect(jsonData.location.name).to.be.an(\"string\");",
+							"        pm.expect(jsonData.location.region).to.be.an(\"string\");",
+							"        pm.expect(jsonData.location.country).to.be.an(\"string\");",
+							"        pm.expect(jsonData.current.temp_c).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.temp_f).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.wind_mph).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.wind_kph).to.be.an(\"number\");",
+							"        pm.expect(jsonData.current.condition).to.be.an(\"object\");",
+							"        pm.expect(jsonData.current.condition.text).to.be.an(\"string\");",
+							"        pm.expect(jsonData.current.condition.icon).to.be.an(\"string\");",
+							"        pm.expect(jsonData.website).to.be.undefined;",
+							"    }",
+							"    else {",
+							"         pm.response.to.have.jsonBody(\"error\",\"Internal Server Error\")",
+							"            .and.to.have.jsonBody(\"message\",\"\")",
+							"            .and.to.have.jsonBody(\"path\",\"/weather\");        ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://18.134.153.152:8080/search?from={{originlocation}}&to={{destlocation}}&inboundDate={{inboundpartialdate}}&outboundDate={{outboundpartialdate}}",
+					"protocol": "http",
+					"host": [
+						"18",
+						"134",
+						"153",
+						"152"
+					],
+					"port": "8080",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "{{originlocation}}"
+						},
+						{
+							"key": "to",
+							"value": "{{destlocation}}"
+						},
+						{
+							"key": "inboundDate",
+							"value": "{{inboundpartialdate}}"
+						},
+						{
+							"key": "outboundDate",
+							"value": "{{outboundpartialdate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
