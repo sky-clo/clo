@@ -122,9 +122,7 @@ export default function WhosFlying() {
             <br />
             <br />
 
-            <LinkButton
-              data-test="WhosFlying-next"
-              href="/payment"
+            <LinkButton data-test="WhosFlying-next" href="/payment">
               Next
             </LinkButton>
           </ul>
