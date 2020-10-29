@@ -40,7 +40,7 @@ export default function WhosFlying() {
       body: JSON.stringify(passengers),
     };
 
-    fetch("http://localhost:3000/passengers", configObj) //not sure what url to post this to??
+    fetch("http://3.9.45.36:3000/passengers", configObj) //not sure what url to post this to??
       .then(function (response) {
         return response.json();
       })
