@@ -42,12 +42,6 @@ export default function WhosFlying() {
                 {passengers.map((passenger) => (
                   <li>
                     <b>Name:</b> {passenger.firstName} {passenger.lastName}
-                    {"  "}
-                    <b>Date Of Birth:</b>
-                    {"  "}
-                    {passenger.dateOfBirth.split("-").reverse().join("-")}
-                    {"  "}
-                    <b> Passport Number:</b> {passenger.passportNumber}
                   </li>
                 ))}
               </ul>
