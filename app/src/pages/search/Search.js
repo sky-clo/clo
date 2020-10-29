@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import Hero from "../../components/hero/Hero";
@@ -21,8 +21,13 @@ export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/locations/search", { urlSearchParams });
 
-  const place = body?.flights.Places?.[0];
+  useEffect(() => {
+    if (body && !body.flights) {
+      alert("No flights found!");
+    }
+  }, [body]);
 
+  const place = body?.flights?.Places?.[0];
   return (
     <>
       <Helmet>
@@ -32,7 +37,7 @@ export default function Search() {
       <article className={styles.location}>
         <Hero
           title={place ? `${place.CityName}, ${place.CountryName}` : ""}
-          image={body?.photos?.urls.full}
+          image={body?.photos ? body.photos.urls.full + "&q=75&w=1200" : ""}
         />
 
         <SearchBar to={body ? body.name : ""} />
@@ -60,7 +65,7 @@ export default function Search() {
                       ).CityName
                     }
                     price={`£${item.MinPrice}`}
-                    href="/location"
+                    href="/whos-flying"
                     key={index}
                   />
                 );

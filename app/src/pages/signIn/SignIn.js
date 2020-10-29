@@ -8,7 +8,7 @@ import styles from "./signIn.module.scss";
 import { AuthContext } from "../../authContext";
 
 export default function SignIn() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const { dispatch, auth } = useContext(AuthContext);
   const history = useHistory();
 
@@ -16,7 +16,7 @@ export default function SignIn() {
     if (auth?.jwt) {
       history.push("/");
     }
-  }, [auth]);
+  }, [auth, history]);
 
   async function onLoginSubmit(data) {
     // Build JSON payload to send to our server

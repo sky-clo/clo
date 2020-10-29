@@ -29,11 +29,16 @@ public class LocationController {
     @Autowired
     GoogleMapsService googleMapsService;
 
-    private final Location[] popularLocations = { new Location("London", "United Kingdom"),
-            new Location("Paris", "France"), new Location("Tokyo", "Japan"), new Location("Rome", "Italy"),
-            new Location("Barcelona", "Spain"), new Location("New York City", "New York"),
-            new Location("Sydney", "Australia"), new Location("Yosemite", "California"),
-            new Location("Santorini", "Greece"), };
+    private final Location[] popularLocations = {
+            new Location("Paris", "France", "PARI-sky"),
+            new Location("Tokyo", "Japan", "JP-sky"),
+            new Location("Rome", "Italy", "IT-sky"),
+            new Location("Barcelona", "Spain", "ES-sky"),
+            new Location("New York City", "New York", "NYCA-sky"),
+            new Location("Sydney", "Australia", "AU-sky"),
+            new Location("Yosemite", "California", "LAXA-sky"),
+            new Location("Santorini", "Greece", "GR-sky"),
+    };
 
     @PostConstruct
     private void generateLocationPhotos() {
@@ -42,7 +47,9 @@ public class LocationController {
                 CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService
                         .randomPhoto(location.getName());
                 UnsplashRandomPhotoResponse photo = response.get();
-                location.setImgUrl(photo.getUrls().getFull());
+                if (photo != null) {
+                    location.setImgUrl(photo.getUrls().getFull());
+                }
             }
 
         } catch (Exception e) {

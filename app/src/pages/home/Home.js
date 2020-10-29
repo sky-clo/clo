@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import Hero from "../../components/hero/Hero";
 import SearchBar from "../../components/searchBar/SearchBar";
 import LocationCard from "../../components/locationCard/LocationCard";
-import heroImage from "../../images/hero.png";
+import heroImage from "../../images/hero.jpg";
 import styles from "./home.module.scss";
 import useApi from "../../hooks/useApi";
 
@@ -29,6 +29,7 @@ export default function Home() {
                   <LocationCard
                     name={item.name}
                     imgUrl={item.imgUrl}
+                    skyScannerName={item.skyScannerName}
                     key={index}
                   />
                 ))}

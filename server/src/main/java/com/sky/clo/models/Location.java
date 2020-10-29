@@ -6,11 +6,13 @@ import com.sky.clo.weather.Weather;
 public class Location {
     private String name;
     private String country;
+    private String skyScannerName;
     private String imgUrl;
 
-    public Location(String name, String country) {
+    public Location(String name, String country, String skyScannerName) {
         this.name = name;
         this.country = country;
+        this.skyScannerName = skyScannerName;
     }
 
     public String getName() {
@@ -35,5 +37,12 @@ public class Location {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+    public String getSkyScannerName() {
+        return skyScannerName;
+    }
+
+    public void setSkyScannerName(String imgUrl) {
+        this.skyScannerName = skyScannerName;
     }
 }

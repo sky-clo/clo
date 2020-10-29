@@ -1,0 +1,87 @@
+[
+	{
+		"validInput": true,
+		"originlocation": "LGW",
+		"destlocation": "DUB",
+		"outboundpartialdate": "2020-12-01",
+		"inboundpartialdate": "2020-12-08",
+		"expectedName": "Dublin",
+		"expectedRegion": "Dublin",
+		"expectedCountry": "Ireland"
+	},
+	{
+		"validInput": true,
+		"originlocation": "LIN",
+		"destlocation": "CDG",
+		"outboundpartialdate": "2020-12-10",
+		"inboundpartialdate": "2020-12-17",
+		"expectedName": "Paris",
+		"expectedRegion": "Ile-de-France",
+		"expectedCountry": "France"
+	},
+	{
+		"validInput": true,
+		"originlocation": "NRT",
+		"destlocation": "JFK",
+		"outboundpartialdate": "2020-12-25",
+		"inboundpartialdate": "2021-01-01",
+		"expectedName": "New York",
+		"expectedRegion": "New York",
+		"expectedCountry": "United States"
+	},
+	{
+		"validInput": true,
+		"originlocation": "CPH",
+		"destlocation": "MXP",
+		"outboundpartialdate": "2021-01-02",
+		"inboundpartialdate": "2021-01-09",
+		"expectedName": "Copenhagen",
+		"expectedRegion": "Copenhagen",
+		"expectedCountry": "Denmark"
+	},
+	{
+		"validInput": true,
+		"originlocation": "DOH",
+		"destlocation": "LHR",
+		"outboundpartialdate": "2021-02-10",
+		"inboundpartialdate": "2021-02-17",
+		"expectedName": "Doha",
+		"expectedRegion": "Doha",
+		"expectedCountry": "Qatar"
+	},
+	{
+		"validInput": false,
+		"originlocation": "LGW",
+		"destlocation": "DBV",
+		"outboundpartialdate": "2020-12-30",
+		"inboundpartialdate": "2020-12-29"
+	},
+	{
+		"validInput": false, 
+		"originlocation": "LGW",
+		"destlocation": "DBV",
+		"outboundpartialdate": "2019-12-30",
+		"inboundpartialdate": "2020-12-30"
+	},
+	{
+		"validInput": false, 
+		"originlocation": "LGW",
+		"destlocation": "DBV",
+		"outboundpartialdate": "",
+		"inboundpartialdate": ""
+	},
+	{
+		"validInput": false, 
+		"originlocation": "",
+		"destlocation": "",
+		"outboundpartialdate": "2020-12-30",
+		"inboundpartialdate": "2020-12-30"
+	},
+	{
+		"validInput": false, 
+		"originlocation": "palletTown",
+		"destlocation": "indigoPlateau",
+		"outboundpartialdate": "2020-12-30",
+		"inboundpartialdate": "2020-12-30"
+	}
+]
