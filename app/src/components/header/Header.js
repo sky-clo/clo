@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <Link to="/" className={styles.logoContainer}>
+        <Link to="/" className={styles.logoContainer} aria-label="Home">
           <Logo />
         </Link>
         {/* Mobile hamburger icon and menu */}
@@ -53,10 +53,16 @@ export default function Header() {
           onClick={() => setIsMenuOpen(true)}
           className={styles.menuButton}
         >
-          <MenuIcon
-            className={styles.icon}
-            onClick={() => setIsMenuOpen(true)}
-          />
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="Open navigation menu"
+          >
+            <MenuIcon
+              className={styles.icon}
+              onClick={() => setIsMenuOpen(true)}
+              aria
+            />
+          </button>
         </button>
         {/* Desktop inline header buttons */}
         <div className={styles.authButtons}>
@@ -75,7 +81,10 @@ export default function Header() {
       </header>
 
       <dialog className={styles.menu} aria-hidden={!isMenuOpen}>
-        <button onClick={() => setIsMenuOpen(false)}>
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="Exit navigation menu"
+        >
           <ExitIcon className={styles.icon} />
         </button>
         <div className={styles.menuItems}>
