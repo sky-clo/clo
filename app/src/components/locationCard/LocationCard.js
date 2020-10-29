@@ -3,7 +3,7 @@ import styles from "./LocationCard.module.css";
 
 export default function LocationCard(props) {
   return (
-    <div className="o-layout__item">
+    <div className="o-layout__item container">
       <div className="c-tile c-tile--square">
         <a
           className="c-tile__link c-shine-context"
