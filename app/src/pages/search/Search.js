@@ -21,7 +21,13 @@ export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/locations/search", { urlSearchParams });
 
-  const place = body?.flights.Places?.[0];
+  useEffect(() => {
+    if (body && !body.flights) {
+      alert("No flights found!");
+    }
+  }, [body]);
+
+  const place = body?.flights?.Places?.[0];
   return (
     <>
       <Helmet>
