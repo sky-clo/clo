@@ -29,7 +29,7 @@ export default function Search() {
 
       <article className={styles.location}>
         <Hero
-          title={`${body?.Places?.[0].CityName}, ${body?.Places?.[0].CountryName}`}
+          title={`${body?.Places?.[0]?.CityName}, ${body?.Places?.[0]?.CountryName}`}
         />
 
         <SearchBar to={body ? body.name : ""} />
