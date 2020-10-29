@@ -36,19 +36,19 @@ public class LocationController {
             new Location("Santorini", "Greece"),
     };
 
-//    @PostConstruct
-//    private void generateLocationPhotos() {
-//        try {
-//            for (Location location : popularLocations) {
-//                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService.randomPhoto(location.getName());
-//                UnsplashRandomPhotoResponse photo = response.get();
-//                location.setImgUrl(photo.getUrls().getFull());
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @PostConstruct
+    private void generateLocationPhotos() {
+        try {
+            for (Location location : popularLocations) {
+                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService.randomPhoto(location.getName());
+                UnsplashRandomPhotoResponse photo = response.get();
+                location.setImgUrl(photo.getUrls().getFull());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /** Returns popular locations */
     @GetMapping
