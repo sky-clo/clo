@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 
 import LinkButton from "../linkButton/LinkButton";
@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "../../images/menu.svg";
 import { ReactComponent as ExitIcon } from "../../images/exit.svg";
 import styles from "./header.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "../button/Button";
 import { AuthContext } from "../../authContext";
 
@@ -32,13 +32,22 @@ const NoAuthButtons = () => (
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { auth, dispatch } = useContext(AuthContext);
+  const location = useLocation();
+
+  // Runs when a user navigates to a different page, checking to see if the menubar is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Close menu bar if it's open
+      setIsMenuOpen(false);
+    }
+  }, [location.pathname]);
 
   return (
     <>
       <header>
-        <a className={styles.logoContainer} href="/">
+        <Link to="/" className={styles.logoContainer}>
           <Logo />
-        </a>
+        </Link>
         {/* Mobile hamburger icon and menu */}
         <button
           onClick={() => setIsMenuOpen(true)}
@@ -56,7 +65,7 @@ export default function Header() {
           ) : (
             <Button
               primary={false}
-              onClick={() => dispatch("reset")}
+              onClick={() => dispatch({ type: "reset" })}
               data-test="Header-sign-in"
             >
               Sign Out
@@ -89,7 +98,7 @@ export default function Header() {
             </React.Fragment>
           ) : (
             <Button
-              onClick={() => dispatch("reset")}
+              onClick={() => dispatch({ type: "reset" })}
               primary={false}
               data-test="Header-create-an-account"
             >
