@@ -40,6 +40,7 @@ export default function Header() {
       // Close menu bar if it's open
       setIsMenuOpen(false);
     }
+    // eslint-disable-next-line
   }, [location.pathname]);
 
   return (

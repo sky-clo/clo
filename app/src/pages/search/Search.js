@@ -21,7 +21,7 @@ export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/locations/search", { urlSearchParams });
 
-  const place = body?.flights.Places?.[0];
+  const place = body?.flights?.Places?.[0];
   return (
     <>
       <Helmet>
