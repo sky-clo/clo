@@ -108,7 +108,6 @@
 							"    }",
 							"});",
 							"",
-							"const jsonData = pm.response.json();",
 							"pm.test(\"Check the data types of each field\", () => {",
 							"    if (data[\"validInput\"]){",
 							"        pm.expect(jsonData).to.be.an(\"object\");",
@@ -142,7 +141,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://18.134.153.152:8080/search?from={{originlocation}}&to={{destLocation}}&inboundDate={{inboundpartialdate}}&outboundDate={{outboundpartialdate}}",
+					"raw": "http://18.134.153.152:8080/search?from={{originlocation}}&to={{destlocation}}&inboundDate={{inboundpartialdate}}&outboundDate={{outboundpartialdate}}",
 					"protocol": "http",
 					"host": [
 						"18",
@@ -161,7 +160,7 @@
 						},
 						{
 							"key": "to",
-							"value": "{{destLocation}}"
+							"value": "{{destlocation}}"
 						},
 						{
 							"key": "inboundDate",
