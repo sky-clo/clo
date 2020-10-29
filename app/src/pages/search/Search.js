@@ -19,7 +19,7 @@ function findLocation(places, key) {
 
 export default function Search() {
   const urlSearchParams = useUrlSearchParams();
-  const { body } = useApi("/search", { urlSearchParams });
+  const { body } = useApi("/locations/search", { urlSearchParams });
 
   const place = body?.Places?.[0];
   return (

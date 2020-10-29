@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.CompletableFuture;
@@ -31,14 +32,19 @@ public class UnsplashService {
 
     @Async
     public CompletableFuture<UnsplashRandomPhotoResponse> randomPhoto(String query) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept-Version", "v1");
-        headers.set("Authorization", "Client-ID " + this.accessKey);
-        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Accept-Version", "v1");
+            headers.set("Authorization", "Client-ID " + this.accessKey);
+            HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
-        String url = this.baseUrl + "/photos/random?orientation=landscape&query=" + query;
-        ResponseEntity<UnsplashRandomPhotoResponse> results = restTemplate.exchange(url, HttpMethod.GET, entity, UnsplashRandomPhotoResponse.class);
-        return CompletableFuture.completedFuture(results.getBody());
+            String url = this.baseUrl + "/photos/random?orientation=landscape&query=" + query;
+            ResponseEntity<UnsplashRandomPhotoResponse> results = restTemplate.exchange(url, HttpMethod.GET, entity, UnsplashRandomPhotoResponse.class);
+            return CompletableFuture.completedFuture(results.getBody());
+        } catch (HttpClientErrorException e) {
+            return CompletableFuture.completedFuture(null);
+        }
+
     }
 
 }

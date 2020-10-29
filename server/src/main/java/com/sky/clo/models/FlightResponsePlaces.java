@@ -3,6 +3,7 @@ package com.sky.clo.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FlightResponsePlaces {
+    @JsonProperty("PlaceId")
     private int placeId;
 
     @JsonProperty("CityName")
