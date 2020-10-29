@@ -5,6 +5,7 @@ import AsyncSelect from "react-select/async";
 import { components } from "react-select";
 import debounce from "lodash.debounce";
 import { useHistory } from "react-router-dom";
+import config from "../../config";
 
 export default function SearchBar() {
   const [from, setFrom] = useState("");
@@ -28,7 +29,7 @@ export default function SearchBar() {
       headers: { Accept: "application/json" },
     };
 
-    fetch(`http://localhost:8080/airports?query=${inputValue}`, options)
+    fetch(`${config.apiUrl}/airports?query=${inputValue}`, options)
       .then((response) => response.json())
       .then(({ Places }) => {
         const values = Places.map(({ PlaceId, PlaceName }) => ({
