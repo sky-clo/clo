@@ -1,9 +1,7 @@
 import React from "react";
 
-import Map from "../../components/map/Map";
 import LinkButton from "../../components/linkButton/LinkButton";
 import styles from "./CompleteTrip.module.scss";
-import { useEffect } from "react";
 import useApi from "../../hooks/useApi";
 
 export default function CompleteTrip() {
