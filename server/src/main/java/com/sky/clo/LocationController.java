@@ -51,22 +51,14 @@ public class LocationController {
     }
 
     /** Returns popular locations */
-    @GetMapping
-    public @ResponseBody FlightResponse getPopularLocations() throws ExecutionException, InterruptedException {
-        CompletableFuture<FlightResponse> x = flightService.getFlights(
-                "ROME-sky",
-                "STN-sky",
-                        "2020-11-08",
-                "2020-12-30"
-        );
-        FlightResponse y = x.get();
-        return y;
+    @GetMapping()
+    public @ResponseBody Location[] getPopularLocations() {
+        return popularLocations;
     }
 
     /** Search for a location */
     @GetMapping(path="/search")
     public SearchResponse search(@RequestParam String from, @RequestParam String to, @RequestParam String outboundDate, @RequestParam(required = false) String inboundDate) throws ExecutionException, InterruptedException {
-        System.out.println(111);
         CompletableFuture<FlightResponse> flightsResponse = flightService.getFlights(from, to, outboundDate, inboundDate);
         FlightResponse flights = flightsResponse.get();
 
@@ -84,7 +76,6 @@ public class LocationController {
         CompletableFuture<UnsplashRandomPhotoResponse> photoResponse = unsplashService.randomPhoto(cityName);
         CompletableFuture.allOf(weatherResponse, photoResponse);
 
-        SearchResponse x = new SearchResponse(flights, weatherResponse.get(), photoResponse.get());
-        return x;
+        return new SearchResponse(flights, weatherResponse.get(), photoResponse.get());
     }
 }
