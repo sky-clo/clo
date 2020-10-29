@@ -51,12 +51,12 @@ export default function Search() {
                       findLocation(
                         body?.flights.Places,
                         item.OutboundLeg.OriginId
-                      ).Name +
+                      ).CityName +
                       " to " +
                       findLocation(
                         body?.flights.Places,
                         item.OutboundLeg.DestinationId
-                      ).Name
+                      ).CityName
                     }
                     time=""
                     price={`£${item.MinPrice}`}

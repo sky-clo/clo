@@ -2,9 +2,8 @@
 
 .flightCard {
   display: grid;
-  grid-template-areas:
-    "title price"
-    "time  price";
+  grid-template-areas: "title price";
+  align-items: center;
   gap: 8px;
   box-shadow: $global-shadow;
   padding: 24px;
