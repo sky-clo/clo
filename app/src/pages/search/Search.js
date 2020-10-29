@@ -66,11 +66,16 @@ export default function Search() {
                 );
               })}
           </div>
-
           <Map
             className={styles.map}
-            origin={body?.flights.geocode.results[0].geometry.location}
-            destination={body?.flights.geocode.results[0].geometry.location}
+            origin={
+              (body?.geocode?.results?.geometry?.location?.lat,
+              body?.geocode?.results?.geometry?.location?.lng)
+            }
+            destination={
+              (body?.destGeocode?.results?.geometry?.location?.lat,
+              body?.destGeoCode?.results?.geometry?.location?.lng)
+            }
           />
         </section>
       </article>

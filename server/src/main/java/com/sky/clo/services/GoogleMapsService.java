@@ -1,5 +1,6 @@
 package com.sky.clo.services;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.sky.clo.models.GeocodeResponse;
 import com.sky.clo.models.UnsplashRandomPhotoResponse;
 import com.sky.clo.weather.Weather;
@@ -30,10 +31,10 @@ public class GoogleMapsService {
     }
 
     @Async
-    public CompletableFuture<GeocodeResponse> geocode(String location) {
+    public CompletableFuture<JsonNode> geocode(String location) {
         try {
-            String url = this.baseUrl + "/geocode/json?key={apiKey}&address={location}";
-            GeocodeResponse response = restTemplate.getForObject(url, GeocodeResponse.class, apiKey, location);
+            String url = this.baseUrl + "/geocode/json?key=" + apiKey + "&address=" + location;
+            JsonNode response = restTemplate.getForObject(url, JsonNode.class, apiKey, location);
             return CompletableFuture.completedFuture(response);
         } catch (HttpClientErrorException e) {
             return CompletableFuture.completedFuture(null);

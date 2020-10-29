@@ -1,5 +1,6 @@
 package com.sky.clo;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.sky.clo.models.*;
 import com.sky.clo.services.FlightService;
 import com.sky.clo.services.GoogleMapsService;
@@ -28,23 +29,18 @@ public class LocationController {
     @Autowired
     GoogleMapsService googleMapsService;
 
-    private final Location[] popularLocations = {
-        new Location("London", "United Kingdom"),
-            new Location("Paris", "France"),
-            new Location("Tokyo", "Japan"),
-            new Location("Rome", "Italy"),
-            new Location("Barcelona", "Spain"),
-            new Location("New York City", "New York"),
-            new Location("Sydney", "Australia"),
-            new Location("Yosemite", "California"),
-            new Location("Santorini", "Greece"),
-    };
+    private final Location[] popularLocations = { new Location("London", "United Kingdom"),
+            new Location("Paris", "France"), new Location("Tokyo", "Japan"), new Location("Rome", "Italy"),
+            new Location("Barcelona", "Spain"), new Location("New York City", "New York"),
+            new Location("Sydney", "Australia"), new Location("Yosemite", "California"),
+            new Location("Santorini", "Greece"), };
 
     @PostConstruct
     private void generateLocationPhotos() {
         try {
             for (Location location : popularLocations) {
-                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService.randomPhoto(location.getName());
+                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService
+                        .randomPhoto(location.getName());
                 UnsplashRandomPhotoResponse photo = response.get();
                 location.setImgUrl(photo.getUrls().getFull());
             }
@@ -61,28 +57,43 @@ public class LocationController {
     }
 
     /** Search for a location */
-    @GetMapping(path="/search")
-    public SearchResponse search(@RequestParam String from, @RequestParam String to, @RequestParam String outboundDate, @RequestParam(required = false) String inboundDate) throws ExecutionException, InterruptedException {
-        CompletableFuture<FlightResponse> flightsResponse = flightService.getFlights(from, to, outboundDate, inboundDate);
+    @GetMapping(path = "/search")
+    public SearchResponse search(@RequestParam String from, @RequestParam String to, @RequestParam String outboundDate,
+            @RequestParam(required = false) String inboundDate) throws ExecutionException, InterruptedException {
+        CompletableFuture<FlightResponse> flightsResponse = flightService.getFlights(from, to, outboundDate,
+                inboundDate);
         FlightResponse flights = flightsResponse.get();
 
         int originId = flights.getQuotes()[0].getOutboundLeg().getOriginId();
+        int destinationId = flights.getQuotes()[0].getOutboundLeg().getDestinationId();
         String cityName = null;
         String countryName = null;
-
+        String destinationCityName = null;
+        String destinationCountryName = null;
         for (FlightResponsePlaces place : flights.getPlaces()) {
             if (place.getPlaceId() == originId) {
                 cityName = place.getCityName();
                 countryName = place.getCountryName();
-                break;
+                if (destinationCityName != null)
+                    break;
+            }
+            if (place.getPlaceId() == destinationId) {
+                destinationCityName = place.getCityName();
+                destinationCountryName = place.getCountryName();
+                if (cityName != null)
+                    break;
+
             }
         }
 
         CompletableFuture<Weather> weatherResponse = weatherService.search(cityName);
         CompletableFuture<UnsplashRandomPhotoResponse> photoResponse = unsplashService.randomPhoto(cityName);
-        CompletableFuture<GeocodeResponse> geocodeResponse = googleMapsService.geocode(cityName + ", " + countryName);
-        CompletableFuture.allOf(weatherResponse, photoResponse, geocodeResponse);
+        CompletableFuture<JsonNode> geocodeResponse = googleMapsService.geocode(cityName + ", " + countryName);
+        CompletableFuture<JsonNode> geocodeOtherResponse = googleMapsService
+                .geocode(destinationCityName + ", " + destinationCountryName);
+        CompletableFuture.allOf(weatherResponse, photoResponse, geocodeResponse, geocodeOtherResponse);
 
-        return new SearchResponse(flights, weatherResponse.get(), photoResponse.get(), geocodeResponse.get());
+        return new SearchResponse(flights, weatherResponse.get(), photoResponse.get(), geocodeResponse.get(),
+                geocodeOtherResponse.get());
     }
 }
