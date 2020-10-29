@@ -31,7 +31,7 @@ export default function Search() {
       <article className={styles.location}>
         <Hero
           title={place ? `${place.CityName}, ${place.CountryName}` : ""}
-          image={body?.photos?.urls.full}
+          image={body?.photos ? body.photos.urls.full + "&q=75&w=1200" : ""}
         />
 
         <SearchBar to={body ? body.name : ""} />
