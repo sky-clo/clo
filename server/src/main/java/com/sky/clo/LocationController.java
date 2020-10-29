@@ -25,15 +25,15 @@ public class LocationController {
     WeatherService weatherService;
 
     private final Location[] popularLocations = {
-        new Location("London", "United Kingdom"),
-            new Location("Paris", "France"),
-            new Location("Tokyo", "Japan"),
-            new Location("Rome", "Italy"),
-            new Location("Barcelona", "Spain"),
-            new Location("New York City", "New York"),
-            new Location("Sydney", "Australia"),
-            new Location("Yosemite", "California"),
-            new Location("Santorini", "Greece"),
+        new Location("London", "United Kingdom", "LOND-sky"),
+        new Location("Paris", "France", "PARI-sky"),
+        new Location("Tokyo", "Japan", "JP-sky"),
+        new Location("Rome", "Italy", "IT-sky"),
+        new Location("Barcelona", "Spain", "ES-sky"),
+        new Location("New York City", "New York", "NYCA-sky"),
+        new Location("Sydney", "Australia", "AU-sky"),
+        new Location("Yosemite", "California", "LAXA-sky"),
+        new Location("Santorini", "Greece", "GR-sky"),
     };
 
     @PostConstruct

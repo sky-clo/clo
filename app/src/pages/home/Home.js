@@ -29,6 +29,7 @@ export default function Home() {
                   <LocationCard
                     name={item.name}
                     imgUrl={item.imgUrl}
+                    skyScannerName={item.skyScannerName}
                     key={index}
                   />
                 ))}
