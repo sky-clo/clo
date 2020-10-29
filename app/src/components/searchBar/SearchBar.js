@@ -4,48 +4,61 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import debounce from "lodash.debounce";
 import { useHistory } from "react-router-dom";
+import {
+  invalidDateStr,
+  isDateSupported,
+  noLocationProvidedStr,
+} from "../../utils";
+import { isValid } from "date-fns";
 
 // Regex that checks for DD/MM/YYYY or DD-MM-YYYY
 const dayMonthYearRegex = /[0-9]{2}(\/|-)[0-9]{2}(\/|-)[0-9]{4}/;
 const isDate = RegExp(dayMonthYearRegex);
 
 export default function SearchBar() {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [from, setFrom] = useState({});
+  const [to, setTo] = useState({});
   const [inboundDate, setInboundDate] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
   const history = useHistory();
 
   const onSearchSubmit = (e) => {
+    // Prevent default form submissions behaviour
     e.preventDefault();
 
-    // Check to see if the user is using a browser labelled as Safari
-    const isSafari =
-      navigator.userAgent.includes("Safari") &&
-      !navigator.userAgent.includes("Chrome");
+    // Check to see if the user has added a From/To destination
+    if (!from?.hasOwnProperty("value") || !to?.hasOwnProperty("value")) {
+      return alert(noLocationProvidedStr);
+    }
+
+    // Check if user browser supports type="date" on inputs
+    const supportsDateInput = isDateSupported();
 
     // Ensure safari strings are in the correct format
-    if (isSafari) {
+    if (!supportsDateInput) {
       if (!isDate.test(outboundDate) || !isDate.test(inboundDate)) {
-        return alert(
-          "Please ensure your date is valid and formatted DD/MM/YYYY"
-        );
+        return alert(invalidDateStr);
       }
     }
 
     // Perform string manipulation from DD/MM/YYYY to YYYY/MM/DD if using safari
-    const inbound = isSafari
+    const inbound = supportsDateInput
       ? inboundDate
+      : inboundDate
           .split(/[ -/]+/)
           .reverse()
-          .join("-")
-      : inboundDate;
-    const outbound = isSafari
+          .join("-");
+    const outbound = supportsDateInput
       ? outboundDate
+      : outboundDate
           .split(/[ -/]+/)
           .reverse()
-          .join("-")
-      : outboundDate;
+          .join("-");
+
+    // Final check to see if our provided dates are valid
+    if (!isValid(new Date(inbound)) || !isValid(new Date(outbound))) {
+      return alert(invalidDateStr);
+    }
 
     // Push to state and search for the next page to deal with
     history.push({
