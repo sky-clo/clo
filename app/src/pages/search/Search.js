@@ -22,6 +22,7 @@ export default function Search() {
   const { body } = useApi("/locations/search", { urlSearchParams });
 
   const place = body?.flights.Places?.[0];
+
   return (
     <>
       <Helmet>
@@ -68,8 +69,8 @@ export default function Search() {
 
           <Map
             className={styles.map}
-            origin={undefined}
-            destination={undefined}
+            origin={body?.flights.geocode.results[0].geometry.location}
+            destination={body?.flights.geocode.results[0].geometry.location}
           />
         </section>
       </article>

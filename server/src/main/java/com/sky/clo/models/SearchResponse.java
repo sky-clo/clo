@@ -6,11 +6,13 @@ public class SearchResponse {
     private FlightResponse flights;
     private Weather weather;
     private UnsplashRandomPhotoResponse photos;
+    private GeocodeResponse geocode;
 
-    public SearchResponse(FlightResponse flights, Weather weather, UnsplashRandomPhotoResponse photos) {
+    public SearchResponse(FlightResponse flights, Weather weather, UnsplashRandomPhotoResponse photos, GeocodeResponse geocode) {
         this.flights = flights;
         this.weather = weather;
         this.photos = photos;
+        this.geocode = geocode;
     }
 
     public FlightResponse getFlights() {
@@ -35,5 +37,13 @@ public class SearchResponse {
 
     public void setPhotos(UnsplashRandomPhotoResponse photos) {
         this.photos = photos;
+    }
+
+    public GeocodeResponse getGeocode() {
+        return geocode;
+    }
+
+    public void setGeocode(GeocodeResponse geocode) {
+        this.geocode = geocode;
     }
 }

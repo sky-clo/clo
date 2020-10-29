@@ -2,6 +2,7 @@ package com.sky.clo;
 
 import com.sky.clo.models.*;
 import com.sky.clo.services.FlightService;
+import com.sky.clo.services.GoogleMapsService;
 import com.sky.clo.services.UnsplashService;
 import com.sky.clo.services.WeatherService;
 import com.sky.clo.weather.Weather;
@@ -23,6 +24,9 @@ public class LocationController {
 
     @Autowired
     WeatherService weatherService;
+
+    @Autowired
+    GoogleMapsService googleMapsService;
 
     private final Location[] popularLocations = {
         new Location("London", "United Kingdom"),
@@ -64,18 +68,21 @@ public class LocationController {
 
         int originId = flights.getQuotes()[0].getOutboundLeg().getOriginId();
         String cityName = null;
+        String countryName = null;
 
         for (FlightResponsePlaces place : flights.getPlaces()) {
             if (place.getPlaceId() == originId) {
                 cityName = place.getCityName();
+                countryName = place.getCountryName();
                 break;
             }
         }
 
         CompletableFuture<Weather> weatherResponse = weatherService.search(cityName);
         CompletableFuture<UnsplashRandomPhotoResponse> photoResponse = unsplashService.randomPhoto(cityName);
-        CompletableFuture.allOf(weatherResponse, photoResponse);
+        CompletableFuture<GeocodeResponse> geocodeResponse = googleMapsService.geocode(cityName + ", " + countryName);
+        CompletableFuture.allOf(weatherResponse, photoResponse, geocodeResponse);
 
-        return new SearchResponse(flights, weatherResponse.get(), photoResponse.get());
+        return new SearchResponse(flights, weatherResponse.get(), photoResponse.get(), geocodeResponse.get());
     }
 }
