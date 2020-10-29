@@ -21,7 +21,7 @@ export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/locations/search", { urlSearchParams });
 
-  const place = body?.Places?.[0];
+  const place = body?.flights.Places?.[0];
   return (
     <>
       <Helmet>
@@ -29,7 +29,10 @@ export default function Search() {
       </Helmet>
 
       <article className={styles.location}>
-        <Hero title={place ? `${place.CityName}, ${place.CountryName}` : ""} />
+        <Hero
+          title={place ? `${place.CityName}, ${place.CountryName}` : ""}
+          image={body?.photos?.urls.full}
+        />
 
         <SearchBar to={body ? body.name : ""} />
 
@@ -37,7 +40,7 @@ export default function Search() {
           <h2 className="c-heading-bravo">Available Flights</h2>
 
           <div className={styles.flights}>
-            {body?.Quotes?.slice(0, 5)
+            {body?.flights?.Quotes?.slice(0, 5)
               .sort(function (a, b) {
                 return a.MinPrice - b.MinPrice;
               })
@@ -45,11 +48,15 @@ export default function Search() {
                 return (
                   <FlightCard
                     title={
-                      findLocation(body.Places, item.OutboundLeg.OriginId)
-                        .Name +
+                      findLocation(
+                        body?.flights.Places,
+                        item.OutboundLeg.OriginId
+                      ).Name +
                       " to " +
-                      findLocation(body.Places, item.OutboundLeg.DestinationId)
-                        .Name
+                      findLocation(
+                        body?.flights.Places,
+                        item.OutboundLeg.DestinationId
+                      ).Name
                     }
                     time=""
                     price={`£${item.MinPrice}`}
