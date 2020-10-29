@@ -5,6 +5,9 @@ import AsyncSelect from "react-select/async";
 import debounce from "lodash.debounce";
 import { useHistory } from "react-router-dom";
 
+const dayMonthYearRegex = /[0-9]{1,2}(\/|-)[0-9]{1,2}(\/|-)[0-9]{4}/;
+const isDate = RegExp(dayMonthYearRegex);
+
 export default function SearchBar() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -14,10 +17,44 @@ export default function SearchBar() {
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
+
+    const isSafari =
+      navigator.userAgent.includes("Safari") &&
+      !navigator.userAgent.includes("Chrome");
+
+    // Ensure safari strings are in the correct format
+    if (isSafari) {
+      if (!isDate.test(outboundDate) || !isDate.test(inboundDate)) {
+        return alert(
+          "Please ensure your date is valid and formatted DD/MM/YYYY"
+        );
+      }
+    }
+
+    // Perform string manipulation from DD/MM/YYYY to YYYY/MM/DD if using safari
+    const inbound = isSafari
+      ? inboundDate
+          .split(/[ -/]+/)
+          .reverse()
+          .join("-")
+      : inboundDate;
+    const outbound = isSafari
+      ? outboundDate
+          .split(/[ -/]+/)
+          .reverse()
+          .join("-")
+      : outboundDate;
+
+    // Push to state and search for the next page to deal with
     history.push({
       pathname: "/search",
-      search: `?from=${from.value}&to=${to.value}&inboundDate=${inboundDate}&outboundDate=${outboundDate}`,
-      state: { from, to, inboundDate, outboundDate },
+      search: `?from=${from.value}&to=${to.value}&inboundDate=${inbound}&outboundDate=${outbound}`,
+      state: {
+        from,
+        to,
+        inboundDate: inbound,
+        outboundDate: outbound,
+      },
     });
   };
 
