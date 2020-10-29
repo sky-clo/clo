@@ -65,7 +65,7 @@ export default function Search() {
                       ).CityName
                     }
                     price={`£${item.MinPrice}`}
-                    href="/location"
+                    href="/whos-flying"
                     key={index}
                   />
                 );

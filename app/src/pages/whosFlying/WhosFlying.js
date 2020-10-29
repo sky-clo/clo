@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./whosFlying.module.css";
-import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import LinkButton from "../../components/linkButton/LinkButton";
 
 export default function WhosFlying() {
   const [firstName, setFirstName] = useState("");
@@ -28,38 +28,11 @@ export default function WhosFlying() {
     setPassportNumber("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let configObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(passengers),
-    };
-
-    fetch("http://3.9.45.36:3000/passengers", configObj) //not sure what url to post this to??
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (object) {
-        console.log(object);
-      })
-      .catch(function (error) {
-        alert(
-          "We are sorry, we seem to be having issues, please try again later!"
-        );
-        console.log(error.message);
-      });
-  };
-
   return (
     <section className={styles.section}>
       <h1 className={styles.h1}>Who's Flying</h1>
 
-      <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+      <form className={styles.form}>
         <fieldset>
           <legend className="c-form-caption">Example</legend>
 
@@ -83,7 +56,7 @@ export default function WhosFlying() {
 
           <ul className={"c-form-list " + styles.formList}>
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-firstName">
+              <label className="c-form-label" htmlFor="f-firstName">
                 First Name{" "}
               </label>
               <input
@@ -98,7 +71,7 @@ export default function WhosFlying() {
             </li>
 
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-lastName">
+              <label className="c-form-label" htmlFor="f-lastName">
                 Last Name{" "}
               </label>
               <input
@@ -130,7 +103,7 @@ export default function WhosFlying() {
             </li>
 
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-passportNumber">
+              <label className="c-form-label" htmlFor="f-passportNumber">
                 Passport Number{" "}
               </label>
               <input
@@ -149,9 +122,11 @@ export default function WhosFlying() {
             <br />
             <br />
 
-            <Button data-test="WhosFlying-next" type="submit">
+            <LinkButton
+              data-test="WhosFlying-next"
+              href="/payment"
               Next
-            </Button>
+            </LinkButton>
           </ul>
         </fieldset>
       </form>
