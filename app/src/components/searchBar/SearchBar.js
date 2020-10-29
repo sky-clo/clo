@@ -5,7 +5,8 @@ import AsyncSelect from "react-select/async";
 import debounce from "lodash.debounce";
 import { useHistory } from "react-router-dom";
 
-const dayMonthYearRegex = /[0-9]{1,2}(\/|-)[0-9]{1,2}(\/|-)[0-9]{4}/;
+// Regex that checks for DD/MM/YYYY or DD-MM-YYYY
+const dayMonthYearRegex = /[0-9]{2}(\/|-)[0-9]{2}(\/|-)[0-9]{4}/;
 const isDate = RegExp(dayMonthYearRegex);
 
 export default function SearchBar() {
@@ -18,6 +19,7 @@ export default function SearchBar() {
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
+    // Check to see if the user is using a browser labelled as Safari
     const isSafari =
       navigator.userAgent.includes("Safari") &&
       !navigator.userAgent.includes("Chrome");
