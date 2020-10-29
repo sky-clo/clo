@@ -25,7 +25,6 @@ public class LocationController {
     WeatherService weatherService;
 
     private final Location[] popularLocations = {
-        new Location("London", "United Kingdom", "LOND-sky"),
         new Location("Paris", "France", "PARI-sky"),
         new Location("Tokyo", "Japan", "JP-sky"),
         new Location("Rome", "Italy", "IT-sky"),
