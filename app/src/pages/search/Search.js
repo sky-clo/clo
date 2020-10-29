@@ -11,7 +11,7 @@ import styles from "./Search.module.scss";
 
 function findLocation(places, key) {
   for (const place of places) {
-    if (place.PlaceId == key) {
+    if (place.PlaceId === key) {
       return place;
     }
   }
@@ -21,16 +21,15 @@ export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/search", { urlSearchParams });
 
+  const place = body?.Places?.[0];
   return (
     <>
       <Helmet>
-        <title>{`${body ? body.name : ""} | Sky Clo`}</title>
+        <title>{`${place?.CityName || ""} | Sky Clo`}</title>
       </Helmet>
 
       <article className={styles.location}>
-        <Hero
-          title={`${body?.Places?.[0]?.CityName}, ${body?.Places?.[0]?.CountryName}`}
-        />
+        <Hero title={place ? `${place.CityName}, ${place.CountryName}` : ""} />
 
         <SearchBar to={body ? body.name : ""} />
 
