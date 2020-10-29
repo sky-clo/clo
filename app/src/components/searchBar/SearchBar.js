@@ -2,8 +2,10 @@ import Button from "../button/Button";
 import styles from "./SearchBar.module.scss";
 import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
+import { components } from "react-select";
 import debounce from "lodash.debounce";
 import { useHistory } from "react-router-dom";
+import config from "../../config";
 
 export default function SearchBar() {
   const [from, setFrom] = useState("");
@@ -27,7 +29,7 @@ export default function SearchBar() {
       headers: { Accept: "application/json" },
     };
 
-    fetch(`http://localhost:8080/airports?query=${inputValue}`, options)
+    fetch(`${config.apiUrl}/airports?query=${inputValue}`, options)
       .then((response) => response.json())
       .then(({ Places }) => {
         const values = Places.map(({ PlaceId, PlaceName }) => ({
@@ -59,10 +61,15 @@ export default function SearchBar() {
               From
             </label>
             <AsyncSelect
+              id="SearchBar-from"
               cacheOptions
               defaultOptions
               loadOptions={getPlaceOptions}
               onChange={(e) => setFrom(e)}
+              data-test="SearchBar-from"
+              components={{
+                Input: addTestAttrToSelect(components.Input, "SearchBar-from"),
+              }}
             />
           </li>
 
@@ -71,10 +78,15 @@ export default function SearchBar() {
               To
             </label>
             <AsyncSelect
+              id="SearchBar-to"
               cacheOptions
               defaultOptions
               loadOptions={getPlaceOptions}
               onChange={(e) => setTo(e)}
+              data-test="SearchBar-to"
+              components={{
+                Input: addTestAttrToSelect(components.Input, "SearchBar-to"),
+              }}
             />
           </li>
 
@@ -122,3 +134,7 @@ export default function SearchBar() {
     </form>
   );
 }
+
+const addTestAttrToSelect = (Component, testLabel) => (props) => (
+  <Component {...props} data-test={testLabel} />
+);
