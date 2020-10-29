@@ -1,26 +1,24 @@
 import React from "react";
 
-import Button from "../../components/button/Button";
+import LinkButton from "../../components/linkButton/LinkButton";
 import styles from "./Payment.module.scss";
 
 export default function Payment() {
-  function handleSubmit(event) {
-    event.preventDefault();
-    // TODO: submit trip
-  }
-
   return (
     <section className={styles.section}>
       <h1 className={styles.h1}>Payment</h1>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form}>
         <fieldset>
           <legend className="c-form-caption">Payment form</legend>
           <ul className={"c-form-list " + styles.formList}>
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-account-name">
+              <label className="c-form-label" htmlFor="f-account-name">
                 Account Name{" "}
-                <abbr title="This field is required" class="c-form-required">
+                <abbr
+                  title="This field is required"
+                  className="c-form-required"
+                >
                   *
                 </abbr>
               </label>
@@ -36,9 +34,12 @@ export default function Payment() {
             </li>
 
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-account-number">
-                Account Number{" "}
-                <abbr title="This field is required" class="c-form-required">
+              <label className="c-form-label" htmlFor="f-account-number">
+                Card Number{" "}
+                <abbr
+                  title="This field is required"
+                  className="c-form-required"
+                >
                   *
                 </abbr>
               </label>
@@ -54,16 +55,19 @@ export default function Payment() {
             </li>
 
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-sort-code">
-                Sort Code{" "}
-                <abbr title="This field is required" class="c-form-required">
+              <label className="c-form-label" htmlFor="f-sort-code">
+                Expiry Date{" "}
+                <abbr
+                  title="This field is required"
+                  className="c-form-required"
+                >
                   *
                 </abbr>
               </label>
               <input
                 type="text"
                 className="c-form-input"
-                placeholder="e.g. 01-01-01"
+                placeholder="e.g. 01/20"
                 name="f-sort-code"
                 id="f-sort-code"
                 data-test="Payment-sort-code"
@@ -72,9 +76,12 @@ export default function Payment() {
             </li>
 
             <li className="c-form-list__item">
-              <label className="c-form-label" for="f-cvv">
+              <label className="c-form-label" htmlFor="f-cvv">
                 CVV{" "}
-                <abbr title="This field is required" class="c-form-required">
+                <abbr
+                  title="This field is required"
+                  className="c-form-required"
+                >
                   *
                 </abbr>
               </label>
@@ -89,7 +96,9 @@ export default function Payment() {
               />
             </li>
 
-            <Button data-test="Payment-next">Next</Button>
+            <LinkButton data-test="Payment-next" to="/complete">
+              Next
+            </LinkButton>
           </ul>
         </fieldset>
       </form>

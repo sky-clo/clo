@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import Hero from "../../components/hero/Hero";
@@ -20,6 +20,12 @@ function findLocation(places, key) {
 export default function Search() {
   const urlSearchParams = useUrlSearchParams();
   const { body } = useApi("/locations/search", { urlSearchParams });
+
+  useEffect(() => {
+    if (body && !body.flights) {
+      alert("No flights found!");
+    }
+  }, [body]);
 
   const place = body?.flights?.Places?.[0];
   return (
@@ -59,7 +65,7 @@ export default function Search() {
                       ).CityName
                     }
                     price={`£${item.MinPrice}`}
-                    href="/location"
+                    href="/whos-flying"
                     key={index}
                   />
                 );
