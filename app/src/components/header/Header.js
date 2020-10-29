@@ -56,7 +56,7 @@ export default function Header() {
           ) : (
             <Button
               primary={false}
-              onClick={() => dispatch("reset")}
+              onClick={() => dispatch({ type: "reset" })}
               data-test="Header-sign-in"
             >
               Sign Out
@@ -89,7 +89,7 @@ export default function Header() {
             </React.Fragment>
           ) : (
             <Button
-              onClick={() => dispatch("reset")}
+              onClick={() => dispatch({ type: "reset" })}
               primary={false}
               data-test="Header-create-an-account"
             >
