@@ -42,7 +42,9 @@ public class LocationController {
             for (Location location : popularLocations) {
                 CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService.randomPhoto(location.getName());
                 UnsplashRandomPhotoResponse photo = response.get();
-                location.setImgUrl(photo.getUrls().getFull());
+                if (photo) {
+                    location.setImgUrl(photo.getUrls().getFull());
+                }
             }
 
         } catch (Exception e) {
