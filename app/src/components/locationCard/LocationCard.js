@@ -17,7 +17,7 @@ export default function LocationCard(props) {
               <img
                 alt={props.name}
                 className={`c-tile__poster ${styles.fullWidth}`}
-                src={props.imgUrl}
+                src={props.imgUrl + "?q=70&w=200"}
               />
             </div>
             <div className="c-tile__body c-tile__caption">
