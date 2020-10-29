@@ -37,23 +37,26 @@ export default function Search() {
           <h2 className="c-heading-bravo">Available Flights</h2>
 
           <div className={styles.flights}>
-            {body?.Quotes?.sort(function (a, b) {
-              return a.MinPrice - b.MinPrice;
-            }).map((item, index) => {
-              return (
-                <FlightCard
-                  title={
-                    findLocation(body.Places, item.OutboundLeg.OriginId).Name +
-                    " to " +
-                    findLocation(body.Places, item.OutboundLeg.DestinationId)
-                      .Name
-                  }
-                  time=""
-                  price={`£${item.MinPrice}`}
-                  href="/location"
-                />
-              );
-            })}
+            {body?.Quotes?.slice(0, 5)
+              .sort(function (a, b) {
+                return a.MinPrice - b.MinPrice;
+              })
+              .map((item, index) => {
+                return (
+                  <FlightCard
+                    title={
+                      findLocation(body.Places, item.OutboundLeg.OriginId)
+                        .Name +
+                      " to " +
+                      findLocation(body.Places, item.OutboundLeg.DestinationId)
+                        .Name
+                    }
+                    time=""
+                    price={`£${item.MinPrice}`}
+                    href="/location"
+                  />
+                );
+              })}
           </div>
 
           <Map
