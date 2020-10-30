@@ -47,6 +47,7 @@
     .map {
       grid-area: map;
       display: block;
+      min-height: 500px;
     }
   }
 }

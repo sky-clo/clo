@@ -42,6 +42,7 @@ public class UnsplashService {
             ResponseEntity<UnsplashRandomPhotoResponse> results = restTemplate.exchange(url, HttpMethod.GET, entity, UnsplashRandomPhotoResponse.class);
             return CompletableFuture.completedFuture(results.getBody());
         } catch (HttpClientErrorException e) {
+            e.printStackTrace();
             return CompletableFuture.completedFuture(null);
         }
 

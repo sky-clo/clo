@@ -9,10 +9,11 @@ public class Location {
     private String skyScannerName;
     private String imgUrl;
 
-    public Location(String name, String country, String skyScannerName) {
+    public Location(String name, String country, String skyScannerName, String imgUrl) {
         this.name = name;
         this.country = country;
         this.skyScannerName = skyScannerName;
+        this.imgUrl = imgUrl;
     }
 
     public String getName() {

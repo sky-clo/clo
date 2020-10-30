@@ -25,32 +25,16 @@ public class LocationController {
     WeatherService weatherService;
 
     private final Location[] popularLocations = {
-        new Location("Paris", "France", "PARI-sky"),
-        new Location("Tokyo", "Japan", "JP-sky"),
-        new Location("Rome", "Italy", "IT-sky"),
-        new Location("Barcelona", "Spain", "ES-sky"),
-        new Location("New York City", "New York", "NYCA-sky"),
-        new Location("Sydney", "Australia", "AU-sky"),
-        new Location("Yosemite", "California", "LAXA-sky"),
-        new Location("Santorini", "Greece", "GR-sky"),
+            new Location("Paris", "France", "PARI-sky", "https://images.unsplash.com/photo-1502588763795-b8dbc5fb7e67?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("Tokyo", "Japan", "JP-sky", "https://images.unsplash.com/photo-1587908377328-c7f28bbcc37d?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("Rome", "Italy", "IT-sky", "https://images.unsplash.com/photo-1603655996066-3f7647bb448c?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("Barcelona", "Spain", "ES-sky", "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("New York City", "New York", "NYCA-sky", "https://images.unsplash.com/photo-1587888771042-6e103d1d7fc2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("Sydney", "Australia", "AU-sky", "https://images.unsplash.com/photo-1563117016-ad4553cb742d?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("Yosemite", "California", "LAXA-sky", "https://images.unsplash.com/photo-1595769485301-bb03a966d398?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
+            new Location("Santorini", "Greece", "GR-sky", "https://images.unsplash.com/photo-1562762790-80340c5a0177?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE3ODU3MH0"),
     };
-
-    @PostConstruct
-    private void generateLocationPhotos() {
-        try {
-            for (Location location : popularLocations) {
-                CompletableFuture<UnsplashRandomPhotoResponse> response = unsplashService.randomPhoto(location.getName());
-                UnsplashRandomPhotoResponse photo = response.get();
-                if (photo != null) {
-                    location.setImgUrl(photo.getUrls().getFull());
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    
     /** Returns popular locations */
     @GetMapping()
     public @ResponseBody Location[] getPopularLocations() {

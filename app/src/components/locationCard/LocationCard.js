@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "./LocationCard.module.css";
 
 const startLocation = "LOND-SKY";
-const inboundDate = "2020-10-31";
-const outboundDate = "2020-11-6";
+const inboundDate = "2020-11-27";
+const outboundDate = "2020-10-31";
 
 export default function LocationCard(props) {
   const link = `/search?from=${startLocation}&to=${props.skyScannerName}&inboundDate=${inboundDate}&outboundDate=${outboundDate}`;
